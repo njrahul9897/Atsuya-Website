@@ -1,6 +1,7 @@
 import { nav, site } from "@/content/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Newsletter } from "@/components/layout/Newsletter";
 import { MegaIndustries, MegaList, MegaPlatform } from "@/components/layout/MegaMenus";
 
 const mobile = [
@@ -25,6 +26,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         }}
       />
       <main id="main">{children}</main>
+      <Newsletter />
       <Footer />
     </>
   );

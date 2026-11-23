@@ -80,6 +80,11 @@ the scene data, or replace `SceneSvg` with illustrator SVGs that keep those ids.
 `app/api/assessment/route.ts`. Set `ASSESSMENT_ENDPOINT` to the CRM intake URL, or replace the
 stub. Search for `TODO: connect CRM`.
 
+**Newsletter.** The sign-up band above the footer (`components/layout/Newsletter.tsx`, copy in
+`content/site.ts` → `newsletter`) posts through `subscribeNewsletter` in `app/actions.ts` to the
+stub at `app/api/newsletter/route.ts`, which stores nothing. Set `NEWSLETTER_ENDPOINT` to the email
+provider's sign-up URL, or replace the stub. Search for `TODO: connect newsletter`.
+
 ## Visual system
 
 The look follows the leaders in this space (Samsara, Augury, Motive, Tulip, Cognite): dark,

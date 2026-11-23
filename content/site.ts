@@ -94,6 +94,15 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   },
 ];
 
+// The newsletter sign-up, a band above the footer on every page of the site layout.
+export const newsletter = {
+  eyebrow: "Newsletter",
+  headline: "Notes from the field, in your inbox.",
+  lead: "Case studies, product updates and practical guides on running physical operations with AOne. [TBD: how often the newsletter goes out]",
+  success: "Thanks, you’re subscribed.",
+  consent: "By subscribing, you agree to receive emails from Atsuya Technologies. You can unsubscribe at any time.",
+};
+
 export const legalLinks: NavLink[] = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
