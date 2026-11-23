@@ -1,0 +1,1111 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------------------------------
+   Design tokens. Atsuya blue is the one hue: light surfaces, deep navy surfaces built out from
+   it, and a sky accent on dark. See "Visual system v2" further down for the surfaces.
+   ------------------------------------------------------------------------------------------ */
+:root {
+  /* Primary: Atsuya brand blue, taken from the logo file (public/images/logos/atsuya-logo.svg). */
+  --brand-blue: #1f77bd; /* fills, the primary button, live elements, large numerals (4.7:1 on white) */
+  --brand-blue-ink: #1a66a3; /* hover/pressed, and small blue text (5.5:1 or better on every light surface) */
+  --brand-blue-tint: #eef5fb; /* very light background for highlighted blocks */
+
+  --ink: #0b0d12; /* headings and body text */
+  --ink-2: #4a5060; /* secondary text */
+  --ink-3: #666c7b; /* captions, meta. Darkened from the brief's #8A90A0, which is 3.2:1 on white. */
+  --ink-3-night: #8a90a0; /* the same role on --night (6:1) */
+  --line: #e2e7ef; /* hairlines */
+  --paper: #ffffff;
+  --paper-2: #f3f6fa; /* alternate section background */
+  --night: #071325; /* deep brand navy: video overlays and the darkest surfaces */
+
+  /* Dark surfaces, built out from the brand blue */
+  --navy-950: #050e1c;
+  --navy-900: #081527;
+  --navy-850: #0b1c33;
+  --navy-800: #102542;
+  --navy-700: #1b3a63;
+  --sky: #6cb8f5; /* the accent on dark surfaces (8:1 on navy) */
+  --sky-soft: #b5dbfb;
+  --accent-text: var(--brand-blue); /* highlighted headline phrases */
+  --stat-from: #2f8fd8; /* big-number gradient */
+  --stat-to: #1a66a3;
+  --card-shadow: 0 1px 2px rgba(8, 21, 39, 0.04), 0 12px 32px -16px rgba(8, 21, 39, 0.16);
+  --card-shadow-hover: 0 2px 4px rgba(8, 21, 39, 0.05), 0 28px 56px -20px rgba(8, 21, 39, 0.3);
+  --glow: 0 0 0 1px rgba(108, 184, 245, 0.16), 0 30px 80px -30px rgba(31, 119, 189, 0.7);
+
+  /* Status colours, for live-data UI mock-ups only */
+  --ok: #12a150;
+  --warn: #e5a000;
+  --alert: #e5484d;
+  --alert-ink: #c5343a; /* behind small white labels (5.3:1) */
+
+  /* 2.5D illustration greys: one light (top-left), three faces */
+  --iso-top: #ffffff;
+  --iso-left: #e9eff7;
+  --iso-right: #d6e0ee;
+  --iso-top-mid: #dfe8f3;
+  --iso-left-mid: #cbd8e8;
+  --iso-right-mid: #b6c6db;
+  --iso-top-dark: #9fb3cd;
+  --iso-left-dark: #869dbb;
+  --iso-right-dark: #6f88a9;
+  --iso-stroke: #a5b6cc;
+  --iso-pad: #f3f6fa;
+  --iso-shadow: rgba(11, 13, 18, 0.07);
+
+  --pad: 32px; /* side padding */
+  --header-h: 88px; /* the floating bar plus its offset */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --pad: 48px;
+  }
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-brand: var(--brand-blue);
+  --color-brand-ink: var(--brand-blue-ink);
+  --color-brand-tint: var(--brand-blue-tint);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-3-night: var(--ink-3-night);
+  --color-line: var(--line);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-night: var(--night);
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-850: var(--navy-850);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-sky: var(--sky);
+  --color-accent: var(--accent-text);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-alert: var(--alert);
+  --color-alert-ink: var(--alert-ink);
+
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-card: 16px;
+  --ease-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --shadow-hover: var(--card-shadow-hover);
+  --shadow-card: var(--card-shadow);
+  --shadow-glow: var(--glow);
+  --radius-panel: 24px;
+}
+
+/* ------------------------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 24px);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--brand-blue);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* On dark surfaces the blue ring is 4:1; pair it with a white inner ring so it always reads. */
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: #fff;
+    box-shadow: 0 0 0 5px var(--brand-blue);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* ------------------------------------------------------------------------------------------
+   Type scale (brief §3): Display 72/76 → 44/48, H2 44/48, H3 24/30, body 18/28, small 15/22
+   ------------------------------------------------------------------------------------------ */
+@utility t-display {
+  font-size: clamp(2.75rem, 1.65rem + 4.9vw, 4.5rem);
+  line-height: 1.07;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+/* "Our impact" figures: one to a row, very large, with a small unit beside them */
+@utility t-impact {
+  font-size: clamp(2.625rem, 1.2rem + 6vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+@utility t-impact-unit {
+  font-size: max(1rem, 0.3em);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* The homepage statement: one line of thought, set very large and light */
+@utility t-statement {
+  font-size: clamp(2.625rem, 0.9rem + 6.1vw, 7.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  text-wrap: balance;
+}
+@utility t-statement-cta {
+  font-size: clamp(1.375rem, 0.75rem + 2.4vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+@utility t-h1 {
+  font-size: clamp(2.5rem, 1.75rem + 3.3vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+@utility t-h2 {
+  font-size: clamp(2rem, 1.55rem + 2vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+@utility t-h3 {
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+@utility t-h4 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.005em;
+  font-weight: 600;
+}
+@utility t-lead {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.5;
+}
+@utility t-body {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+@utility t-small {
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+/* Data labels: sensor readouts, timestamps, stat captions */
+@utility t-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+@utility t-stat-xl {
+  font-size: clamp(2.75rem, 2rem + 2.4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+@utility t-stat-lg {
+  font-size: clamp(2.25rem, 1.75rem + 1.8vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+@utility t-stat-md {
+  font-size: 1.75rem;
+  line-height: 2rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------------------------------
+   Layout: 12 columns, 1280px max, 24px gutters
+   ------------------------------------------------------------------------------------------ */
+@utility container-x {
+  width: 100%;
+  max-width: calc(1280px + 2 * var(--pad));
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+@utility grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+}
+@utility section-y {
+  padding-block: 96px;
+  @media (min-width: 1024px) {
+    padding-block: 160px;
+  }
+}
+@utility band-y {
+  padding-block: 64px;
+  @media (min-width: 1024px) {
+    padding-block: 96px;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+   Motion. Entrance: fade-up 16px, 600ms, 60ms stagger. Only when JS is running and the visitor
+   has not asked for reduced motion; otherwise everything is simply visible.
+   ------------------------------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity 600ms var(--ease),
+      transform 600ms var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  html.js [data-reveal="in"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+@keyframes iso-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+@keyframes iso-flow {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+/* The live dot used by LiveTicker and the mock-ups */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--brand-blue);
+  flex: none;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: pulse-dot 1.8s var(--ease) infinite;
+}
+
+/* ------------------------------------------------------------------------------------------
+   2.5D scenes. Faces take their fill from the tone class; live elements are brand blue.
+   ------------------------------------------------------------------------------------------ */
+.iso {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.iso-on-paper-2 {
+  --iso-pad: #ffffff;
+}
+.iso :is(polygon, path, ellipse, rect, line, polyline) {
+  vector-effect: non-scaling-stroke;
+}
+.iso .f {
+  stroke: var(--iso-stroke);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+.iso .f-top {
+  fill: var(--iso-top);
+}
+.iso .f-left {
+  fill: var(--iso-left);
+}
+.iso .f-right {
+  fill: var(--iso-right);
+}
+.iso .t-mid .f-top {
+  fill: var(--iso-top-mid);
+}
+.iso .t-mid .f-left {
+  fill: var(--iso-left-mid);
+}
+.iso .t-mid .f-right {
+  fill: var(--iso-right-mid);
+}
+.iso .t-dark .f-top {
+  fill: var(--iso-top-dark);
+}
+.iso .t-dark .f-left {
+  fill: var(--iso-left-dark);
+}
+.iso .t-dark .f-right {
+  fill: var(--iso-right-dark);
+}
+.iso .t-dark .f {
+  stroke: #7c8496;
+}
+.iso .t-blue .f-top {
+  fill: #4b93cd;
+}
+.iso .t-blue .f-left {
+  fill: var(--brand-blue);
+}
+.iso .t-blue .f-right {
+  fill: var(--brand-blue-ink);
+}
+.iso .t-blue .f {
+  stroke: var(--brand-blue-ink);
+}
+.iso .shadow {
+  fill: var(--iso-shadow);
+}
+.iso .pad {
+  fill: var(--iso-pad);
+  stroke: var(--line);
+  stroke-width: 1;
+  transition:
+    fill 400ms var(--ease),
+    stroke 400ms var(--ease);
+}
+.iso .live-line {
+  fill: none;
+  stroke: var(--brand-blue);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 3 6;
+}
+.iso .live-dot-core {
+  fill: var(--brand-blue);
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+.iso .live-ping {
+  fill: var(--brand-blue);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.iso .cam-cone {
+  fill: var(--brand-blue);
+  opacity: 0.1;
+}
+.iso .zone {
+  transition: opacity 500ms var(--ease);
+}
+.iso .zone.is-dim {
+  opacity: 0.38;
+}
+.iso .zone.is-active .pad {
+  fill: var(--brand-blue-tint);
+  stroke: var(--brand-blue);
+}
+.iso .zone[data-clickable] {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .iso .is-live .live-ping,
+  .iso-host:hover .iso-hover .live-ping,
+  .iso-host:focus-visible .iso-hover .live-ping {
+    animation: iso-ping 1.8s var(--ease) infinite;
+  }
+  .iso .is-live .live-line,
+  .iso-host:hover .iso-hover .live-line,
+  .iso-host:focus-visible .iso-hover .live-line {
+    animation: iso-flow 900ms linear infinite;
+  }
+  .iso .live:nth-of-type(2n) .live-ping {
+    animation-delay: 450ms;
+  }
+  .iso .live:nth-of-type(3n) .live-ping {
+    animation-delay: 900ms;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+   Small shared pieces
+   ------------------------------------------------------------------------------------------ */
+.rule-top {
+  border-top: 1px solid var(--line);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Text links: ink blue, underline on hover only */
+.link {
+  color: var(--brand-blue-ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms var(--ease);
+}
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+.prose-plain :where(p, ul, ol) {
+  margin-top: 1rem;
+  color: var(--ink-2);
+}
+.prose-plain :where(h2) {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  letter-spacing: -0.01em;
+}
+.prose-plain :where(ul) {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+/* Visible content placeholders, listed by `npm run tbd` */
+.tbd {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border: 1px dashed #b9bfcc;
+  border-radius: 6px;
+  padding: 2px 8px;
+  display: inline-block;
+}
+.on-dark .tbd,
+.surface-brand .tbd {
+  color: #fff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Logo: brand colours by default, one colour when data-mono is set */
+.logo-blue {
+  fill: #1f77bd;
+}
+.logo-grey {
+  fill: #6e6e6e;
+}
+.logo-red {
+  fill: #e92027;
+}
+[data-mono] :is(.logo-blue, .logo-grey, .logo-red) {
+  fill: currentColor;
+}
+:is(.logo-blue, .logo-grey, .logo-red) {
+  transition: fill 300ms var(--ease);
+}
+
+/* ChallengeCard status chip: grey "Unmonitored" flips to blue "Monitored by AOne" */
+.status-chip {
+  position: relative;
+  display: inline-grid;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.status-chip > span {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding-inline: 10px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  justify-self: start;
+}
+.status-chip i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+.status-off {
+  color: var(--ink-3);
+  background: var(--paper-2);
+  opacity: 0;
+}
+.status-on {
+  color: var(--brand-blue-ink);
+  background: var(--brand-blue-tint);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js .challenge .status-off {
+    opacity: 1;
+    transition: opacity 300ms var(--ease) var(--flip-delay, 700ms);
+  }
+  html.js .challenge .status-on {
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      opacity 400ms var(--ease) var(--flip-delay, 700ms),
+      transform 400ms var(--ease) var(--flip-delay, 700ms);
+  }
+  html.js .challenge[data-reveal="in"] .status-off {
+    opacity: 0;
+  }
+  html.js .challenge[data-reveal="in"] .status-on {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+   IsoScene: pinned on desktop when motion is allowed; a plain block otherwise.
+   ------------------------------------------------------------------------------------------ */
+.iso-scene-pin {
+  padding-block: 96px;
+}
+@media (min-width: 1024px) {
+  .iso-scene-pin {
+    padding-block: 160px;
+  }
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .iso-scene-wrap {
+    height: calc(100svh + var(--steps) * 48svh);
+  }
+  .iso-scene-pin {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    padding-block: calc(var(--header-h) + 16px) 32px;
+    display: flex;
+    align-items: center;
+  }
+  .iso-scene-pin > .container-x {
+    max-height: 100%;
+  }
+}
+
+/* The home scene's four states. The illustration (SiteVector) is a stack of layers; the animated
+   ones are inline SVG and follow the wrapper's data-step. Without scripts it shows its end state. */
+.home-scene .led {
+  fill: var(--led, #7cc4ff);
+}
+.home-scene .led-s {
+  stroke: var(--led, #7cc4ff);
+}
+.home-scene :is(.alarm, .halo-alert, .halo-ok, .flow-dot) {
+  opacity: 0;
+}
+.home-scene .hot {
+  --led: #3df08a;
+}
+.home-scene .hot .halo-live {
+  opacity: 0;
+}
+.home-scene .hot .halo-ok {
+  opacity: 1;
+}
+html.js .home-scene :is(.drop, .flow, .engineer) {
+  opacity: 0;
+}
+html.js .home-scene:not([data-step="-1"]) .drop,
+html.js .home-scene:is([data-step="1"], [data-step="2"], [data-step="3"]) .flow,
+html.js .home-scene[data-step="3"] .engineer {
+  opacity: 1;
+}
+html.js .home-scene:is([data-step="-1"], [data-step="0"], [data-step="1"]) .hot {
+  --led: #7cc4ff;
+}
+html.js .home-scene:is([data-step="-1"], [data-step="0"], [data-step="1"]) .hot .halo-live {
+  opacity: 1;
+}
+html.js .home-scene:not([data-step="3"]) .hot .halo-ok {
+  opacity: 0;
+}
+html.js .home-scene[data-step="2"] .hot {
+  --led: #ff4a3d;
+}
+html.js .home-scene[data-step="2"] :is(.alarm, .hot .halo-alert) {
+  opacity: 1;
+}
+html.js .home-dashboard {
+  opacity: 0;
+}
+html.js .home-dashboard:is([data-step="1"], [data-step="2"], [data-step="3"]) {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Devices drop into place, one after another */
+  html.js .home-scene .drop {
+    transform: translateY(-56px);
+    transition:
+      opacity 450ms var(--ease) calc(var(--i) * 70ms),
+      transform 700ms var(--ease) calc(var(--i) * 70ms);
+  }
+  html.js .home-scene:not([data-step="-1"]) .drop {
+    transform: none;
+  }
+  /* Data lines draw from each device to the gateway: the rise first, then the run along the floor */
+  html.js .home-scene .flow {
+    transition: opacity 300ms var(--ease) calc(var(--i) * 45ms);
+  }
+  html.js .home-scene .flow-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1100ms var(--ease) calc(var(--i) * 45ms + 180ms);
+  }
+  html.js .home-scene .riser .flow-line {
+    transition-duration: 320ms;
+    transition-delay: calc(var(--i) * 45ms);
+  }
+  html.js .home-scene:is([data-step="1"], [data-step="2"], [data-step="3"]) .flow-line {
+    stroke-dashoffset: 0;
+  }
+  /* A packet of data travelling each line */
+  html.js .home-scene:is([data-step="1"], [data-step="2"], [data-step="3"]) .flow-dot {
+    opacity: 0.9;
+    animation: flow-dot 2.6s linear calc(var(--i) * 190ms + 1400ms) infinite backwards;
+  }
+  html.js .home-dashboard {
+    transition: opacity 600ms var(--ease) 500ms;
+  }
+  html.js .home-scene .engineer {
+    transform: translateY(-28px);
+    transition:
+      opacity 450ms var(--ease),
+      transform 600ms var(--ease);
+  }
+  html.js .home-scene[data-step="3"] .engineer {
+    transform: none;
+  }
+  .home-scene :is(.led, .led-s) {
+    transition:
+      fill 400ms var(--ease),
+      stroke 400ms var(--ease);
+  }
+  .home-scene :is(.alarm, .halo-live, .halo-alert, .halo-ok) {
+    transition: opacity 400ms var(--ease);
+  }
+  html.js .home-scene[data-step="2"] .alarm {
+    animation: alarm-pulse 1.4s ease-in-out infinite;
+  }
+}
+@keyframes flow-dot {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+@keyframes alarm-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Homepage "problem" wipe: --wipe runs 0 → 1 with scroll (GSAP), 1 by default */
+@media (min-width: 1024px) {
+  .problem-wipe .problem-aone {
+    clip-path: inset(0 calc((1 - var(--wipe)) * 100%) 0 0);
+  }
+  /* The paper side loses its colour as the wipe passes; text contrast is left alone. */
+  .problem-wipe .problem-paper > div {
+    filter: grayscale(var(--wipe));
+  }
+  .problem-wipe .problem-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% + var(--wipe) * 50%);
+    width: 2px;
+    margin-left: -1px;
+    background: var(--brand-blue);
+    opacity: calc(min(var(--wipe), 1 - var(--wipe)) * 40);
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+   Hero video scrims: the only gradients on the site, and only for text legibility.
+   - Desktop: the brief's bottom-left scrim behind the copy, plus a short top scrim so the
+     transparent header's white links keep 4.5:1 over bright footage (pale skies).
+   - Phones: the copy fills the hero's height, so the scrim runs the full height instead.
+   Strengths are set from the measured brightness of the current posters; re-check when the
+   final films arrive.
+   ------------------------------------------------------------------------------------------ */
+.hero-scrim {
+  background: linear-gradient(to top, rgba(10, 14, 26, 0.8), rgba(10, 14, 26, 0.5));
+}
+@media (min-width: 768px) {
+  .hero-scrim {
+    background:
+      linear-gradient(to bottom, rgba(10, 14, 26, 0.5), transparent 180px),
+      linear-gradient(to top right, rgba(10, 14, 26, 0.72), transparent 60%);
+  }
+}
+
+/* ==========================================================================================
+   Visual system v2: dark immersive surfaces, depth and colour.
+   The rules below layer on top of the base tokens. Any component placed inside .dark-vars
+   re-reads the same tokens (ink, line, paper …) with dark values, so it adapts on its own.
+   ========================================================================================== */
+.dark-vars {
+  --ink: #ffffff;
+  --ink-2: rgba(255, 255, 255, 0.74);
+  --ink-3: #93a8c4;
+  --line: rgba(160, 196, 235, 0.16);
+  --paper: var(--navy-800);
+  --paper-2: var(--navy-850);
+  --brand-blue-ink: var(--sky);
+  --brand-blue-tint: rgba(108, 184, 245, 0.12);
+  --accent-text: var(--sky);
+  --stat-from: #ffffff;
+  --stat-to: #8ccafa;
+  --card-shadow: 0 0 0 1px rgba(160, 196, 235, 0.1);
+  --card-shadow-hover: 0 0 0 1px rgba(108, 184, 245, 0.4), 0 30px 70px -30px rgba(31, 119, 189, 0.8);
+  /* 2.5D scenes on dark */
+  --iso-top: #2a4672;
+  --iso-left: #1d3459;
+  --iso-right: #152847;
+  --iso-top-mid: #355688;
+  --iso-left-mid: #264470;
+  --iso-right-mid: #1b345a;
+  --iso-top-dark: #4a70a8;
+  --iso-left-dark: #375a8d;
+  --iso-right-dark: #284872;
+  --iso-stroke: #5479ad;
+  --iso-pad: #0e1f3a;
+  --iso-shadow: rgba(2, 8, 18, 0.45);
+  color: var(--ink);
+}
+
+/* Full-bleed dark section: navy, a faint engineering grid and one soft light */
+.surface-dark {
+  position: relative;
+  isolation: isolate;
+  overflow: clip; /* keeps the light inside the section without breaking position: sticky */
+  background: var(--navy-900);
+}
+.surface-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(108, 184, 245, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(108, 184, 245, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 78%);
+}
+.surface-dark::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: -18%;
+  right: -12%;
+  width: 62%;
+  height: 90%;
+  background: radial-gradient(closest-side, rgba(31, 119, 189, 0.38), transparent);
+}
+.surface-dark.glow-left::after {
+  right: auto;
+  left: -14%;
+}
+.surface-dark.glow-none::after {
+  display: none;
+}
+
+/* Full-bleed brand band */
+.surface-brand {
+  --ink: #ffffff;
+  --ink-2: #ffffff;
+  --ink-3: #ffffff;
+  --line: rgba(255, 255, 255, 0.28);
+  --stat-from: #ffffff;
+  --stat-to: #ffffff;
+  --accent-text: #ffffff;
+  --paper: rgba(255, 255, 255, 0.1);
+  --brand-blue-ink: #ffffff;
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  overflow: clip;
+  background: linear-gradient(120deg, #114878 0%, #165a94 50%, #1b6aab 100%);
+}
+.surface-brand::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: linear-gradient(100deg, transparent 30%, #000);
+  mask-image: linear-gradient(100deg, transparent 30%, #000);
+}
+
+/* A light section that rises over the dark one above it */
+.sheet {
+  position: relative;
+  z-index: 1;
+  margin-top: -2rem;
+  border-radius: 2rem 2rem 0 0;
+}
+@media (min-width: 1024px) {
+  .sheet {
+    margin-top: -2.5rem;
+    border-radius: 2.5rem 2.5rem 0 0;
+  }
+}
+
+/* Headline accent and big-number gradient */
+.accent {
+  color: var(--accent-text);
+}
+.stat-grad {
+  background: linear-gradient(180deg, var(--stat-from), var(--stat-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stat-grad svg {
+  color: var(--stat-to);
+}
+
+/* Eyebrow pill */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding-inline: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--brand-blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-blue) 22%, transparent);
+}
+.dark-vars .eyebrow::before {
+  background: var(--sky);
+  box-shadow: 0 0 10px 1px rgba(108, 184, 245, 0.7);
+}
+
+/* Cards */
+.card {
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--card-shadow);
+  transition:
+    box-shadow 350ms var(--ease),
+    transform 350ms var(--ease);
+}
+a.card:hover,
+.card-hover:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-3px);
+}
+@media (prefers-reduced-motion: reduce) {
+  a.card:hover,
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Primary button: depth and a brand-coloured shadow */
+.btn-primary {
+  background: linear-gradient(180deg, #1f77bd, #1a66a3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 24px -10px rgba(31, 119, 189, 0.85);
+  transition:
+    box-shadow 250ms var(--ease),
+    transform 250ms var(--ease),
+    filter 250ms var(--ease);
+}
+.btn-primary:hover {
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 16px 32px -10px rgba(31, 119, 189, 0.95);
+}
+
+/* Glass: chips and the header over dark footage */
+.glass {
+  background: rgba(8, 21, 39, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+
+/* 2.5D scenes on dark: the live layer glows */
+.dark-vars .iso .live-dot-core {
+  fill: var(--sky);
+  stroke: var(--navy-900);
+}
+.dark-vars .iso .live-ping,
+.dark-vars .iso .cam-cone {
+  fill: var(--sky);
+}
+.dark-vars .iso .cam-cone {
+  opacity: 0.16;
+}
+.dark-vars .iso .live-line {
+  stroke: var(--sky);
+}
+.dark-vars .iso .live {
+  filter: drop-shadow(0 0 5px rgba(108, 184, 245, 0.85));
+}
+.dark-vars .iso .pad {
+  stroke: rgba(108, 184, 245, 0.2);
+}
+.dark-vars .iso .zone.is-active .pad {
+  fill: rgba(108, 184, 245, 0.16);
+  stroke: var(--sky);
+}
+.dark-vars .iso .t-blue .f-top {
+  fill: #8ccafa;
+}
+.dark-vars .iso .t-blue .f-left {
+  fill: #4fa5ea;
+}
+.dark-vars .iso .t-blue .f-right {
+  fill: #2f8fd8;
+}
+.dark-vars .iso .t-blue .f {
+  stroke: #b5dbfb;
+}
+.dark-vars .iso .zone.is-dim {
+  opacity: 0.45;
+}
+.dark-vars .tbd {
+  color: var(--ink-2);
+  background: transparent;
+  border-color: rgba(160, 196, 235, 0.35);
+}
+.dark-vars .status-off {
+  color: var(--ink-3);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* The wipe's edge is a line of light on the dark side */
+@media (min-width: 1024px) {
+  .problem-wipe .problem-edge {
+    background: var(--sky);
+    box-shadow: 0 0 18px 2px rgba(108, 184, 245, 0.8);
+  }
+}
+
+.surface-brand .eyebrow::before {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+/* Copy over footage and other dark media */
+.on-dark {
+  --accent-text: var(--sky);
+}
+
