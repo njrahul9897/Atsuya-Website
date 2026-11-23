@@ -80,8 +80,8 @@ the scene data, or replace `SceneSvg` with illustrator SVGs that keep those ids.
 `app/api/assessment/route.ts`. Set `ASSESSMENT_ENDPOINT` to the CRM intake URL, or replace the
 stub. Search for `TODO: connect CRM`.
 
-**Newsletter.** The sign-up band above the footer (`components/layout/Newsletter.tsx`, copy in
-`content/site.ts` → `newsletter`) posts through `subscribeNewsletter` in `app/actions.ts` to the
+**Newsletter.** The sign-up at the top left of the footer (`components/layout/Footer.tsx`, form in
+`components/forms/NewsletterForm.tsx`, copy in `content/site.ts` → `newsletter`) posts through `subscribeNewsletter` in `app/actions.ts` to the
 stub at `app/api/newsletter/route.ts`, which stores nothing. Set `NEWSLETTER_ENDPOINT` to the email
 provider's sign-up URL, or replace the stub. Search for `TODO: connect newsletter`.
 
@@ -99,8 +99,11 @@ of the brief.
   any component dropped onto a dark surface adapts without its own dark styles. The 2.5D scenes
   switch to a blueprint look there, with the live layer glowing.
 - **Header.** Clear over the hero (logo, links and a search icon in white), a white floating bar
-  once the page scrolls. It carries no button: the call to action sits in the page, and in the
-  mobile menu.
+  once the page scrolls. Nav: Industries, Platform, Resources, Company (case studies are reached
+  from the homepage and the Industries menu). It carries no button: the call to action sits in the
+  page, in the mobile menu, and at the top right of the footer.
+- **Footer.** Opens with the newsletter (top left) and a site-assessment card (top right), then the
+  logo and link columns (Industries, Platform, Resources, Company, Contact), then the legal line.
 - **Homepage hero.** The headline alone, set very large at the foot of the footage, with the call
   to action beneath it as a line of type and a round arrow (`variant="statement"` on `HeroVideo`).
   Industry pages keep the fuller hero.

@@ -73,28 +73,15 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: "Platform",
     links: [{ label: "How AOne works", href: "/platform" }, ...nav.layers.map(({ label, href }) => ({ label, href })), ...nav.solutions],
   },
-  {
-    title: "Customers",
-    links: [
-      { label: "All case studies", href: "/customers" },
-      { label: "Wheels India", href: "/customers/wheels-india" },
-      { label: "Dana", href: "/customers/dana" },
-      { label: "Domino’s", href: "/customers/dominos" },
-      { label: "Licious", href: "/customers/licious" },
-    ],
-  },
   { title: "Resources", links: nav.resources.map(({ label, href }) => ({ label, href })) },
   { title: "Company", links: nav.company.filter((link) => link.href !== "/contact").map(({ label, href }) => ({ label, href })) },
   {
     title: "Contact",
-    links: [
-      { label: "Book a site assessment", href: "/book-assessment" },
-      { label: "Talk to an AOne engineer", href: "/contact" },
-    ],
+    links: [{ label: "Talk to an AOne engineer", href: "/contact" }],
   },
 ];
 
-// The newsletter sign-up, a band above the footer on every page of the site layout.
+// The newsletter sign-up, top left of the footer on every page of the site layout.
 export const newsletter = {
   headline: "Notes from the field, in your inbox.",
   lead: "Case studies, product updates and practical guides on running physical operations with AOne. [TBD: how often the newsletter goes out]",

@@ -24,7 +24,6 @@ type HeaderProps = {
 const items: ({ label: string; active: RegExp } & ({ menu: MenuKey } | { href: string }))[] = [
   { label: "Industries", menu: "industries", active: /^\/industries/ },
   { label: "Platform", menu: "platform", active: /^\/(platform|solutions)/ },
-  { label: "Customers", href: "/customers", active: /^\/customers/ },
   { label: "Resources", menu: "resources", active: /^\/resources/ },
   { label: "Company", menu: "company", active: /^\/(company|contact)/ },
 ];

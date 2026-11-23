@@ -76,7 +76,7 @@ export function NewsletterForm({ success, consent }: { success: string; consent:
           aria-describedby={cn(error && `${ID}-error`, `${ID}-consent`)}
           onBlur={(event) => error && setError(validateEmail(event.target.value))}
           className={cn(
-            "h-14 w-full min-w-0 flex-1 rounded-full border bg-paper px-6 text-[1.0625rem] text-ink transition-colors duration-200 placeholder:text-ink-3 hover:border-ink-3 focus:border-brand focus:outline-none focus-visible:outline-2",
+            "h-14 w-full min-w-0 rounded-full sm:flex-1 border bg-paper px-6 text-[1.0625rem] text-ink transition-colors duration-200 placeholder:text-ink-3 hover:border-ink-3 focus:border-brand focus:outline-none focus-visible:outline-2",
             error ? "border-alert" : "border-line",
           )}
         />
