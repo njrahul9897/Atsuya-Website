@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Schibsted_Grotesk, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/seo";
@@ -8,11 +8,15 @@ import { Motion } from "@/components/providers/Motion";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { RevealObserver } from "@/components/providers/RevealObserver";
 
-// One typeface family for headings and body. latin-ext carries the rupee sign.
+// Fonts are self-hosted (assets/fonts, SIL OFL), so a build never fetches from Google Fonts:
+// a bad Google Fonts response once failed the Vercel build inside next/font/google.
+
+// One typeface family for headings and body: variable, weights 400–900, Latin and Latin
+// Extended (which carries the rupee sign).
 // [TBD: confirm whether Atsuya has a brand typeface; if so, swap it in here]
-const schibsted = Schibsted_Grotesk({ subsets: ["latin", "latin-ext"], variable: "--font-schibsted", display: "swap" });
-// Data labels: sensor readouts, timestamps, stat captions.
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-jetbrains", display: "swap" });
+const schibsted = localFont({ src: "../assets/fonts/SchibstedGrotesk.woff2", weight: "400 900", variable: "--font-schibsted", display: "swap" });
+// Data labels: sensor readouts, timestamps, stat captions. Latin, weights 400–500.
+const jetbrains = localFont({ src: "../assets/fonts/JetBrainsMono.woff2", weight: "400 500", variable: "--font-jetbrains", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

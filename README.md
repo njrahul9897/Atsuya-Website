@@ -58,8 +58,14 @@ in under the same names and nothing else changes.
 **Brand blue.** `--brand-blue` in `app/globals.css` is `#1F77BD`, taken from the logo file. Change
 the three `--brand-blue*` variables if the brand guidelines say otherwise.
 
-**Typeface.** Schibsted Grotesk and JetBrains Mono, loaded in `app/layout.tsx`. The same fonts as
-TTF in `assets/fonts/` are used only to render the OG images.
+**Typeface.** Schibsted Grotesk and JetBrains Mono, loaded in `app/layout.tsx` with
+`next/font/local` from the WOFF2 files in `assets/fonts/`. They are self-hosted so builds never
+depend on Google Fonts: `next/font/google` failed a Vercel build once, when Google returned a font
+URL it could not parse. Both files were built from the variable TTFs in the google/fonts repo
+(`ofl/schibstedgrotesk`, `ofl/jetbrainsmono`) with fontTools, using Google's `latin` and
+`latin-ext` unicode ranges for Schibsted Grotesk (all weights, 400–900) and `latin` for JetBrains
+Mono (weights 400–500). The licences sit beside them (`OFL-*.txt`). The TTFs in the same folder
+are used only to render the OG images.
 
 **Logos.** `content/site.ts` → `customers`. Add `logo: "/images/clients/name.svg"` to an entry and
 the logo wall shows the mark (greyscale, colour on hover) instead of the name set in type.
