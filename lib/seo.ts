@@ -38,12 +38,12 @@ export function allRoutes(): RouteMeta[] {
   const fixed: RouteMeta[] = [
     {
       path: "/",
-      title: "AOne by Atsuya | See every asset. Act before it costs you.",
+      title: "AOne by Atsuya | Make the world run autonomous",
       absoluteTitle: true,
       description: site.description,
       crumbs: [],
       crumbName: "Home",
-      og: { eyebrow: "AOne · Operational intelligence", title: "See every asset. Act before it costs you." },
+      og: { eyebrow: "AOne · Operational intelligence", title: "Make the world run autonomous" },
       priority: 1,
     },
     {

@@ -20,7 +20,7 @@ const jetbrains = localFont({ src: "../assets/fonts/JetBrainsMono.woff2", weight
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "AOne by Atsuya | See every asset. Act before it costs you.", template: "%s | AOne by Atsuya" },
+  title: { default: "AOne by Atsuya | Make the world run autonomous", template: "%s | AOne by Atsuya" },
   description: site.description,
   applicationName: site.name,
   formatDetection: { telephone: false },
