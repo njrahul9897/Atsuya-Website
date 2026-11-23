@@ -67,8 +67,10 @@ URL it could not parse. Both files were built from the variable TTFs in the goog
 Mono (weights 400–500). The licences sit beside them (`OFL-*.txt`). The TTFs in the same folder
 are used only to render the OG images.
 
-**Logos.** `content/site.ts` → `customers`. Add `logo: "/images/clients/name.svg"` to an entry and
-the logo wall shows the mark (greyscale, colour on hover) instead of the name set in type.
+**Logos.** `content/site.ts` → `customers`. Add `logo: { src: "/images/clients/name.svg", width, height }`
+(the file's intrinsic size; the wall sizes each mark by its proportions) to an entry and
+the logo wall shows the mark instead of the name set in type: a light silhouette at 60% on the dark
+band, full colour on a white cell on hover. Ten marks are in; bigbasket and Grandiose still need files.
 
 **2.5D scenes.** `components/iso/scenes.ts` holds simple placeholder blocks. Each zone is its own
 `<g id="zone-{id}">`; the ids match `zones[].id` in `content/industries.ts`. Final art can replace

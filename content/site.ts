@@ -27,21 +27,24 @@ export const site = {
   },
 };
 
-// The logo wall. `logo` is left empty until each mark is cleared; the wall sets the name in type
-// until then. [TBD: confirm each logo is cleared for public use]
-export const customers: { name: string; logo?: string }[] = [
-  { name: "Blinkit" },
-  { name: "Amazon Fresh" },
-  { name: "bigbasket" },
-  { name: "Wheels India" },
-  { name: "Dana" },
-  { name: "IndianOil" },
-  { name: "Domino’s" },
-  { name: "Smartworks" },
-  { name: "UTI Mutual Fund" },
-  { name: "Licious" },
-  { name: "Gokaldas Exports" },
-  { name: "Grandiose" },
+// The logo wall. `logo` gives the file and its intrinsic size (the wall sizes each mark by its
+// proportions); without one, the wall sets the name in type.
+// Sources: Blinkit is the vector file from the Atsuya brand folder; the PNGs are cut from the
+// case-study pages of docs/AOne Industry Solutions with case studies.pdf, background removed.
+export type Customer = { name: string; logo?: { src: string; width: number; height: number; scale?: number } };
+export const customers: Customer[] = [
+  { name: "Blinkit", logo: { src: "/images/clients/blinkit.svg", width: 115, height: 31, scale: 0.8 } }, // a heavy wordmark
+  { name: "Amazon Fresh", logo: { src: "/images/clients/amazon-fresh.png", width: 153, height: 109 } },
+  { name: "bigbasket" }, // [TBD: bigbasket logo file]
+  { name: "Wheels India", logo: { src: "/images/clients/wheels-india.png", width: 280, height: 114 } },
+  { name: "Dana", logo: { src: "/images/clients/dana.png", width: 246, height: 125 } },
+  { name: "IndianOil", logo: { src: "/images/clients/indianoil.png", width: 98, height: 120 } },
+  { name: "Domino’s", logo: { src: "/images/clients/dominos.png", width: 131, height: 121 } },
+  { name: "Smartworks", logo: { src: "/images/clients/smartworks.png", width: 333, height: 115 } },
+  { name: "UTI Mutual Fund", logo: { src: "/images/clients/uti-mutual-fund.png", width: 242, height: 113 } },
+  { name: "Licious", logo: { src: "/images/clients/licious.png", width: 277, height: 110 } },
+  { name: "Gokaldas Exports", logo: { src: "/images/clients/gokaldas-exports.png", width: 319, height: 114 } },
+  { name: "Grandiose" }, // [TBD: Grandiose logo file]
 ];
 
 export type NavLink = { label: string; href: string; note?: string };
