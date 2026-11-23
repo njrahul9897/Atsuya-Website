@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <>
       <PageHero path="/terms" title={doc.title} sub={doc.description} size="h1" />
-      <Section spacing="none" className="pt-8 pb-24 lg:pt-12 lg:pb-40">
+      <Section spacing="none" className="pt-8 pb-16 lg:pt-12 lg:pb-26">
         <div className="container-x">
           <div className="prose-plain max-w-[44rem] border-t border-line pt-10">
             {doc.body.map((paragraph) => (

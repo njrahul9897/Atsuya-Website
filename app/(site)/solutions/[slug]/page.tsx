@@ -47,7 +47,6 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       <Section tone="paper-2" labelledBy="problem-title">
         <div className="container-x grid-12 gap-y-10">
           <div className="col-span-12 lg:col-span-6" data-reveal="">
-            <p className="eyebrow mb-6">The problem</p>
             <h2 id="problem-title" className="t-h2 max-w-[30rem]">
               {solution.problem.headline}
             </h2>
@@ -114,7 +113,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       {impact.length ? (
         <Section tone="brand" labelledBy="impact-title">
           <div className="container-x">
-            <SectionHeading id="impact-title" eyebrow="Typical results across deployments" title="Measured impact." />
+            <SectionHeading id="impact-title" title="Measured impact." lead="Typical results across deployments." />
             <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-16 lg:grid-cols-4">
               {impact.slice(0, 8).map((item, index) => (
                 <li key={`${item.industry}-${item.label}`} className="border-t border-line pt-6" data-reveal="" style={delay(index % 4)}>

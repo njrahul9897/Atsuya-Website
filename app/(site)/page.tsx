@@ -13,7 +13,6 @@ import { IndustryTile } from "@/components/ui/IndustryTile";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { CTABand } from "@/components/ui/CTABand";
 import { ArrowLink } from "@/components/ui/Button";
-import { Rail } from "@/components/sections/Rail";
 import { IsoScene } from "@/components/sections/IsoScene";
 import { SiteVector } from "@/components/iso/SiteVector";
 import { FilterGrid, type FilterItem } from "@/components/sections/FilterGrid";
@@ -42,7 +41,7 @@ export default function HomePage() {
       <HeroVideo {...hero.video} variant="statement" headline={hero.headline} primaryCta={site.cta} next="dark" />
 
       {/* 2. Proof band and 3. logo wall, on the dark surface the hero fades into */}
-      <Section tone="dark" spacing="none" className="glow-none pt-6 pb-28 lg:pb-36">
+      <Section tone="dark" spacing="none" className="glow-none pt-6 pb-20 lg:pb-28">
         <div className="container-x">
           <h2 className="sr-only">AOne in numbers</h2>
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -59,21 +58,24 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 4. Industry selector */}
+      {/* 4. Industry selector: all eight in two rows of four (two columns on phones) */}
       <Section id="industries" tone="paper-2" sheet labelledBy="industries-title">
-        <Rail label="industries" header={<SectionHeading id="industries-title" eyebrow="Eight industries" title={home.industries.headline} />}>
-          {industries.map((industry) => (
-            <li key={industry.slug} className="lg:w-[21.5rem] lg:shrink-0 lg:snap-start">
-              <IndustryTile industry={industry} />
-            </li>
-          ))}
-        </Rail>
+        <div className="container-x">
+          <SectionHeading id="industries-title" title={home.industries.headline} />
+          <ul className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-12 lg:grid-cols-4 lg:gap-5">
+            {industries.map((industry, index) => (
+              <li key={industry.slug} data-reveal="" style={delay(index % 4)}>
+                <IndustryTile industry={industry} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </Section>
 
       {/* 5. The problem */}
       <Section labelledBy="problem-title">
         <div className="container-x">
-          <SectionHeading id="problem-title" eyebrow="The problem" title={problem.headline} />
+          <SectionHeading id="problem-title" title={problem.headline} />
           <div className="mt-12 lg:mt-16">
             <ProblemWipe />
           </div>
@@ -89,12 +91,12 @@ export default function HomePage() {
       </Section>
 
       {/* 6. How AOne works */}
-      <IsoScene id="how-aone-works" eyebrow="How AOne works" headline={how.headline} steps={how.steps} scene={{ kind: "home", art: <SiteVector /> }} />
+      <IsoScene id="how-aone-works" headline={how.headline} steps={how.steps} scene={{ kind: "home", art: <SiteVector /> }} />
 
       {/* 7. Three layers, one platform */}
       <Section sheet labelledBy="layers-title">
         <div className="container-x">
-          <SectionHeading id="layers-title" eyebrow="The platform" title={home.layers.headline} />
+          <SectionHeading id="layers-title" title={home.layers.headline} />
           <div className="mt-12 lg:mt-16">
             <ThreeLayers layers={layers.map((layer) => ({ key: layer.key, name: layer.name, line: layer.line, href: `/platform/${layer.slug}` }))} />
           </div>
@@ -104,7 +106,7 @@ export default function HomePage() {
       {/* 8. Proof */}
       <Section tone="paper-2" labelledBy="stories-title">
         <div className="container-x">
-          <SectionHeading id="stories-title" eyebrow="Customer stories" title={stories.headline} lead={stories.lead} />
+          <SectionHeading id="stories-title" title={stories.headline} lead={stories.lead} />
           <div className="mt-10 lg:mt-12">
             <FilterGrid groups={[{ key: "industry", label: "Industry", options: storyIndustries }]} items={storyItems} gridClassName="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" />
           </div>

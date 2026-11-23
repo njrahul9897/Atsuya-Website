@@ -1,5 +1,4 @@
 import { newsletter } from "@/content/site";
-import { Eyebrow } from "@/components/ui/Section";
 import { rich, splitAccent } from "@/components/ui/rich";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 
@@ -11,8 +10,7 @@ export function Newsletter() {
     <section aria-labelledby="newsletter-title" className="border-t border-line bg-paper-2">
       <div className="container-x band-y grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-x-6">
         <div className="lg:col-span-6" data-reveal="">
-          <Eyebrow>{newsletter.eyebrow}</Eyebrow>
-          <h2 id="newsletter-title" className="t-h2 mt-6">
+          <h2 id="newsletter-title" className="t-h2">
             {head}
             {tail ? (
               <>

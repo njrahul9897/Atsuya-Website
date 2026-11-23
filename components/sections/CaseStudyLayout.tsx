@@ -74,7 +74,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
       </PageHero>
 
       {/* Challenge → solution → impact */}
-      <Section spacing="none" className="pt-12 pb-24 lg:pt-20 lg:pb-40">
+      <Section spacing="none" className="pt-12 pb-16 lg:pt-20 lg:pb-26">
         <div className="container-x grid grid-cols-1 gap-5 lg:grid-cols-3">
           {columns.map((column, index) => (
             <section key={column.title} aria-labelledby={`column-${index}`} className="card p-6 lg:p-8" data-reveal="" style={delay(index)}>

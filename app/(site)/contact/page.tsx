@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero path="/contact" title="Talk to an AOne engineer." sub="Tell us about your sites. An Atsuya engineer will reply within one working day." />
-      <Section spacing="none" className="pt-12 pb-24 lg:pt-20 lg:pb-40">
+      <Section spacing="none" className="pt-12 pb-16 lg:pt-20 lg:pb-26">
         <div className="container-x grid-12 gap-y-16">
           {/* Left: the form */}
           <div className="card col-span-12 p-6 lg:col-span-6 lg:p-10">

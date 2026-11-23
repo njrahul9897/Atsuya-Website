@@ -21,7 +21,7 @@ type PageHeroProps = {
 // uses literal light colours: inside .dark-vars the paper tokens are dark).
 export function PageHero({ path, eyebrow, title, sub, children, aside, next = "paper", size = "display", className }: PageHeroProps) {
   return (
-    <section className={cn("on-dark dark-vars surface-dark overflow-hidden pt-[calc(var(--header-h)+40px)] pb-24 lg:pt-[calc(var(--header-h)+72px)] lg:pb-36", className)}>
+    <section className={cn("on-dark dark-vars surface-dark overflow-hidden pt-[calc(var(--header-h)+40px)] pb-20 lg:pt-[calc(var(--header-h)+72px)] lg:pb-28", className)}>
       <div className="container-x">
         <Breadcrumbs path={path} tone="dark" />
         <div className={cn("grid-12 mt-10 gap-y-12 lg:mt-14", aside ? "items-center" : "items-end")}>

@@ -19,12 +19,11 @@ export default function ResourcesPage() {
       <PageHero path="/resources" title="Resources" sub={resources.sub} />
 
       {/* The estimator, the one working tool here */}
-      <Section spacing="none" className="pt-10 pb-24 lg:pt-16 lg:pb-40">
+      <Section spacing="none" className="pt-10 pb-16 lg:pt-16 lg:pb-26">
         <div className="container-x">
           <div className="surface-brand grid-12 items-end gap-y-8 overflow-hidden rounded-[2rem] p-8 lg:p-14" data-reveal="">
             <div className="col-span-12 lg:col-span-8">
-              <p className="eyebrow">Savings estimator</p>
-              <h2 className="t-h2 mt-5 max-w-[34rem]">A typical savings range for your sites, in three inputs.</h2>
+              <h2 className="t-h2 max-w-[34rem]">A typical savings range for your sites, in three inputs.</h2>
               <p className="mt-4 max-w-[34rem] text-[1.0625rem] leading-7 text-ink-2">Industry, number of sites and monthly electricity bill. The range comes from typical AOne deployments in your industry.</p>
             </div>
             <div className="col-span-12 lg:col-span-4 lg:justify-self-end">

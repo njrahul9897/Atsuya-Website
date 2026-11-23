@@ -13,7 +13,7 @@ export default function IndustriesPage() {
   return (
     <>
       <PageHero path="/industries" next="paper-2" eyebrow="Industries" title="One platform. Eight industries." sub="AOne IoT, Vision AI and BluSquad, set up for the way each operation runs. Pick yours to see the challenges, the use cases and the measured results." />
-      <Section tone="paper-2" spacing="none" className="pt-10 pb-24 lg:pt-16 lg:pb-40">
+      <Section tone="paper-2" spacing="none" className="pt-10 pb-16 lg:pt-16 lg:pb-26">
         <ul className="container-x grid grid-cols-1 gap-6 md:grid-cols-2">
           {industries.map((industry, index) => (
             <li key={industry.slug} data-reveal="" style={{ "--reveal-delay": `${(index % 2) * 60}ms` } as CSSProperties}>

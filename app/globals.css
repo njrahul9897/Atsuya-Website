@@ -292,15 +292,15 @@ html.lenis body {
   column-gap: 24px;
 }
 @utility section-y {
-  padding-block: 96px;
+  padding-block: 64px;
   @media (min-width: 1024px) {
-    padding-block: 160px;
+    padding-block: 104px;
   }
 }
 @utility band-y {
-  padding-block: 64px;
+  padding-block: 48px;
   @media (min-width: 1024px) {
-    padding-block: 96px;
+    padding-block: 72px;
   }
 }
 
@@ -645,11 +645,11 @@ html.lenis body {
    IsoScene: pinned on desktop when motion is allowed; a plain block otherwise.
    ------------------------------------------------------------------------------------------ */
 .iso-scene-pin {
-  padding-block: 96px;
+  padding-block: 64px;
 }
 @media (min-width: 1024px) {
   .iso-scene-pin {
-    padding-block: 160px;
+    padding-block: 104px;
   }
 }
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {

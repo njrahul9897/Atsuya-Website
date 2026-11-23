@@ -14,7 +14,6 @@ export type SceneStep = { id: string; name: string; body: string[] };
 
 type IsoSceneProps = {
   id?: string;
-  eyebrow?: string;
   headline: string;
   steps: SceneStep[];
   // "zones": an industry scene whose zones are the steps. "home": the four-step generic site,
@@ -33,7 +32,7 @@ const pad = (n: number) => String(n + 1).padStart(2, "0");
 // - Reduced motion: nothing pins or scrubs. The scene shows its end state and the steps are
 //   plain buttons.
 // Hotspots and steps are real buttons, so the scene works from the keyboard in every mode.
-export function IsoScene({ id, eyebrow, headline, steps, scene, tone = "dark" }: IsoSceneProps) {
+export function IsoScene({ id, headline, steps, scene, tone = "dark" }: IsoSceneProps) {
   const wrap = useRef<HTMLDivElement>(null);
   const rail = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null); // null: no step chosen yet
@@ -155,7 +154,6 @@ export function IsoScene({ id, eyebrow, headline, steps, scene, tone = "dark" }:
 
               {/* Panel: 40% */}
               <div className="order-1 col-span-12 lg:order-2 lg:col-span-5 lg:pl-6">
-                {eyebrow ? <p className="eyebrow mb-6">{eyebrow}</p> : null}
                 <h2 id={`${id ?? "scene"}-title`} className="t-h2">
                   <Accent text={headline} />
                 </h2>

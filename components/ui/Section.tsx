@@ -32,12 +32,11 @@ export function Section({ children, id, tone = "paper", spacing = "section", she
 
 export const Eyebrow = ({ children, className }: { children: ReactNode; className?: string }) => <p className={cn("eyebrow", className)}>{children}</p>;
 
-// Left-aligned section heading: an optional eyebrow pill, the H2 (its last phrase picked out in
-// the accent colour) and an optional lead.
-export function SectionHeading({ id, eyebrow, title, lead, className, as: Tag = "h2" }: { id?: string; eyebrow?: string; title: string; lead?: ReactNode; className?: string; as?: "h1" | "h2" }) {
+// Left-aligned section heading: the H2 (its last phrase picked out in the accent colour) and an
+// optional lead. Sections carry no eyebrow tag; only page heroes do (PageHero).
+export function SectionHeading({ id, title, lead, className, as: Tag = "h2" }: { id?: string; title: string; lead?: ReactNode; className?: string; as?: "h1" | "h2" }) {
   return (
     <div className={cn("max-w-[52rem]", className)} data-reveal="">
-      {eyebrow ? <Eyebrow className="mb-6">{eyebrow}</Eyebrow> : null}
       <Tag id={id} className={Tag === "h1" ? "t-h1" : "t-h2"}>
         <Accent text={title} />
       </Tag>

@@ -15,7 +15,7 @@ export default function BlogPage() {
   return (
     <>
       <PageHero path="/resources/blog" title="Notes from the field." sub="What Atsuya’s engineers learn from machines, cold rooms, kitchens and buildings." />
-      <Section spacing="none" className="pt-8 pb-24 lg:pt-12 lg:pb-40">
+      <Section spacing="none" className="pt-8 pb-16 lg:pt-12 lg:pb-26">
         <ul className="container-x">
           {posts.map((post, index) => (
             <li key={post.slug} className="border-t border-line last:border-b" data-reveal="" style={{ "--reveal-delay": `${index * 60}ms` } as CSSProperties}>

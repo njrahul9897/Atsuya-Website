@@ -78,9 +78,9 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       </HeroVideo>
 
       {/* 2. Challenges */}
-      <Section tone="paper-2" spacing="none" className="pt-14 pb-24 lg:pt-24 lg:pb-40" labelledBy="challenges-title">
+      <Section tone="paper-2" spacing="none" className="pt-14 pb-16 lg:pt-24 lg:pb-26" labelledBy="challenges-title">
         <div className="container-x">
-          <SectionHeading id="challenges-title" eyebrow="Challenges" title="What gets in the way." />
+          <SectionHeading id="challenges-title" title="What gets in the way." />
           <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
             {industry.challenges.map((challenge, index) => (
               <ChallengeCard key={challenge.title} title={challenge.title} points={challenge.points} index={index} />
@@ -92,7 +92,6 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       {/* 3. The operation map */}
       <IsoScene
         id="operation-map"
-        eyebrow="The operation map"
         headline={`AOne across your ${industry.siteNoun}.`}
         steps={industry.zones.map((zone) => ({ id: zone.id, name: zone.name, body: zone.useCases }))}
         scene={{ kind: "zones", art: scenes[industry.slug], title: `Isometric map of a ${industry.siteNoun} with ${industry.zones.length} monitored zones: ${industry.zones.map((zone) => zone.name).join(", ")}.` }}
@@ -101,7 +100,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       {/* 4. Use cases by layer */}
       <Section sheet labelledBy="layers-title">
         <div className="container-x">
-          <SectionHeading id="layers-title" eyebrow="Three layers" title="Use cases by layer." />
+          <SectionHeading id="layers-title" title="Use cases by layer." />
           <div className="mt-10 lg:mt-12">
             <LayerTabs tabs={tabs} art={scenes[industry.slug].icon} />
           </div>
@@ -111,7 +110,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       {/* 5. Measurable impact */}
       <Section tone="brand" labelledBy="impact-title">
         <div className="container-x">
-          <SectionHeading id="impact-title" eyebrow="Typical results across deployments" title="Measurable impact." />
+          <SectionHeading id="impact-title" title="Measurable impact." lead="Typical results across deployments." />
           <ImpactBand items={industry.impact} className="mt-12 lg:mt-16" />
         </div>
       </Section>
@@ -119,7 +118,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       {/* 6. Customer stories */}
       <Section id="stories" labelledBy="stories-title">
         <div className="container-x">
-          <SectionHeading id="stories-title" eyebrow="Proof" title={studies.length ? "Customer stories." : "Proven results."} />
+          <SectionHeading id="stories-title" title={studies.length ? "Customer stories." : "Proven results."} />
           {featured ? (
             <ul className="mt-12 grid grid-cols-1 gap-5 lg:mt-16 lg:grid-cols-3">
               <li className={standard.length ? "lg:col-span-2 lg:row-span-2" : "lg:col-span-3"} data-reveal="">
@@ -152,7 +151,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       {industry.subSectors ? (
         <Section id="sub-sectors" tone="paper-2" labelledBy="sub-sectors-title">
           <div className="container-x">
-            <SectionHeading id="sub-sectors-title" eyebrow="Sub-sectors" title={`${industry.subSectors.length} sub-sectors, one stack.`} />
+            <SectionHeading id="sub-sectors-title" title={`${industry.subSectors.length} sub-sectors, one stack.`} />
             <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
               {industry.subSectors.map((sector, index) => (
                 <li key={sector.id} id={sector.id} className="card card-hover flex scroll-mt-28 flex-col p-6 lg:p-8" data-reveal="" style={delay(index % 3)}>

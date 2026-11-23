@@ -50,7 +50,7 @@ export default function PlatformPage() {
       {/* Architecture */}
       <Section id="architecture" tone="paper-2" labelledBy="architecture-title">
         <div className="container-x">
-          <SectionHeading id="architecture-title" eyebrow="Architecture" title={architecture.headline} />
+          <SectionHeading id="architecture-title" title={architecture.headline} />
           <div className="grid-12 mt-12 items-center gap-y-10 lg:mt-16">
             <div className="relative col-span-12 lg:col-span-8">
               <ArchitectureSvg onPaper2 />
@@ -104,7 +104,7 @@ export default function PlatformPage() {
       {/* Six solutions */}
       <Section id="solutions" tone="paper-2" labelledBy="solutions-title">
         <div className="container-x">
-          <SectionHeading id="solutions-title" eyebrow="Solutions" title="Six solutions, across every industry." />
+          <SectionHeading id="solutions-title" title="Six solutions, across every industry." />
           <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
             {solutions.map((solution, index) => (
               <li key={solution.slug} data-reveal="" style={delay(index % 3)}>
@@ -125,7 +125,7 @@ export default function PlatformPage() {
       {/* Deployment */}
       <Section labelledBy="deployment-title">
         <div className="container-x">
-          <SectionHeading id="deployment-title" eyebrow="Deployment" title={deployment.headline} />
+          <SectionHeading id="deployment-title" title={deployment.headline} />
           <ol className="mt-12 grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
             {deployment.steps.map((step, index) => (
               <li key={step.title} className="relative border-t border-line pt-6 pb-10" data-reveal="" style={delay(index)}>

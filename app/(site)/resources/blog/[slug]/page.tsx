@@ -27,7 +27,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <article>
       <JsonLd data={articleJsonLd(path, post.title, "Operational intelligence")} />
       <PageHero path={path} eyebrow={post.date} title={post.title} sub={post.summary} size="h1" />
-      <Section spacing="none" className="pt-12 pb-24 lg:pt-20 lg:pb-40">
+      <Section spacing="none" className="pt-12 pb-16 lg:pt-20 lg:pb-26">
         <div className="container-x">
           <div className="prose-plain max-w-[44rem] border-t border-line pt-10">
             {post.body.map((paragraph) => (
