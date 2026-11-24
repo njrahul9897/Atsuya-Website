@@ -772,39 +772,51 @@ html.js .home-dashboard:is([data-step="1"], [data-step="2"], [data-step="3"]) {
   }
 }
 
-/* The problem section's plant at night (ProblemExplorer + NightVector). One story per problem,
-   9 s each, while the panel is on screen ([data-play="on"]); [data-problem] picks the story.
+/* The problem section's plant (ProblemExplorer + OpsVector). One story per problem, 9 s each,
+   while the panel is on screen ([data-play="on"]); [data-problem] picks the story, and the view
+   zooms in on its zone.
      12%  the problem starts          24%  AOne detects it (sensor amber, then red; card and pin)
      28%  the alert runs to the gateway, which sends it on at 42%
      50%  the fix: lights off, technician assigned, door closed, carton rejected
    The audit runs on its own clock: a check every 13% from 14%, the report at 66%.
    At rest (no scripts, reduced motion, or off screen) each story shows its resolved state. */
-@property --spot-x {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 50%;
-}
-@property --spot-y {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 50%;
-}
-@property --spot-r {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 30%;
-}
 .ops {
   --ops-loop: 9s;
 }
-/* A spotlight on the zone telling the story */
-.ops-spot {
-  /* Dims toward the panel's own navy, so the edge of the drawing never shows */
-  background: radial-gradient(circle at var(--spot-x) var(--spot-y), transparent 0, transparent var(--spot-r), rgb(5 14 28 / 0.62) calc(var(--spot-r) + 14%));
-  transition:
-    --spot-x 900ms var(--ease),
-    --spot-y 900ms var(--ease),
-    --spot-r 900ms var(--ease);
+/* The zoom: the story's zone (--zx, --zy, in % of the drawing) is scaled by --zs and brought to
+   --cx, --cy: the middle, or on wide panels the space beside the dashboard card. A point p of the
+   drawing lands at c + zs × (p − z); the labels outside the zoom are placed the same way. */
+.ops-view {
+  --cx: 50%;
+  --cy: 50%;
+}
+@container (min-width: 34rem) {
+  .ops-view {
+    --cx: 62%;
+    --cy: 42%;
+  }
+}
+.ops-zoom {
+  transform-origin: 0 0;
+  transform: translate(calc(var(--cx) - var(--zx) * var(--zs)), calc(var(--cy) - var(--zy) * var(--zs))) scale(var(--zs));
+  transition: transform 1100ms var(--ease);
+}
+.ops-at {
+  left: calc(var(--cx) + (var(--px) - var(--zx)) * var(--zs));
+  top: calc(var(--cy) + (var(--py) - var(--zy)) * var(--zs));
+}
+/* The audit spans the plant: no zoom, labels where they stand */
+.ops[data-problem="audit"] .ops-zoom {
+  transform: none;
+}
+.ops[data-problem="audit"] .ops-at {
+  left: var(--px);
+  top: var(--py);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ops-zoom {
+    transition: none;
+  }
 }
 /* Resting states: everything calm and resolved; the clock shows the story's time */
 .ops :is(.clk, .e-lights, .c-door, .c-temp-hi, .d-bad, .d-flag, .d-push, .b-warn, .b-alarm, .b-tech, .signal, .flow-dot) {

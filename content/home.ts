@@ -29,12 +29,11 @@ export const home = {
     headline: "Your operation is talking. Nobody is listening.",
     answer: "But AOne does.",
     tabsLabel: "Five things AOne listens for",
-    // Beside the list, one illustration of a plant at night (illustrations/model/night.ts) plays a
-    // story for each problem. Times, readings and statuses in the dashboard card are illustrative
-    // UI content.
+    // Beside the list, one illustration of a plant (illustrations/model/ops.ts) plays a story for
+    // each problem, zoomed in on its zone. Times, readings and statuses in the dashboard card are
+    // illustrative UI content.
     scene: {
-      description: "An isometric plant at night: an office block, a cold room, a packing line with a camera, a compressor and an electrical panel, each with an AOne device wired to one gateway.",
-      shift: "Night shift",
+      description: "An isometric plant: an office block, a cold room, a packing line with a camera, a compressor and an electrical panel, each with an AOne device wired to one gateway.",
       dashboard: "AOne dashboard",
       calm: "All readings normal",
     },
@@ -42,8 +41,8 @@ export const home = {
       {
         key: "energy",
         title: "Energy left running",
-        story: "At 22:40 the office lights and AC are still on with nobody in. The AOne energy sensor notices and switches them off.",
-        time: "22:40",
+        story: "At 20:40 the office lights and AC are still on with nobody in. The AOne energy sensor notices and switches them off.",
+        time: "20:40",
         asset: "Office block",
         status: { before: "Running", problem: "Nobody in", fixed: "Switched off" },
         alert: "Lights and AC on with nobody in",
@@ -53,19 +52,19 @@ export const home = {
       {
         key: "break",
         title: "Breakdowns nobody saw coming",
-        story: "At 02:51 a bearing on Compressor 2 starts to heat. The AOne sensor catches it early, alerts the team and a technician is assigned before the compressor fails.",
-        time: "02:51",
+        story: "At 10:42 a bearing on Compressor 2 starts to heat. The AOne sensor catches it early, alerts the team and a technician is assigned before the compressor fails.",
+        time: "10:42",
         asset: "Compressor 2",
         status: { before: "Normal", problem: "Early warning", fixed: "Technician assigned" },
         alert: "Bearing temperature rising",
         action: "Technician assigned",
-        pin: { problem: "Bearing heating up", fixed: "Technician on the way" },
+        pin: { problem: "Bearing heating up", fixed: "Technician on site" },
       },
       {
         key: "cold",
         title: "Stock that spoils between checks",
-        story: "At 01:12 the door of Cold Room 2 is left open and the temperature climbs. AOne alerts the shift lead, the door is closed and the room recovers before the stock spoils.",
-        time: "01:12",
+        story: "At 14:12 the door of Cold Room 2 is left open and the temperature climbs. AOne alerts the shift lead, the door is closed and the room recovers before the stock spoils.",
+        time: "14:12",
         asset: "Cold Room 2",
         status: { before: "3.8°C", problem: "6.4°C, rising", fixed: "Back to 3.8°C" },
         alert: "Door left open, 6.4°C",
@@ -75,8 +74,8 @@ export const home = {
       {
         key: "defect",
         title: "Defects that reach customers",
-        story: "At 03:30 a carton with a misprinted label reaches the packing line. The Vision AI camera spots it and the line rejects it before dispatch.",
-        time: "03:30",
+        story: "At 11:30 a carton with a misprinted label reaches the packing line. The Vision AI camera spots it and the line rejects it before dispatch.",
+        time: "11:30",
         asset: "Packing line",
         status: { before: "Inspecting", problem: "Defect found", fixed: "Rejected" },
         alert: "Misprinted label on a carton",
@@ -86,8 +85,8 @@ export const home = {
       {
         key: "audit",
         title: "Audits done on paper",
-        story: "At 06:00 the morning audit runs itself: AOne records the fire extinguisher, electrical panel, cold-room log and first-aid kit checks, and the report is ready with no paperwork.",
-        time: "06:00",
+        story: "At 09:00 the morning audit runs itself: AOne records the fire extinguisher, electrical panel, cold-room log and first-aid kit checks, and the report is ready with no paperwork.",
+        time: "09:00",
         asset: "Morning audit",
         status: { before: "Due", problem: "Checking", fixed: "Report ready" },
         checks: ["Fire extinguisher", "Electrical panel", "Cold room log", "First-aid kit"],

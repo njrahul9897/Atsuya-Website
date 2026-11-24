@@ -17,7 +17,7 @@ import { IsoScene } from "@/components/sections/IsoScene";
 import { SiteVector } from "@/components/iso/SiteVector";
 import { FilterGrid, type FilterItem } from "@/components/sections/FilterGrid";
 import { ProblemExplorer } from "@/components/sections/home/ProblemExplorer";
-import { NightVector, nightAnchors } from "@/components/iso/NightVector";
+import { OpsVector, opsAnchors } from "@/components/iso/OpsVector";
 import { ThreeLayers } from "@/components/sections/home/ThreeLayers";
 import { Impact } from "@/components/sections/home/Impact";
 
@@ -73,7 +73,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 5. The problem: five things nobody hears (tabs, left) and the story of each in a plant at night (right) */}
+      {/* 5. The problem: five things nobody hears (tabs, left) and the story of each in a plant (right) */}
       <Section labelledBy="problem-title">
         <ProblemExplorer
           intro={
@@ -84,8 +84,8 @@ export default function HomePage() {
           tabsLabel={problem.tabsLabel}
           problems={problem.problems}
           scene={problem.scene}
-          art={<NightVector label={problem.scene.description} />}
-          anchors={nightAnchors()}
+          art={<OpsVector label={problem.scene.description} />}
+          anchors={opsAnchors()}
         />
       </Section>
 

@@ -123,7 +123,7 @@ of the brief.
 
 ## The detailed 2.5D illustrations
 
-The homepage has two detailed isometric vector illustrations: the plant at night beside "Your
+The homepage has two detailed isometric vector illustrations: the plant beside "Your
 operation is talking. Nobody is listening. But AOne does.", and the site in "Sense. See. Decide.
 Act.". They are not drawn by hand: each plant is modelled as solids and drawn as vector art by a
 small exporter, so it can be changed or extended by editing the model.
@@ -133,22 +133,22 @@ small exporter, so it can be changed or extended by editing the model.
 | `illustrations/model/kit.ts` | The palette (top, left and right tone per material) and the primitives. |
 | `illustrations/model/props.ts` | The equipment: cold room, CNC machines, robot, conveyor, compressor, receiver, chiller, racking, truck, forklift, kitchen block, generator, transformer, switchboard, people, trees, and the AOne sensors, cameras and gateway. |
 | `illustrations/model/site.ts` | The site layout and the AOne layer (devices, data lines, alert, engineer). |
-| `illustrations/model/night.ts` | The plant at night: one bay after hours with a zone per problem (office lights and AC, Compressor 2, Cold Room 2, the packing line and its Vision AI camera, the audit points), each AOne device wired to one gateway, and named anchors for the page's labels. The build shades it for night: every colour darkened and cooled, light sources left bright. |
+| `illustrations/model/ops.ts` | The plant for the problem section: one bay with a zone per problem (office lights and AC, Compressor 2, Cold Room 2, the packing line and its Vision AI camera, the audit points), each AOne device wired to one gateway, and named anchors the page zooms to and pins labels on. |
 | `illustrations/export.ts` | The exporter: isometric projection, back-to-front ordering, flat three-tone shading, shadows. |
-| `scripts/build-illustrations.ts` | Runs the export (and the night shading). |
-| `components/iso/LayeredVector.tsx`, `SiteVector.tsx`, `NightVector.tsx` | Put the layers on the page. |
-| `components/sections/home/ProblemExplorer.tsx` | The five problems as tabs, and the plant at night telling each one's story: a spotlight on the zone, labels pinned to the machine, and the dashboard card. Stories run 9 s each and advance on their own while on screen, until a visitor picks one (styles: `.ops` in `app/globals.css`). Copy in `content/home.ts` → `problem`. |
+| `scripts/build-illustrations.ts` | Runs the export. |
+| `components/iso/LayeredVector.tsx`, `SiteVector.tsx`, `OpsVector.tsx` | Put the layers on the page. |
+| `components/sections/home/ProblemExplorer.tsx` | The five problems as tabs, and the plant telling each one's story: the view zooms in on the zone, labels are pinned to the machine, and the dashboard card follows. Stories run 9 s each and advance on their own while on screen, until a visitor picks one (styles: `.ops` in `app/globals.css`). Copy in `content/home.ts` → `problem`. |
 
 ```bash
 npm run build:illustrations   # after any change under illustrations/
 ```
 
-- The output is committed: static layers in `public/illustrations/{site,night}-*.svg` (plus
-  `site.svg` and `night.svg`, each whole picture in one file) and the animated layers in
-  `illustrations/generated/{site,night}.json`.
+- The output is committed: static layers in `public/illustrations/{site,ops}-*.svg` (plus
+  `site.svg` and `ops.svg`, each whole picture in one file) and the animated layers in
+  `illustrations/generated/{site,ops}.json`.
 - The plant itself is plain SVG images, so it adds nothing to the DOM. Only the AOne layer is
   inline SVG, so CSS can drive it: the site from `data-step` ("The home scene's four states" in
-  `app/globals.css`), the night shift from its own loop. Without scripts, or with reduced motion,
+  `app/globals.css`), the problem plant from its own loop. Without scripts, or with reduced motion,
   each shows its end state.
 - three.js is a dev dependency used only as a scene graph at build time. Nothing 3D ships to the
   browser.

@@ -1,28 +1,25 @@
-// The plant at night, for the homepage problem section: one bay after hours, with a zone for
-// each of the five problems AOne listens for. The page plays one story at a time.
+// The plant for the homepage problem section: one bay, with a zone for each of the five problems
+// AOne listens for. The page plays one story at a time and zooms in on its zone.
 //
-//   energy  the office block, its lights and AC left on with nobody in; an AOne energy sensor
+//   energy  the office block, its lights and AC left on after hours; an AOne energy sensor
 //   break   Compressor 2 and its air receiver; a sensor on the compressor; a technician to come
 //   cold    Cold Room 2; a sensor on it; its door can stand open and its readout climb
 //   defect  a packing line with a Vision AI camera on a gantry, a reject pusher and a reject bin
 //   audit   the things an audit checks: fire extinguisher, electrical panel, cold-room log, first aid
 //
-// Every device has a data line to one gateway. Parts the page animates carry classes (see
-// `.ops-scene` in app/globals.css); named anchors let it pin labels to machines.
-//
-// Drawn in daylight tones like the other scenes; the build script shades it for night (every
-// colour darkened and cooled, light sources left bright). The plan is 14 × 10 m.
+// Every device has a data line to one gateway. Parts the page animates carry classes (see `.ops`
+// in app/globals.css); named anchors let it zoom to a zone and pin labels to machines. Drawn in
+// the same palette as the site scene. The plan is 14 × 10 m.
 
 import { THREE, M, SKY, box, rbox, cyl, plane, pipe, halo, fan, unit, label } from "./kit";
 import * as P from "./props";
 
-export const NIGHT = { x: 14, z: 10 };
+export const OPS = { x: 14, z: 10 };
 const GATEWAY: [number, number] = [6.8, 6.6];
-export const NIGHT_LIGHTS = ["#cfe4ff", "#ffb020", "#ff4a3d", "#3df08a", "#1f77bd", "#ffb155"]; // glow colours kept bright at night
 export const PROBLEMS = ["energy", "break", "cold", "defect", "audit"] as const;
-const CLOCK: Record<(typeof PROBLEMS)[number], string> = { energy: "22:40", break: "02:51", cold: "01:12", defect: "03:30", audit: "06:00" };
+const CLOCK: Record<(typeof PROBLEMS)[number], string> = { energy: "20:40", break: "10:42", cold: "14:12", defect: "11:30", audit: "09:00" };
 
-export function buildNight(): THREE.Group {
+export function buildOps(): THREE.Group {
   const root = new THREE.Group();
   const place = <T extends THREE.Object3D>(object: T, x: number, z: number, rotation = 0, y = 0): T => {
     object.position.set(x, y, z);
@@ -52,7 +49,7 @@ export function buildNight(): THREE.Group {
   const sensor = (cls: string, facing: "z" | "x", x: number, y: number, z: number) => unit(place(P.sensor(facing), x, z, 0, y), { cls: `dev ${cls}`, hot: true, shadow: false });
 
   // --- Floor ---------------------------------------------------------------------------------
-  const glow = halo("#1f77bd", 24, NIGHT.x / 2, -0.6, NIGHT.z / 2);
+  const glow = halo("#1f77bd", 24, OPS.x / 2, -0.6, OPS.z / 2);
   glow.userData.backdrop = true;
   root.add(glow);
   root.add(box(15.4, 0.3, 11.4, M.plinth, -0.7, -0.8, -0.7));
@@ -65,7 +62,7 @@ export function buildNight(): THREE.Group {
   root.add(box(3.4, 0.014, 0.06, M.marking, 9.9, 0, 3.9), box(3.4, 0.014, 0.06, M.marking, 9.9, 0, 6.0));
   root.add(box(0.06, 0.014, 2.16, M.marking, 9.9, 0, 3.9), box(0.06, 0.014, 2.16, M.marking, 13.24, 0, 3.9));
 
-  // --- Walls: high windows on the night outside, wall lights above them ---------------------------
+  // --- Walls: high windows, wall lights above them ---------------------------------------------
   const H = 3.4;
   root.add(box(14.8, H, 0.25, M.wall, -0.4, 0, -0.4)); // back wall (faces +z)
   root.add(box(0.25, H, 10.55, M.wall, -0.4, 0, -0.15)); // side wall (faces +x)
@@ -162,7 +159,7 @@ export function buildNight(): THREE.Group {
   sensor("dev-energy", "x", ox + ow + 0.005, 1.3, oz + 2.75);
   line("line-energy", [[ox + ow + 0.04, 1.3, oz + 2.75], [ox + ow + 0.04, 0.05, oz + 2.75], [6.0, 0.05, oz + 2.75], [6.0, 0.05, GATEWAY[1]], [GATEWAY[0] - 0.16, 0.05, GATEWAY[1]]]);
 
-  // --- The floor tonight: one operator, a parked forklift, stock and drums ---------------------------
+  // --- The floor: one operator, a parked forklift, stock and drums -----------------------------------
   place(P.worker(M.hivis, M.white, true), 5.4, 9.3, 2.4);
   place(P.forklift(), 9.0, 8.3, 0.4);
   place(P.pallet(3, 2, 2), 11.8, 8.4).scale.setScalar(0.9);

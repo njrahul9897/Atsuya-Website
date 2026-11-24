@@ -99,8 +99,3 @@ export const Facebook = ({ className, size = 16 }: IconProps) => (
     <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
   </svg>
 );
-export const Moon = ({ className, size = 16 }: IconProps) => (
-  <svg {...base(size)} className={className}>
-    <path d="M13 9.7A5.6 5.6 0 1 1 6.3 3a4.4 4.4 0 0 0 6.7 6.7Z" />
-  </svg>
-);
