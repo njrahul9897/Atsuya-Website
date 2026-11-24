@@ -42,7 +42,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
       <PageHero
         path={path}
         eyebrow={`Case study · ${study.sector}`}
-        title={study.customer}
+        title={`*${study.customer}*`}
         sub={study.title}
         aside={
           <div className="rounded-[1.5rem] border border-line bg-white/[0.05] p-8 shadow-glow lg:ml-auto lg:max-w-[26rem] lg:p-10">
@@ -97,7 +97,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
       {/* Key outcomes */}
       <Section tone="brand" labelledBy="outcomes-title">
         <div className="container-x">
-          <SectionHeading id="outcomes-title" title="Key outcomes." />
+          <SectionHeading id="outcomes-title" title="Key *outcomes.*" />
           <ImpactBand items={study.keyOutcomes} className="mt-12 lg:mt-16" />
           {study.source ? (
             <p className="t-label mt-12 border-t border-line pt-6 text-ink-2" data-reveal="">
@@ -115,7 +115,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
       {/* Related studies */}
       <Section tone="paper-2" labelledBy="related-title">
         <div className="container-x">
-          <SectionHeading id="related-title" title="Related stories." />
+          <SectionHeading id="related-title" title="Related *stories.*" />
           <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
             {related(study).map((other, index) => (
               <li key={other.slug} data-reveal="" style={delay(index)}>
@@ -129,7 +129,7 @@ export function CaseStudyLayout({ study }: { study: CaseStudy }) {
         </div>
       </Section>
 
-      <CTABand headline={`Find the savings already sitting in your ${industry.siteNoun}.`} button={{ label: industry.cta, href: `/book-assessment?industry=${industry.slug}` }} line="A 30-minute call with an AOne engineer. No slideware." />
+      <CTABand headline={`Find the *savings* already sitting in your ${industry.siteNoun}.`} button={{ label: industry.cta, href: `/book-assessment?industry=${industry.slug}` }} line="A 30-minute call with an AOne engineer. No slideware." />
     </article>
   );
 }

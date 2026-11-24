@@ -277,11 +277,11 @@ export const layerByKey = (key: LayerKey) => layers.find((layer) => layer.key ==
 export const platform = {
   hero: {
     eyebrow: "The AOne platform",
-    headline: "One platform from sensor to solved.",
+    headline: "One platform from sensor to *solved.*",
     sub: "AOne IoT, Vision AI and BluSquad managed services, working as one.",
   },
   architecture: {
-    headline: "From the edge to the engineer.",
+    headline: "From the edge to the *engineer.*",
     tiers: [
       { id: "edge", name: "Edge devices", items: ["Sensors", "4G gateways", "Existing DVRs and CCTV"] },
       { id: "cloud", name: "AOne cloud", items: ["AI models", "Dashboard", "Alerts"] },
@@ -289,7 +289,7 @@ export const platform = {
     ],
   },
   deployment: {
-    headline: "How a rollout works.",
+    headline: "How a rollout *works.*",
     steps: [
       { title: "Site assessment", body: "A 30-minute call, a site walkthrough and a savings estimate." },
       { title: "Install", body: "Plug-and-play devices, on 4G where needed." },

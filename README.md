@@ -98,6 +98,14 @@ immersive surfaces alternating with light ones, real footage, and product UI sho
 This deliberately replaces the first build's strict "minimal, no gradients, few borders" reading
 of the brief.
 
+- **Blue in every headline.** Every page and section title carries at least one word in brand
+  blue. Mark the words with asterisks in the text, `Make the world run *autonomous*`, and `<Accent>`
+  (`components/ui/rich.tsx`) colours them; unmarked titles fall back to their last sentence or
+  clause, then their last word. `plain()` (`lib/accent.ts`) takes the markers off wherever a title
+  is used as plain text, and the route registry applies it to every tab title, link preview, crumb,
+  search entry and OG image. The blue is `--brand-blue` on light surfaces, sky on dark ones and
+  `#9ad8ff` on the brand-blue band.
+
 - **Surfaces.** `Section tone="paper" | "paper-2" | "dark" | "brand"`. Dark is deep navy with a
   faint grid and one soft light; brand is the full-bleed blue band. `sheet` makes a light section
   rise over the dark one above with rounded corners.

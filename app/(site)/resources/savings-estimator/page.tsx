@@ -17,7 +17,7 @@ export default function SavingsEstimatorPage() {
 
   return (
     <>
-      <PageHero path="/resources/savings-estimator" title="What could AOne save across your sites?" sub="Three inputs, one indicative range. It uses the typical electricity savings AOne deployments see in your industry." size="h1" />
+      <PageHero path="/resources/savings-estimator" title="What could AOne *save* across your sites?" sub="Three inputs, one indicative range. It uses the typical electricity savings AOne deployments see in your industry." size="h1" />
       <Section spacing="none" className="pt-12 pb-16 lg:pt-20 lg:pb-26">
         <div className="container-x">
           <SavingsEstimator options={options} />

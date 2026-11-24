@@ -12,6 +12,7 @@ import { ArrowRight } from "@/components/ui/icons";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { ProofStat } from "@/components/ui/ProofStat";
 import { CTABand } from "@/components/ui/CTABand";
+import { Accent } from "@/components/ui/rich";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => solutions.map((solution) => ({ slug: solution.slug }));
@@ -48,7 +49,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
         <div className="container-x grid-12 gap-y-10">
           <div className="col-span-12 lg:col-span-6" data-reveal="">
             <h2 id="problem-title" className="t-h2 max-w-[30rem]">
-              {solution.problem.headline}
+              <Accent text={solution.problem.headline} />
             </h2>
           </div>
           <ul className="col-span-12 lg:col-span-5 lg:col-start-8">
@@ -65,7 +66,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       {/* How AOne solves it */}
       <Section id="how" labelledBy="how-title">
         <div className="container-x">
-          <SectionHeading id="how-title" title="How AOne solves it." />
+          <SectionHeading id="how-title" title="How AOne *solves it.*" />
           <ul className="mt-12 grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
             {solution.how.map((block, index) => (
               <li key={block.title} className="border-t border-line pt-6 pb-10" data-reveal="" style={delay(index % 3)}>
@@ -87,7 +88,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       {/* Industries it applies to */}
       <Section tone="paper-2" labelledBy="industries-title">
         <div className="container-x">
-          <SectionHeading id="industries-title" title="Where it applies." />
+          <SectionHeading id="industries-title" title="Where it *applies.*" />
           <ul className="mt-12 lg:mt-16">
             {applies.map((industry, index) => {
               const useCases = matchingUseCases(solution, industry).slice(0, 5);
@@ -113,7 +114,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       {impact.length ? (
         <Section tone="brand" labelledBy="impact-title">
           <div className="container-x">
-            <SectionHeading id="impact-title" title="Measured impact." lead="Typical results across deployments." />
+            <SectionHeading id="impact-title" title="Measured *impact.*" lead="Typical results across deployments." />
             <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-16 lg:grid-cols-4">
               {impact.slice(0, 8).map((item, index) => (
                 <li key={`${item.industry}-${item.label}`} className="border-t border-line pt-6" data-reveal="" style={delay(index % 4)}>
@@ -129,7 +130,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       {studies.length ? (
         <Section tone="paper" labelledBy="stories-title">
           <div className="container-x">
-            <SectionHeading id="stories-title" title="Named results." />
+            <SectionHeading id="stories-title" title="Named *results.*" />
             <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
               {studies.map((study, index) => (
                 <li key={study.slug} data-reveal="" style={delay(index)}>

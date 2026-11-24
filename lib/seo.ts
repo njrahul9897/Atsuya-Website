@@ -9,6 +9,7 @@ import { caseStudies } from "@/content/caseStudies";
 import { solutions } from "@/content/solutions";
 import { layers, platform } from "@/content/platform";
 import { about, technology, partners, careers, resources, publishedPosts, legal, assessment } from "@/content/company";
+import { plain } from "@/lib/accent";
 
 export type Crumb = { name: string; path: string };
 
@@ -230,7 +231,14 @@ export function allRoutes(): RouteMeta[] {
     }),
   );
 
-  return [...fixed, ...industryRoutes, ...layerRoutes, ...solutionRoutes, ...caseStudyRoutes, ...postRoutes];
+  // Headlines mark their blue words with asterisks; as titles and descriptions they read plain.
+  return [...fixed, ...industryRoutes, ...layerRoutes, ...solutionRoutes, ...caseStudyRoutes, ...postRoutes].map((route) => ({
+    ...route,
+    title: plain(route.title),
+    description: plain(route.description),
+    crumbName: plain(route.crumbName),
+    og: { ...route.og, eyebrow: plain(route.og.eyebrow), title: plain(route.og.title) },
+  }));
 }
 
 export function routeFor(path: string): RouteMeta {

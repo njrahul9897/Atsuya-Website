@@ -9,6 +9,7 @@ import { scenePercent, type SceneArt } from "@/components/iso/kit";
 import { SceneSvg, zoneAnchor } from "@/components/iso/SceneSvg";
 import { HomeDashboard } from "@/components/iso/HomeScene";
 import { Accent } from "@/components/ui/rich";
+import { plain } from "@/lib/accent";
 
 export type SceneStep = { id: string; name: string; body: string[] };
 
@@ -186,7 +187,7 @@ export function IsoScene({ id, headline, steps, scene, tone = "dark" }: IsoScene
 
               {/* Mobile: a swipeable step list under the scene. */}
               <div className="order-3 col-span-12 lg:hidden">
-                <div ref={rail} onScroll={onRailScroll} className="no-scrollbar -mx-[var(--pad)] flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad)]" role="group" aria-label={`${headline} Steps`} tabIndex={0}>
+                <div ref={rail} onScroll={onRailScroll} className="no-scrollbar -mx-[var(--pad)] flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad)]" role="group" aria-label={`${plain(headline)} Steps`} tabIndex={0}>
                   {steps.map((step, index) => {
                     const on = active === index || (active === null && index === 0);
                     return (

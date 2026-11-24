@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MegaIndustries, MegaList, MegaPlatform } from "@/components/layout/MegaMenus";
 import { Button, ArrowLink } from "@/components/ui/Button";
+import { Accent } from "@/components/ui/rich";
 
 export const metadata: Metadata = { title: "Page not found", robots: { index: false } };
 
@@ -33,7 +34,9 @@ export default function NotFound() {
             <span className="h-2 w-2 rounded-full bg-alert" aria-hidden="true" />
             404 · Signal lost
           </p>
-          <h1 className="t-display mt-6 max-w-[52rem]">This page went offline. Everything else is monitored.</h1>
+          <h1 className="t-display mt-6 max-w-[52rem]">
+            <Accent text="This page went offline. Everything else is monitored." />
+          </h1>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Button href="/" size="lg">
               Home

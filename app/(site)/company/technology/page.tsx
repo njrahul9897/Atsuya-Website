@@ -8,6 +8,7 @@ import { ArrowLink } from "@/components/ui/Button";
 import { ProofStat } from "@/components/ui/ProofStat";
 import { CTABand } from "@/components/ui/CTABand";
 import { isGap } from "@/lib/tbd";
+import { Accent } from "@/components/ui/rich";
 
 export const metadata = pageMeta("/company/technology");
 
@@ -22,7 +23,7 @@ export default function TechnologyPage() {
       {/* Patents */}
       <Section tone="paper-2" labelledBy="patents-title">
         <div className="container-x">
-          <SectionHeading id="patents-title" title="Patents." />
+          <SectionHeading id="patents-title" title="*Patents.*" />
           <ul className="mt-12 lg:mt-16">
             {patents.map((patent) => (
               <li key={patent.number} className="dark-vars surface-dark grid-12 items-center gap-y-8 overflow-hidden rounded-[2rem] p-8 lg:p-14" data-reveal="">
@@ -46,7 +47,7 @@ export default function TechnologyPage() {
       {/* Hardware */}
       <Section labelledBy="hardware-title">
         <div className="container-x">
-          <SectionHeading id="hardware-title" title="The hardware range." lead={hardware.intro} />
+          <SectionHeading id="hardware-title" title="The hardware *range.*" lead={hardware.intro} />
           <ul className="mt-12 grid grid-cols-1 gap-x-6 lg:mt-16 lg:grid-cols-3">
             {hardware.items.map((item, index) => (
               <li key={item.name} className="border-t border-line pt-6 pb-10" data-reveal="" style={delay(index)}>
@@ -64,7 +65,7 @@ export default function TechnologyPage() {
           <div className="card flex flex-col p-8 lg:p-12" data-reveal="">
             <p className="t-label text-brand-ink">Edge AI</p>
             <h2 id="edge-title" className="t-h2 mt-5">
-              {edge.title}
+              <Accent text={edge.title} />
             </h2>
             <p className="mt-4 text-[1.0625rem] leading-7 text-ink-2">{edge.body}</p>
             <div className="mt-auto pt-8">

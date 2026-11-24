@@ -11,7 +11,7 @@ export const home = {
       posterMobile: "/videos/home-hero-mobile.jpg", // a 9:16 crop for phones
     },
     // The hero is the headline alone, with the site's call to action beneath it.
-    headline: "Make the world run autonomous",
+    headline: "Make the world run *autonomous*",
   },
 
   proof: [
@@ -23,7 +23,7 @@ export const home = {
 
   logoWall: { label: "Running on AOne" },
 
-  industries: { headline: "Built for the way your operation actually runs." },
+  industries: { headline: "Built for the way your operation *actually runs.*" },
 
   problem: {
     headline: "Your operation is talking. Nobody is listening.",
@@ -108,7 +108,7 @@ export const home = {
   layers: { headline: "Three layers, one platform." },
 
   stories: {
-    headline: "Proven where it’s hardest.",
+    headline: "Proven where it’s *hardest.*",
     lead: "Customers stay and expand: 8+ years with Licious, seven plants at Wheels India.",
     featured: "wheels-india",
     standard: ["quick-commerce-leaders", "dana", "dominos", "smartworks", "licious"],
@@ -119,7 +119,7 @@ export const home = {
   // for energy efficiency, 9,90,000 kg of food waste prevented, 1,10,662 t of CO₂ avoided and
   // 73,433 kL of water saved. Shown rounded down, in international units.
   impact: {
-    headline: "Our impact",
+    headline: "Our *impact*",
     reach: "AOne runs in **500+ cities** across **3+ countries**, and monitors **16 million+ sq ft** of space for energy efficiency.",
     outcomes: [
       { value: "990", unit: "tonnes", label: "of food waste prevented" },
@@ -131,7 +131,7 @@ export const home = {
   },
 
   cta: {
-    headline: "Find the savings already sitting in your operation.",
+    headline: "Find the *savings* already sitting in your operation.",
     button: { label: "Book a site assessment", href: "/book-assessment" },
     line: "A 30-minute call with an AOne engineer. No slideware.",
   },

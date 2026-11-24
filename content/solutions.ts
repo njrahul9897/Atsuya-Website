@@ -22,7 +22,7 @@ export const solutions: Solution[] = [
     slug: "energy-and-utilities",
     name: "Energy and utilities",
     line: "Electricity, compressed air, water, fuel, gas and HVAC on one view.",
-    headline: "Six utilities on one view.",
+    headline: "Six utilities on *one view.*",
     problem: {
       headline: "The bill arrives monthly. The waste happens every hour.",
       points: [
@@ -51,7 +51,7 @@ export const solutions: Solution[] = [
     line: "Cold rooms, freezers, chillers and tankers, logged and alerted in real time.",
     headline: "Every cold room, freezer and tanker, logged by the minute.",
     problem: {
-      headline: "A cold chain breaks between two checks.",
+      headline: "A cold chain breaks *between two checks.*",
       points: [
         "Spoilage from breaks in the cold chain",
         "Paper temperature logs and manual checks",
@@ -72,7 +72,7 @@ export const solutions: Solution[] = [
     slug: "asset-health",
     name: "Asset health and predictive maintenance",
     line: "Vibration, temperature, current and acoustic monitoring that flags failures early.",
-    headline: "Know which machine is about to stop.",
+    headline: "Know which machine is *about to stop.*",
     problem: {
       headline: "Breakdowns give warning. Usually nobody is measuring.",
       points: ["Unplanned breakdowns", "High maintenance cost", "Lost production", "No predictive alerts"],
@@ -109,7 +109,7 @@ export const solutions: Solution[] = [
     line: "PPE, restricted zones, hygiene and SOPs, checked by camera instead of clipboard.",
     headline: "Standards checked on every shift, at every site.",
     problem: {
-      headline: "A checklist records what someone remembered to tick.",
+      headline: "A checklist records what someone *remembered to tick.*",
       points: [
         "PPE non-compliance",
         "Unauthorised zone entry",

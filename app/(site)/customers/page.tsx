@@ -11,6 +11,7 @@ import { ProofStat } from "@/components/ui/ProofStat";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { CTABand } from "@/components/ui/CTABand";
 import { FilterGrid, type FilterGroup, type FilterItem } from "@/components/sections/FilterGrid";
+import { Accent } from "@/components/ui/rich";
 
 export const metadata = pageMeta("/customers");
 
@@ -55,7 +56,7 @@ export default function CustomersPage() {
       <Section tone="paper-2" labelledBy="stories-title">
         <div className="container-x">
           <h2 id="stories-title" className="t-h2" data-reveal="">
-            All customer stories
+            <Accent text="All customer *stories*" />
           </h2>
           <div className="mt-10">
             <FilterGrid groups={groups} items={items} gridClassName="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" />

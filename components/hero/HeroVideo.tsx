@@ -172,7 +172,9 @@ export function HeroVideo({ src, srcMobile, poster, posterMobile, variant = "def
           {/* A wash of brand blue rising from the corner the headline sits in */}
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(110%_80%_at_0%_100%,rgba(31,119,189,0.42),transparent_62%)]" />
           <div className="container-x w-full pt-40 pb-16 lg:pb-[4.5rem]">
-            <h1 className="t-statement max-w-[13ch]">{headline}</h1>
+            <h1 className="t-statement max-w-[13ch]">
+              <Accent text={headline} />
+            </h1>
             <Link href={primaryCta.href} className="t-statement-cta group/cta mt-4 inline-flex items-center gap-[0.45em] text-white/80 transition-colors duration-300 hover:text-white lg:mt-5">
               {primaryCta.label}
               <span aria-hidden="true" className="flex h-[1.5em] w-[1.5em] shrink-0 items-center justify-center rounded-full bg-white/25 backdrop-blur-md transition-[background-color,transform] duration-300 ease-soft group-hover/cta:translate-x-1 group-hover/cta:bg-white/40">

@@ -15,7 +15,7 @@ export const metadata = pageMeta("/resources/blog");
 export default function BlogPage() {
   return (
     <>
-      <PageHero path="/resources/blog" title="Notes from the field." sub="What Atsuya’s engineers learn from machines, cold rooms, kitchens and buildings." />
+      <PageHero path="/resources/blog" title="Notes from the *field.*" sub="What Atsuya’s engineers learn from machines, cold rooms, kitchens and buildings." />
       <Section spacing="none" className="pt-8 pb-16 lg:pt-12 lg:pb-26">
         {posts.length ? (
           <ul className="container-x">

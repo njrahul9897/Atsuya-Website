@@ -48,7 +48,7 @@ export default async function LayerPage({ params }: { params: Promise<{ layer: s
       {/* What it does */}
       <Section id="capabilities" tone="paper-2" labelledBy="capabilities-title">
         <div className="container-x">
-          <SectionHeading id="capabilities-title" title="What it does." />
+          <SectionHeading id="capabilities-title" title="What it *does.*" />
           <div className="mt-12 lg:mt-16">
             <CapabilityList layer={layer.key} capabilities={layer.capabilities.map((capability) => ({ ...capability, points: capability.points.filter((point) => !isGap(point)) }))} art={scenes.manufacturing.icon} />
           </div>
@@ -101,7 +101,7 @@ export default async function LayerPage({ params }: { params: Promise<{ layer: s
       {/* Proof */}
       <Section tone={layer.notes ? "paper" : "paper-2"} labelledBy="proof-title">
         <div className="container-x">
-          <SectionHeading id="proof-title" title={`${layer.name} in the field.`} />
+          <SectionHeading id="proof-title" title={`*${layer.name}* in the field.`} />
           {studies.length ? (
             <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
               {studies.map((study, index) => (

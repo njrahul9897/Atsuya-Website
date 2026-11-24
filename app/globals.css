@@ -1674,13 +1674,13 @@ html.js .home-dashboard:is([data-step="1"], [data-step="2"], [data-step="3"]) {
 
 /* Full-bleed brand band */
 .surface-brand {
+  --accent-text: #9ad8ff; /* a sky blue that reads on the band: 3.7:1 at its lightest; headings are large text */
   --ink: #ffffff;
   --ink-2: #ffffff;
   --ink-3: #ffffff;
   --line: rgba(255, 255, 255, 0.28);
   --stat-from: #ffffff;
   --stat-to: #ffffff;
-  --accent-text: #ffffff;
   --paper: rgba(255, 255, 255, 0.1);
   --brand-blue-ink: #ffffff;
   position: relative;

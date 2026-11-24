@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
 import { CountUp } from "@/components/ui/CountUp";
-import { rich } from "@/components/ui/rich";
+import { Accent, rich } from "@/components/ui/rich";
 
 type ImpactProps = {
   headline: string;
@@ -30,7 +30,7 @@ export function Impact({ headline, reach, outcomes, note }: ImpactProps) {
       <div className="container-x">
         <div className="grid-12 items-end gap-y-6">
           <h2 id="impact-title" className="t-h1 col-span-12 lg:col-span-5" data-reveal="">
-            {headline}
+            <Accent text={headline} />
           </h2>
           <p className="t-lead col-span-12 text-white/85 lg:col-span-6 lg:col-start-7" data-reveal="" style={{ "--reveal-delay": "60ms" } as CSSProperties}>
             {emphasise(reach)}

@@ -22,7 +22,7 @@ export default function ContactPage() {
   const aside = details.length > 0 || lines.length > 0; // without any details, the form sits centred on its own
   return (
     <>
-      <PageHero path="/contact" title="Talk to an AOne engineer." sub="Tell us about your sites. An Atsuya engineer will reply within one working day." />
+      <PageHero path="/contact" title="Talk to an *AOne engineer.*" sub="Tell us about your sites. An Atsuya engineer will reply within one working day." />
       <Section spacing="none" className="pt-12 pb-16 lg:pt-20 lg:pb-26">
         <div className="container-x grid-12 gap-y-16">
           {/* Left: the form */}

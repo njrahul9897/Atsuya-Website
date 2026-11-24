@@ -8,7 +8,7 @@ import { PageHero } from "@/components/hero/PageHero";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ArrowLink, Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/CTABand";
-import { rich } from "@/components/ui/rich";
+import { Accent, rich } from "@/components/ui/rich";
 
 export const metadata = pageMeta("/resources");
 
@@ -25,7 +25,9 @@ export default function ResourcesPage() {
         <div className="container-x">
           <div className="surface-brand grid-12 items-end gap-y-8 overflow-hidden rounded-[2rem] p-8 lg:p-14" data-reveal="">
             <div className="col-span-12 lg:col-span-8">
-              <h2 className="t-h2 max-w-[34rem]">A typical savings range for your sites, in three inputs.</h2>
+              <h2 className="t-h2 max-w-[34rem]">
+                <Accent text="A typical savings range for your sites, in three inputs." />
+              </h2>
               <p className="mt-4 max-w-[34rem] text-[1.0625rem] leading-7 text-ink-2">Industry, number of sites and monthly electricity bill. The range comes from typical AOne deployments in your industry.</p>
             </div>
             <div className="col-span-12 lg:col-span-4 lg:justify-self-end">

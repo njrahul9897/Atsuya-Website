@@ -5,6 +5,7 @@ import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { ProofStat } from "@/components/ui/ProofStat";
 import { AssessmentForm } from "@/components/forms/AssessmentForm";
+import { Accent } from "@/components/ui/rich";
 
 export const metadata = pageMeta("/book-assessment");
 
@@ -13,7 +14,9 @@ export default function BookAssessmentPage() {
     <div className="container-x grid-12 gap-y-14 py-14 lg:py-24">
       <JsonLd data={breadcrumbJsonLd("/book-assessment")} />
       <div className="col-span-12 lg:col-span-5">
-        <h1 className="t-h1">{assessment.headline}</h1>
+        <h1 className="t-h1">
+          <Accent text={assessment.headline} />
+        </h1>
         <p className="t-lead mt-6 max-w-[30rem] text-ink-2">{assessment.sub}</p>
 
         <h2 className="t-label mt-14 text-ink-3">What happens next</h2>

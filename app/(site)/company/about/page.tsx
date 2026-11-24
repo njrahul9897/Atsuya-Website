@@ -8,6 +8,7 @@ import { ProofStat } from "@/components/ui/ProofStat";
 import { Chip } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/CTABand";
 import { isGap } from "@/lib/tbd";
+import { Accent } from "@/components/ui/rich";
 
 export const metadata = pageMeta("/company/about");
 
@@ -36,7 +37,7 @@ export default function AboutPage() {
       {/* 3. What Atsuya believes */}
       <Section labelledBy="beliefs-title">
         <div className="container-x">
-          <SectionHeading id="beliefs-title" title="What Atsuya believes." />
+          <SectionHeading id="beliefs-title" title="What Atsuya *believes.*" />
           <ol className="mt-12 lg:mt-16">
             {about.principles.map((principle, index) => (
               <li key={principle.title} className="grid-12 items-baseline gap-y-3 border-t border-line py-8 last:border-b lg:py-10" data-reveal="" style={delay(index)}>
@@ -54,7 +55,7 @@ export default function AboutPage() {
         <div className="container-x grid-12 gap-y-10">
           <div className="col-span-12 lg:col-span-5">
             <h2 id="footprint-title" className="t-h2" data-reveal="">
-              Footprint
+              <Accent text="*Footprint*" />
             </h2>
             <ProofStat value={about.footprint.value} label={about.footprint.label} size="xl" className="mt-10" />
           </div>
@@ -75,7 +76,7 @@ export default function AboutPage() {
 
       {/* 5. Leadership: added once names, roles and photographs are in (content/company.ts → leadershipTbd). */}
 
-      <CTABand headline="Help make physical operations visible." button={{ label: "See careers", href: "/company/careers" }} />
+      <CTABand headline="Help make physical operations *visible.*" button={{ label: "See careers", href: "/company/careers" }} />
     </>
   );
 }

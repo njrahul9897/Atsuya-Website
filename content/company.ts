@@ -4,7 +4,7 @@ import { hasTbd } from "@/lib/tbd";
 // [TBD: …] marker, which the site never shows (lib/tbd.ts); `npm run tbd` lists them all.
 
 export const about = {
-  headline: "We make physical operations visible.",
+  headline: "We make physical operations *visible.*",
   sub: "Atsuya Technologies builds AOne, the operational intelligence platform that combines AOne IoT, Vision AI and BluSquad managed services across eight industries.",
   story: "[TBD: founding year, founders, HQ, team size]",
   principles: [
@@ -37,7 +37,7 @@ export const technology = {
     tbd: "[TBD: full hardware range and specifications]",
   },
   edge: {
-    title: "Edge AI on the cameras you already own",
+    title: "Edge AI on the cameras *you already own*",
     body: "Vision AI runs as edge AI on existing DVRs. A global QSR chain uses it across 3,000+ outlets in India.",
     href: "/customers/global-qsr-chain",
   },
@@ -45,21 +45,21 @@ export const technology = {
 };
 
 export const partners = {
-  headline: "Partners",
+  headline: "*Partners*",
   sub: "Work with Atsuya to bring AOne to more factories, stores, kitchens and buildings.",
   tbd: "[TBD: partner categories, partner list and partner programme details]",
   cta: { label: "Talk to us about partnering", href: "/contact" },
 };
 
 export const careers = {
-  headline: "Careers",
+  headline: "*Careers*",
   sub: "Help make physical operations visible.",
   tbd: "[TBD: open roles, locations and how to apply]",
   cta: { label: "Get in touch", href: "/contact" },
 };
 
 export const resources = {
-  headline: "Resources",
+  headline: "*Resources*",
   sub: "Guides, reports and field notes on running physical operations with data.",
   guides: [
     { kind: "Guide", title: "[TBD: guide title]", body: "[TBD: guide summary]" },
@@ -100,24 +100,24 @@ export const postBySlug = (slug: string) => publishedPosts.find((post) => post.s
 
 export const legal: Record<"privacy" | "terms" | "cookies", { title: string; description: string; body: string[] }> = {
   privacy: {
-    title: "Privacy policy",
+    title: "Privacy *policy*",
     description: "How Atsuya Technologies collects, uses and protects personal data.",
     body: ["[TBD: privacy policy text, reviewed by legal]"],
   },
   terms: {
-    title: "Terms of use",
+    title: "Terms of *use*",
     description: "The terms that apply to using the Atsuya Technologies website.",
     body: ["[TBD: terms of use text, reviewed by legal]"],
   },
   cookies: {
-    title: "Cookie policy",
+    title: "Cookie *policy*",
     description: "How the Atsuya Technologies website uses cookies.",
     body: ["[TBD: cookie policy text, reviewed by legal]"],
   },
 };
 
 export const assessment = {
-  headline: "Book a site assessment.",
+  headline: "Book a site *assessment.*",
   sub: "Tell us about your sites. An AOne engineer will come back with a plan, not a pitch.",
   next: [
     { title: "A 30-minute call", body: "With an AOne engineer, about how your operation runs today." },
