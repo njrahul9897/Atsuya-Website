@@ -41,7 +41,7 @@ export default function HomePage() {
       {/* 1. Hero */}
       <HeroVideo {...hero.video} variant="statement" headline={hero.headline} primaryCta={site.cta} next="dark" />
 
-      {/* 2. Proof band and 3. logo wall, on the dark surface the hero fades into */}
+      {/* 2. Proof band, on the dark surface the hero fades into */}
       <Section tone="dark" spacing="none" className="glow-none pt-6 pb-20 lg:pb-28">
         <div className="container-x">
           <h2 className="sr-only">AOne in numbers</h2>
@@ -53,14 +53,18 @@ export default function HomePage() {
             ))}
           </ul>
         </div>
-        <div className="mt-16 lg:mt-20">
-          <h2 className="sr-only">Customers</h2>
-          <LogoWall label={home.logoWall.label} />
-        </div>
+      </Section>
+
+      {/* 3. Logo wall: the customers, in colour, on a light band rising out of the dark one */}
+      <Section tone="paper" sheet spacing="band" labelledBy="customers-title">
+        <h2 id="customers-title" className="sr-only">
+          Customers
+        </h2>
+        <LogoWall label={home.logoWall.label} />
       </Section>
 
       {/* 4. Industry selector: all eight in two rows of four (two columns on phones) */}
-      <Section id="industries" tone="paper-2" sheet labelledBy="industries-title">
+      <Section id="industries" tone="paper-2" labelledBy="industries-title">
         <div className="container-x">
           <SectionHeading id="industries-title" title={home.industries.headline} />
           <ul className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-12 lg:grid-cols-4 lg:gap-5">

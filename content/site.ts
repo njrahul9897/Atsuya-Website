@@ -31,23 +31,35 @@ export const site = {
   ] as { label: "LinkedIn" | "X" | "YouTube" | "Facebook"; href: string }[],
 };
 
-// The logo wall. `logo` gives the file and its intrinsic size (the wall sizes each mark by its
-// proportions); without one, the wall sets the name in type.
-// Sources: Blinkit is the vector file from the Atsuya brand folder; the PNGs are cut from the
-// case-study pages of docs/AOne Industry Solutions with case studies.pdf, background removed.
+// The logo wall, in full colour on a light band. `logo` gives the file and its intrinsic size (the
+// wall sizes each mark by its proportions); without one, the wall sets the name in type.
+// Sources: the colour files in the Atsuya brand folder ("Client logo"), prepared by trimming their
+// margins; Dana, IndianOil, Domino’s, Smartworks, UTI Mutual Fund, Licious and Gokaldas Exports are
+// cut from the case-study pages of docs/AOne Industry Solutions with case studies.pdf.
 export type Customer = { name: string; logo?: { src: string; width: number; height: number; scale?: number } };
 export const customers: Customer[] = [
-  { name: "Blinkit", logo: { src: "/images/clients/blinkit.svg", width: 115, height: 31, scale: 0.8 } }, // a heavy wordmark
-  { name: "Amazon Fresh", logo: { src: "/images/clients/amazon-fresh.png", width: 153, height: 109 } },
-  { name: "bigbasket" }, // [TBD: bigbasket logo file]
-  { name: "Wheels India", logo: { src: "/images/clients/wheels-india.png", width: 280, height: 114 } },
-  { name: "Dana", logo: { src: "/images/clients/dana.png", width: 246, height: 125 } },
-  { name: "IndianOil", logo: { src: "/images/clients/indianoil.png", width: 98, height: 120 } },
-  { name: "Domino’s", logo: { src: "/images/clients/dominos.png", width: 131, height: 121 } },
-  { name: "Smartworks", logo: { src: "/images/clients/smartworks.png", width: 333, height: 115 } },
-  { name: "UTI Mutual Fund", logo: { src: "/images/clients/uti-mutual-fund.png", width: 242, height: 113 } },
+  { name: "Blinkit", logo: { src: "/images/clients/blinkit.svg", width: 118.56, height: 34.56 } },
+  { name: "Swiggy", logo: { src: "/images/clients/swiggy.svg", width: 164.99, height: 54.35 } },
+  { name: "Zepto", logo: { src: "/images/clients/zepto.svg", width: 93.6, height: 32.92 } },
+  { name: "Zomato", logo: { src: "/images/clients/zomato.svg", width: 2599.99, height: 628.51 } },
+  { name: "Amazon Fresh", logo: { src: "/images/clients/amazon-fresh.png", width: 260, height: 240 } },
+  { name: "bigbasket", logo: { src: "/images/clients/bigbasket.svg", width: 482.61, height: 120.87 } },
   { name: "Licious", logo: { src: "/images/clients/licious.png", width: 277, height: 110 } },
+  { name: "Tender Cuts", logo: { src: "/images/clients/tender-cuts.svg", width: 455.94, height: 97.88 } },
+  { name: "Domino’s", logo: { src: "/images/clients/dominos.png", width: 131, height: 121 } },
+  { name: "IndianOil", logo: { src: "/images/clients/indianoil.png", width: 98, height: 120 } },
+  { name: "Axis Bank", logo: { src: "/images/clients/axis-bank.svg", width: 1021.04, height: 272.61 } },
+  { name: "UTI Mutual Fund", logo: { src: "/images/clients/uti-mutual-fund.png", width: 242, height: 113 } },
+  { name: "The Hindu", logo: { src: "/images/clients/the-hindu.png", width: 545, height: 240 } },
+  { name: "Wheels India", logo: { src: "/images/clients/wheels-india.svg", width: 1613.04, height: 618.2, scale: 1.3 } }, // stacked: its name line is small
+  { name: "Dana", logo: { src: "/images/clients/dana.png", width: 246, height: 125 } },
+  { name: "FLSmidth", logo: { src: "/images/clients/flsmidth.svg", width: 174.36, height: 52.27 } },
   { name: "Gokaldas Exports", logo: { src: "/images/clients/gokaldas-exports.png", width: 319, height: 114 } },
+  { name: "Smartworks", logo: { src: "/images/clients/smartworks.png", width: 333, height: 115 } },
+  { name: "Aavin", logo: { src: "/images/clients/aavin.svg", width: 473.21, height: 264.88 } },
+  { name: "Nandini", logo: { src: "/images/clients/nandini.png", width: 387, height: 240 } },
+  { name: "Hatsun", logo: { src: "/images/clients/hatsun.png", width: 456, height: 112 } },
+  { name: "Medha", logo: { src: "/images/clients/medha.png", width: 430, height: 228 } },
   { name: "Grandiose" }, // [TBD: Grandiose logo file]
 ];
 

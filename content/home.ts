@@ -21,7 +21,7 @@ export const home = {
     { value: "2,400/hr", label: "LPG cylinders inspected by patented AI", source: "IndianOil, Patent 202441033050" },
   ],
 
-  logoWall: { label: "Running on AOne" },
+  logoWall: { label: "Running on *AOne*" },
 
   industries: { headline: "Built for the way your operation *actually runs.*" },
 

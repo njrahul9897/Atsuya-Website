@@ -75,8 +75,10 @@ are used only to render the OG images.
 
 **Logos.** `content/site.ts` → `customers`. Add `logo: { src: "/images/clients/name.svg", width, height }`
 (the file's intrinsic size; the wall sizes each mark by its proportions) to an entry and
-the logo wall shows the mark instead of the name set in type: a light silhouette at 60% on the dark
-band, full colour on a white cell on hover. Ten marks are in; bigbasket and Grandiose still need files.
+the logo wall shows the mark instead of the name set in type. The wall is its own light band on the
+homepage: 23 customers in full colour, each on a white tile. The marks come from the Atsuya brand
+folder ("Client logo"), trimmed of their margins; seven are cut from the case-study PDF. Grandiose
+still needs a file.
 
 **2.5D scenes.** `components/iso/scenes.ts` holds simple placeholder blocks. Each zone is its own
 `<g id="zone-{id}">`; the ids match `zones[].id` in `content/industries.ts`. Final art can replace
