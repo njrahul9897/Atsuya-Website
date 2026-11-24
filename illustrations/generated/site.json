@@ -5,6 +5,7 @@
   1488,
   947
  ],
+ "anchors": {},
  "layers": [
   {
    "kind": "image",
@@ -18,7 +19,7 @@
   {
    "kind": "image",
    "src": "/illustrations/site-1.svg",
-   "bytes": 236168
+   "bytes": 236243
   },
   {
    "kind": "inline",

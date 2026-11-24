@@ -123,7 +123,7 @@ of the brief.
 
 ## The detailed 2.5D illustrations
 
-The homepage has two detailed isometric vector illustrations: the night shift beside "Your
+The homepage has two detailed isometric vector illustrations: the plant at night beside "Your
 operation is talking. Nobody is listening. But AOne does.", and the site in "Sense. See. Decide.
 Act.". They are not drawn by hand: each plant is modelled as solids and drawn as vector art by a
 small exporter, so it can be changed or extended by editing the model.
@@ -133,11 +133,11 @@ small exporter, so it can be changed or extended by editing the model.
 | `illustrations/model/kit.ts` | The palette (top, left and right tone per material) and the primitives. |
 | `illustrations/model/props.ts` | The equipment: cold room, CNC machines, robot, conveyor, compressor, receiver, chiller, racking, truck, forklift, kitchen block, generator, transformer, switchboard, people, trees, and the AOne sensors, cameras and gateway. |
 | `illustrations/model/site.ts` | The site layout and the AOne layer (devices, data lines, alert, engineer). |
-| `illustrations/model/night.ts` | The night shift: one plant bay after hours, a compressor that starts to fail, and the AOne sensor, data line and gateway that catch it. The build shades it for night: every colour darkened and cooled, light sources left bright. |
+| `illustrations/model/night.ts` | The plant at night: one bay after hours with a zone per problem (office lights and AC, Compressor 2, Cold Room 2, the packing line and its Vision AI camera, the audit points), each AOne device wired to one gateway, and named anchors for the page's labels. The build shades it for night: every colour darkened and cooled, light sources left bright. |
 | `illustrations/export.ts` | The exporter: isometric projection, back-to-front ordering, flat three-tone shading, shadows. |
 | `scripts/build-illustrations.ts` | Runs the export (and the night shading). |
 | `components/iso/LayeredVector.tsx`, `SiteVector.tsx`, `NightVector.tsx` | Put the layers on the page. |
-| `components/sections/home/NightShift.tsx` | The night-shift panel: the illustration, the "Night shift" chip and the dashboard card. Its 12-second loop is "The night shift" in `app/globals.css`; it plays only on screen. |
+| `components/sections/home/ProblemExplorer.tsx` | The five problems as tabs, and the plant at night telling each one's story: a spotlight on the zone, labels pinned to the machine, and the dashboard card. Stories run 9 s each and advance on their own while on screen, until a visitor picks one (styles: `.ops` in `app/globals.css`). Copy in `content/home.ts` → `problem`. |
 
 ```bash
 npm run build:illustrations   # after any change under illustrations/

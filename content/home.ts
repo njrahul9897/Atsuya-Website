@@ -28,29 +28,72 @@ export const home = {
   problem: {
     headline: "Your operation is talking. Nobody is listening.",
     answer: "But AOne does.",
-    lead: "On the night shift, with fewer people on the floor, a small fault can go unnoticed until it becomes a breakdown. AOne devices watch every asset around the clock, catch the fault as it starts and alert your team on the AOne dashboard before anything goes wrong.",
-    losses: [
-      "Energy left running",
-      "Breakdowns nobody saw coming",
-      "Stock that spoils between checks",
-      "Defects that reach customers",
-      "Audits done on paper",
-    ],
-    // The night-shift illustration beside it. Readings and times are illustrative UI content.
-    night: {
-      description:
-        "A plant at night, with one operator at the far end of the floor. A compressor near the front starts to overheat. The AOne sensor on it catches the change as it starts and sends an alert through the gateway to the AOne dashboard, which notifies the on-call engineer before the compressor fails.",
+    tabsLabel: "Five things AOne listens for",
+    // Beside the list, one illustration of a plant at night (illustrations/model/night.ts) plays a
+    // story for each problem. Times, readings and statuses in the dashboard card are illustrative
+    // UI content.
+    scene: {
+      description: "An isometric plant at night: an office block, a cold room, a packing line with a camera, a compressor and an electrical panel, each with an AOne device wired to one gateway.",
       shift: "Night shift",
       dashboard: "AOne dashboard",
-      live: "Live",
-      asset: "Compressor 2",
-      normal: "Normal",
-      warning: "Early warning",
-      alert: { time: "02:51", text: "Bearing temperature rising" },
-      notified: "On-call engineer alerted",
-      idle: "Idle",
-      others: ["Line 1", "Line 2"],
+      calm: "All readings normal",
     },
+    problems: [
+      {
+        key: "energy",
+        title: "Energy left running",
+        story: "At 22:40 the office lights and AC are still on with nobody in. The AOne energy sensor notices and switches them off.",
+        time: "22:40",
+        asset: "Office block",
+        status: { before: "Running", problem: "Nobody in", fixed: "Switched off" },
+        alert: "Lights and AC on with nobody in",
+        action: "Switched off by AOne",
+        pin: { problem: "Lights and AC on", fixed: "Switched off" },
+      },
+      {
+        key: "break",
+        title: "Breakdowns nobody saw coming",
+        story: "At 02:51 a bearing on Compressor 2 starts to heat. The AOne sensor catches it early, alerts the team and a technician is assigned before the compressor fails.",
+        time: "02:51",
+        asset: "Compressor 2",
+        status: { before: "Normal", problem: "Early warning", fixed: "Technician assigned" },
+        alert: "Bearing temperature rising",
+        action: "Technician assigned",
+        pin: { problem: "Bearing heating up", fixed: "Technician on the way" },
+      },
+      {
+        key: "cold",
+        title: "Stock that spoils between checks",
+        story: "At 01:12 the door of Cold Room 2 is left open and the temperature climbs. AOne alerts the shift lead, the door is closed and the room recovers before the stock spoils.",
+        time: "01:12",
+        asset: "Cold Room 2",
+        status: { before: "3.8°C", problem: "6.4°C, rising", fixed: "Back to 3.8°C" },
+        alert: "Door left open, 6.4°C",
+        action: "Shift lead alerted, door closed",
+        pin: { problem: "Door open, 6.4°C", fixed: "Door closed" },
+      },
+      {
+        key: "defect",
+        title: "Defects that reach customers",
+        story: "At 03:30 a carton with a misprinted label reaches the packing line. The Vision AI camera spots it and the line rejects it before dispatch.",
+        time: "03:30",
+        asset: "Packing line",
+        status: { before: "Inspecting", problem: "Defect found", fixed: "Rejected" },
+        alert: "Misprinted label on a carton",
+        action: "Rejected before dispatch",
+        pin: { problem: "Defect found", fixed: "Rejected" },
+      },
+      {
+        key: "audit",
+        title: "Audits done on paper",
+        story: "At 06:00 the morning audit runs itself: AOne records the fire extinguisher, electrical panel, cold-room log and first-aid kit checks, and the report is ready with no paperwork.",
+        time: "06:00",
+        asset: "Morning audit",
+        status: { before: "Due", problem: "Checking", fixed: "Report ready" },
+        checks: ["Fire extinguisher", "Electrical panel", "Cold room log", "First-aid kit"],
+        action: "Report ready, no paperwork",
+      },
+    ],
   },
 
   how: {

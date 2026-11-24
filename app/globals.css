@@ -772,141 +772,395 @@ html.js .home-dashboard:is([data-step="1"], [data-step="2"], [data-step="3"]) {
   }
 }
 
-/* The night shift (homepage problem section, NightShift + NightVector). One 12 s loop while the
-   panel is on screen ([data-play="on"]):
-     0–14%   calm: the sensor glows green; Line 1 and Line 2 idle on the dashboard
-     14–23%  the fault starts: a warm glow builds at the compressor
-     20–26%  caught at once: the sensor turns amber, then red, and its alarm pulses
-     30–42%  the alert runs along the data line to the gateway, which sends it on (42–50%)
-     47%     the dashboard flags Compressor 2; 58% the on-call engineer is alerted
-     88–96%  back to calm
-   At rest (no scripts, reduced motion, or off screen) it shows the alerted state, still. */
-.night-scene {
-  --night-loop: 12s;
+/* The problem section's plant at night (ProblemExplorer + NightVector). One story per problem,
+   9 s each, while the panel is on screen ([data-play="on"]); [data-problem] picks the story.
+     12%  the problem starts          24%  AOne detects it (sensor amber, then red; card and pin)
+     28%  the alert runs to the gateway, which sends it on at 42%
+     50%  the fix: lights off, technician assigned, door closed, carton rejected
+   The audit runs on its own clock: a check every 13% from 14%, the report at 66%.
+   At rest (no scripts, reduced motion, or off screen) each story shows its resolved state. */
+@property --spot-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
 }
-.night-scene .led {
-  fill: #ff4a3d;
+@property --spot-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
 }
-.night-scene .led-s {
-  stroke: #ff4a3d;
+@property --spot-r {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 30%;
 }
-.night-scene .hot :is(.halo-live, .halo-ok),
-.night-scene :is(.warn, .flow-dot),
-.night-scene :is(.night-status-ok, .night-calm-rows) {
+.ops {
+  --ops-loop: 9s;
+}
+/* A spotlight on the zone telling the story */
+.ops-spot {
+  /* Dims toward the panel's own navy, so the edge of the drawing never shows */
+  background: radial-gradient(circle at var(--spot-x) var(--spot-y), transparent 0, transparent var(--spot-r), rgb(5 14 28 / 0.62) calc(var(--spot-r) + 14%));
+  transition:
+    --spot-x 900ms var(--ease),
+    --spot-y 900ms var(--ease),
+    --spot-r 900ms var(--ease);
+}
+/* Resting states: everything calm and resolved; the clock shows the story's time */
+.ops :is(.clk, .e-lights, .c-door, .c-temp-hi, .d-bad, .d-flag, .d-push, .b-warn, .b-alarm, .b-tech, .signal, .flow-dot) {
   opacity: 0;
 }
-.night-scene .alarm {
-  opacity: 0.85;
+.ops .dev .led {
+  fill: #3df08a;
+}
+.ops .dev .led-s {
+  stroke: #3df08a;
+}
+.ops .dev :is(.halo-live, .halo-alert) {
+  opacity: 0;
+}
+.ops .flow-glow {
+  stroke-opacity: 0.12;
+}
+.ops .e-fan .blades {
+  transform-box: view-box;
+}
+.ops[data-problem="energy"] .clk-energy,
+.ops[data-problem="break"] :is(.clk-break, .b-tech),
+.ops[data-problem="cold"] .clk-cold,
+.ops[data-problem="defect"] .clk-defect,
+.ops[data-problem="audit"] .clk-audit {
+  opacity: 1;
+}
+.ops :is(.ops-status-before, .ops-status-problem, .ops-calm, .ops-pin-problem) {
+  opacity: 0;
+}
+.ops .ops-pin {
+  transform: translate(-50%, -100%);
+}
+.ops :is(.ops-pending-0, .ops-pending-1, .ops-pending-2, .ops-pending-3) {
+  opacity: 0;
+}
+.ops .ops-progress {
+  transform: scaleX(0);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .night-scene[data-play="on"] .led {
-    animation: night-led var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="energy"] .dev-energy .led {
+    animation: ops-led var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .led-s {
-    animation: night-led-s var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="energy"] .dev-energy .led-s {
+    animation: ops-led-s var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .hot .halo-ok {
-    animation: night-calm var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="energy"] .dev-energy .halo-ok {
+    animation: ops-ok var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .hot .halo-alert {
-    animation: night-caught var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="energy"] .dev-energy .halo-alert {
+    animation: ops-alert var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .warn {
-    animation: night-warn var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="energy"] .line-energy .flow-dot {
+    animation: ops-packet var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .alarm {
-    animation: night-alarm var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="energy"] .line-energy .flow-glow {
+    animation: ops-line var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .flow-dot {
-    animation: night-packet var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="break"] .dev-break .led {
+    animation: ops-led var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .flow-glow {
-    animation: night-line var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="break"] .dev-break .led-s {
+    animation: ops-led-s var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .signal {
-    animation: night-signal var(--night-loop) linear infinite;
+  .ops[data-play="on"][data-problem="break"] .dev-break .halo-ok {
+    animation: ops-ok var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .night-status-ok {
-    animation: night-normal var(--night-loop) step-end infinite;
+  .ops[data-play="on"][data-problem="break"] .dev-break .halo-alert {
+    animation: ops-alert var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .night-status-warn {
-    animation: night-flagged var(--night-loop) step-end infinite;
+  .ops[data-play="on"][data-problem="break"] .line-break .flow-dot {
+    animation: ops-packet var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .night-calm-rows {
-    animation: night-calm-rows var(--night-loop) var(--ease) infinite;
+  .ops[data-play="on"][data-problem="break"] .line-break .flow-glow {
+    animation: ops-line var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .night-row-alert {
-    animation: night-row-alert var(--night-loop) var(--ease) infinite;
+  .ops[data-play="on"][data-problem="cold"] .dev-cold .led {
+    animation: ops-led var(--ops-loop) linear infinite;
   }
-  .night-scene[data-play="on"] .night-row-notify {
-    animation: night-row-notify var(--night-loop) var(--ease) infinite;
+  .ops[data-play="on"][data-problem="cold"] .dev-cold .led-s {
+    animation: ops-led-s var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="cold"] .dev-cold .halo-ok {
+    animation: ops-ok var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="cold"] .dev-cold .halo-alert {
+    animation: ops-alert var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="cold"] .line-cold .flow-dot {
+    animation: ops-packet var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="cold"] .line-cold .flow-glow {
+    animation: ops-line var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .line-cam .flow-dot {
+    animation: ops-packet var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .line-cam .flow-glow {
+    animation: ops-line var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"]:not([data-problem="audit"]) .signal {
+    animation: ops-signal var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="energy"] .e-lights {
+    animation: ops-lights var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="energy"] .e-fan .blades {
+    animation: ops-fan var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="break"] .b-warn {
+    animation: ops-warn var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="break"] .b-alarm {
+    animation: ops-alarm var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="break"] .b-tech {
+    animation: ops-tech var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"][data-problem="cold"] .c-door {
+    animation: ops-door var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="cold"] .c-temp-hi {
+    animation: ops-temp var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .d-bad {
+    animation: ops-bad var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .d-flag {
+    animation: ops-flag var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .dev-cam .cone path {
+    animation: ops-cone var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .d-push {
+    animation: ops-push var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="defect"] .d-binned {
+    animation: ops-binned var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"] .ops-status-before {
+    animation: ops-before var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"] .ops-status-problem {
+    animation: ops-problem var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"] .ops-status-fixed {
+    animation: ops-fixed var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"] .ops-calm {
+    animation: ops-calm var(--ops-loop) linear infinite;
+  }
+  .ops[data-play="on"] .ops-row-alert {
+    animation: ops-row-alert var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"] .ops-row-action {
+    animation: ops-row-action var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"] .ops-pin {
+    animation: ops-pin var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"] .ops-pin-problem {
+    animation: ops-before-fix var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"] .ops-pin-fixed {
+    animation: ops-fixed var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-status-before {
+    animation: ops-audit-before var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-status-problem {
+    animation: ops-audit-checking var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-status-fixed {
+    animation: ops-audit-fixed var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-row-action {
+    animation: ops-audit-report var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-check-0 {
+    animation: ops-check-0 var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-tick-0 {
+    animation: ops-tick-0 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-pending-0 {
+    animation: ops-pending-0 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-check-1 {
+    animation: ops-check-1 var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-tick-1 {
+    animation: ops-tick-1 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-pending-1 {
+    animation: ops-pending-1 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-check-2 {
+    animation: ops-check-2 var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-tick-2 {
+    animation: ops-tick-2 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-pending-2 {
+    animation: ops-pending-2 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-check-3 {
+    animation: ops-check-3 var(--ops-loop) var(--ease) infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-tick-3 {
+    animation: ops-tick-3 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"][data-problem="audit"] .ops-pending-3 {
+    animation: ops-pending-3 var(--ops-loop) step-end infinite;
+  }
+  .ops[data-play="on"] .ops-progress {
+    animation: ops-progress var(--ops-loop) linear forwards;
   }
 }
-@keyframes night-led {
+@keyframes ops-led {
   0%,
-  18% {
+  22% {
     fill: #3df08a;
   }
-  21% {
+  25% {
     fill: #ffb020;
   }
-  26%,
-  88% {
+  28%,
+  54% {
     fill: #ff4a3d;
   }
-  94%,
+  58%,
   100% {
     fill: #3df08a;
   }
 }
-@keyframes night-led-s {
+@keyframes ops-led-s {
   0%,
-  18% {
+  22% {
     stroke: #3df08a;
   }
-  21% {
+  25% {
     stroke: #ffb020;
   }
-  26%,
-  88% {
+  28%,
+  54% {
     stroke: #ff4a3d;
   }
-  94%,
+  58%,
   100% {
     stroke: #3df08a;
   }
 }
-/* The sensor's green glow while all is well */
-@keyframes night-calm {
+@keyframes ops-ok {
   0%,
-  18% {
+  22% {
     opacity: 1;
   }
-  21%,
-  90% {
+  25%,
+  56% {
     opacity: 0;
   }
-  94%,
+  60%,
   100% {
     opacity: 1;
   }
 }
-@keyframes night-caught {
+@keyframes ops-alert {
   0%,
-  20% {
+  24% {
     opacity: 0;
   }
-  26%,
-  88% {
+  28%,
+  54% {
     opacity: 1;
   }
-  94%,
+  58%,
   100% {
     opacity: 0;
   }
 }
-/* The bearing heats: a warm glow flickers up, then gives way to the alarm */
-@keyframes night-warn {
+@keyframes ops-packet {
+  0%,
+  27% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  28% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+  40% {
+    opacity: 1;
+    stroke-dashoffset: -1;
+  }
+  41%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -1;
+  }
+}
+@keyframes ops-line {
+  0%,
+  26% {
+    stroke-opacity: 0.12;
+  }
+  30%,
+  56% {
+    stroke-opacity: 0.45;
+  }
+  62%,
+  100% {
+    stroke-opacity: 0.12;
+  }
+}
+@keyframes ops-signal {
+  0%,
+  39% {
+    opacity: 0;
+  }
+  42%,
+  48% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.4;
+  }
+  54%,
+  100% {
+    opacity: 0;
+  }
+}
+/* Energy: the office is lit and its AC running until AOne switches them off at 50% */
+@keyframes ops-lights {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-fan {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1800deg);
+  }
+  56%,
+  100% {
+    transform: rotate(1890deg);
+  }
+}
+/* Breakdown: the bearing heats, the alarm pulses, the technician arrives */
+@keyframes ops-warn {
   0%,
   12% {
     opacity: 0;
@@ -925,162 +1179,392 @@ html.js .home-dashboard:is([data-step="1"], [data-step="2"], [data-step="3"]) {
     opacity: 0;
   }
 }
-@keyframes night-alarm {
+@keyframes ops-alarm {
   0%,
-  24% {
+  26% {
     opacity: 0;
   }
-  29%,
-  41%,
-  53%,
-  65%,
-  77% {
+  30%,
+  38%,
+  46% {
     opacity: 1;
   }
-  35%,
-  47%,
-  59%,
-  71%,
-  83% {
-    opacity: 0.4;
+  34%,
+  42% {
+    opacity: 0.45;
   }
-  88% {
-    opacity: 0.7;
+  52% {
+    opacity: 0.6;
   }
-  94%,
+  56%,
   100% {
     opacity: 0;
   }
 }
-/* The alert runs along the data line to the gateway, which sends it on */
-@keyframes night-packet {
+@keyframes ops-tech {
   0%,
-  29% {
+  52% {
     opacity: 0;
-    stroke-dashoffset: 0;
+    transform: translateY(-24px);
   }
-  30% {
+  58%,
+  100% {
     opacity: 1;
-    stroke-dashoffset: 0;
+    transform: none;
   }
+}
+/* Cold room: the door stands open, the readout climbs, the door is closed and it recovers */
+@keyframes ops-door {
+  0%,
+  11% {
+    opacity: 0;
+  }
+  14%,
+  49% {
+    opacity: 1;
+  }
+  53%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-temp {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  64%,
+  100% {
+    opacity: 0;
+  }
+}
+/* Defect: the camera flags the carton, the pusher rejects it into the bin */
+@keyframes ops-bad {
+  0%,
+  52% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-flag {
+  0%,
+  23% {
+    opacity: 0;
+  }
+  26%,
+  34%,
   42% {
     opacity: 1;
-    stroke-dashoffset: -1;
   }
-  43%,
+  30%,
+  38%,
+  46% {
+    opacity: 0.5;
+  }
+  52% {
+    opacity: 0.8;
+  }
+  56%,
   100% {
     opacity: 0;
-    stroke-dashoffset: -1;
   }
 }
-@keyframes night-line {
+@keyframes ops-cone {
   0%,
-  28% {
-    stroke-opacity: 0.15;
+  23% {
+    stroke: #7cc4ff;
   }
-  32%,
-  88% {
-    stroke-opacity: 0.45;
+  26%,
+  52% {
+    stroke: #ff4a3d;
   }
-  94%,
+  56%,
   100% {
-    stroke-opacity: 0.15;
+    stroke: #7cc4ff;
   }
 }
-@keyframes night-signal {
-  0%,
-  41% {
+@keyframes ops-push {
+  0% {
     opacity: 0;
   }
-  44%,
   50% {
     opacity: 1;
   }
-  47% {
-    opacity: 0.4;
+  58%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-binned {
+  0%,
+  54% {
+    opacity: 0;
   }
   58%,
-  88% {
-    opacity: 0.45;
-  }
-  94%,
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
-/* The dashboard: "Normal" until it is flagged at 47%; the alert, then the engineer alerted at 58% */
-@keyframes night-normal {
+/* The dashboard card: before, the problem from 24%, fixed from 50% */
+@keyframes ops-before {
   0% {
     opacity: 1;
   }
-  47%,
-  93% {
+  24%,
+  100% {
     opacity: 0;
   }
-  94%,
-  100% {
-    opacity: 1;
-  }
 }
-@keyframes night-flagged {
+@keyframes ops-problem {
   0% {
     opacity: 0;
   }
-  47%,
-  90% {
+  24% {
     opacity: 1;
-  }
-  94%,
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes night-calm-rows {
-  0%,
-  45% {
-    opacity: 1;
-  }
-  48%,
-  92% {
-    opacity: 0;
-  }
-  96%,
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes night-row-alert {
-  0%,
-  46% {
-    opacity: 0;
-    transform: translateY(6px);
   }
   50%,
-  90% {
-    opacity: 1;
-    transform: none;
-  }
-  95%,
   100% {
     opacity: 0;
-    transform: none;
   }
 }
-@keyframes night-row-notify {
+@keyframes ops-fixed {
+  0% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ops-before-fix {
+  0% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-calm {
   0%,
-  57% {
+  22% {
+    opacity: 1;
+  }
+  26%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-row-alert {
+  0%,
+  24% {
     opacity: 0;
     transform: translateY(6px);
   }
-  61%,
-  90% {
+  28%,
+  100% {
     opacity: 1;
     transform: none;
   }
-  95%,
+}
+@keyframes ops-row-action {
+  0%,
+  50% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  54%,
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ops-pin {
+  0%,
+  23% {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(6px);
+  }
+  27%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+/* The audit: due, checking from 12%, a check every 13%, the report at 66% */
+@keyframes ops-audit-before {
+  0% {
+    opacity: 1;
+  }
+  12%,
   100% {
     opacity: 0;
+  }
+}
+@keyframes ops-audit-checking {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-audit-fixed {
+  0% {
+    opacity: 0;
+  }
+  66%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ops-audit-report {
+  0%,
+  66% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  70%,
+  100% {
+    opacity: 1;
     transform: none;
+  }
+}
+@keyframes ops-check-0 {
+  0%,
+  13% {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(6px);
+  }
+  17%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+@keyframes ops-tick-0 {
+  0% {
+    opacity: 0;
+  }
+  14%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ops-pending-0 {
+  0% {
+    opacity: 1;
+  }
+  14%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-check-1 {
+  0%,
+  26% {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(6px);
+  }
+  30%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+@keyframes ops-tick-1 {
+  0% {
+    opacity: 0;
+  }
+  27%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ops-pending-1 {
+  0% {
+    opacity: 1;
+  }
+  27%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-check-2 {
+  0%,
+  39% {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(6px);
+  }
+  43%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+@keyframes ops-tick-2 {
+  0% {
+    opacity: 0;
+  }
+  40%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ops-pending-2 {
+  0% {
+    opacity: 1;
+  }
+  40%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-check-3 {
+  0%,
+  52% {
+    opacity: 0;
+    transform: translate(-50%, -100%) translateY(6px);
+  }
+  56%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+@keyframes ops-tick-3 {
+  0% {
+    opacity: 0;
+  }
+  53%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes ops-pending-3 {
+  0% {
+    opacity: 1;
+  }
+  53%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes ops-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 

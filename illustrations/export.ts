@@ -575,7 +575,8 @@ function pipeNodes(mesh: THREE.Mesh, style: Style, env: Env): Node[] {
         ],
       );
       if (!node) continue;
-      node.dynamic = { cls: run.floor ? "flow" : "flow riser", index: mesh.userData.index as number | undefined };
+      const tag = mesh.userData.tag ? ` ${mesh.userData.tag as string}` : "";
+      node.dynamic = { cls: (run.floor ? "flow" : "flow riser") + tag, index: mesh.userData.index as number | undefined };
       nodes.push(node);
     }
     return nodes;
@@ -655,7 +656,7 @@ function fanNode(object: THREE.Object3D): Node | null {
     for (let i = 0; i < 5; i++) blades += `<path d="M.16 -.07L.88 -.3A.93 .93 0 0 1 .8 .44Z" transform="rotate(${i * 72})"/>`;
     return [
       {
-        raw: `<g transform="matrix(${f3(a[0])} ${f3(a[1])} ${f3(b[0])} ${f3(b[1])} ${f(o[0])} ${f(o[1])})"><circle r="1" fill="#0d1a30"/><g fill="#33496e">${blades}</g><circle r=".2" fill="#9fb4cd"/><g fill="none" stroke="#7d93b2" stroke-width=".05"><circle r=".97"/><circle r=".62"/><path d="M-1 0H1M0 -1V1"/></g></g>`,
+        raw: `<g transform="matrix(${f3(a[0])} ${f3(a[1])} ${f3(b[0])} ${f3(b[1])} ${f(o[0])} ${f(o[1])})"><circle r="1" fill="#0d1a30"/><g class="blades" fill="#33496e">${blades}</g><circle r=".2" fill="#9fb4cd"/><g fill="none" stroke="#7d93b2" stroke-width=".05"><circle r=".97"/><circle r=".62"/><path d="M-1 0H1M0 -1V1"/></g></g>`,
       },
     ];
   });
@@ -883,6 +884,7 @@ export type Exported = {
   viewBox: [number, number, number, number];
   layers: Layer[];
   flat: string; // everything in one image, in its finished state
+  anchors: Record<string, [number, number]>; // named points, in viewBox units
   stats: { nodes: number; cycles: number; layers: number };
 };
 
@@ -959,5 +961,10 @@ export function exportScene(root: THREE.Object3D, options: { id: string; ground:
       return { kind: "inline", markup: `${css ? `<style>${css}</style>` : ""}${ctx.defs.length ? `<defs>${ctx.defs.join("")}</defs>` : ""}${body}` };
     });
 
-  return { viewBox, layers, flat: image(runs.flatMap((run) => run.nodes), "g"), stats: { nodes: solids.length + overlays.length, cycles, layers: layers.length } };
+  const anchors: Record<string, [number, number]> = {};
+  root.traverse((object) => {
+    if (typeof object.userData.anchor === "string") anchors[object.userData.anchor] = project(object.getWorldPosition(v3())).map((n) => Math.round(n * 10) / 10) as [number, number];
+  });
+
+  return { viewBox, layers, flat: image(runs.flatMap((run) => run.nodes), "g"), anchors, stats: { nodes: solids.length + overlays.length, cycles, layers: layers.length } };
 }

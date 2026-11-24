@@ -16,8 +16,8 @@ import { ArrowLink } from "@/components/ui/Button";
 import { IsoScene } from "@/components/sections/IsoScene";
 import { SiteVector } from "@/components/iso/SiteVector";
 import { FilterGrid, type FilterItem } from "@/components/sections/FilterGrid";
-import { NightShift } from "@/components/sections/home/NightShift";
-import { NightVector } from "@/components/iso/NightVector";
+import { ProblemExplorer } from "@/components/sections/home/ProblemExplorer";
+import { NightVector, nightAnchors } from "@/components/iso/NightVector";
 import { ThreeLayers } from "@/components/sections/home/ThreeLayers";
 import { Impact } from "@/components/sections/home/Impact";
 
@@ -73,27 +73,20 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 5. The problem: what goes unheard (left), and a night shift that AOne watches (right) */}
+      {/* 5. The problem: five things nobody hears (tabs, left) and the story of each in a plant at night (right) */}
       <Section labelledBy="problem-title">
-        <div className="container-x grid-12 items-center gap-y-12">
-          <div className="col-span-12 lg:col-span-5" data-reveal="">
-            <h2 id="problem-title" className="t-h2">
+        <ProblemExplorer
+          intro={
+            <h2 id="problem-title" className="t-h2" data-reveal="">
               {problem.headline} <span className="accent block">{problem.answer}</span>
             </h2>
-            <p className="t-lead mt-6 text-ink-2">{problem.lead}</p>
-            <ol className="mt-8 border-b border-line">
-              {problem.losses.map((loss, index) => (
-                <li key={loss} className="flex items-baseline gap-4 border-t border-line py-3.5 text-[1.0625rem] leading-6 font-medium text-ink">
-                  <span className="t-label w-6 shrink-0 text-brand-ink">0{index + 1}</span>
-                  {loss}
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="col-span-12 lg:col-span-7" data-reveal="" style={delay(1)}>
-            <NightShift copy={problem.night} art={<NightVector label={problem.night.description} />} />
-          </div>
-        </div>
+          }
+          tabsLabel={problem.tabsLabel}
+          problems={problem.problems}
+          scene={problem.scene}
+          art={<NightVector label={problem.scene.description} />}
+          anchors={nightAnchors()}
+        />
       </Section>
 
       {/* 6. How AOne works */}

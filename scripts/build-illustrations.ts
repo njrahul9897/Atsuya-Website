@@ -45,7 +45,7 @@ function write(id: string, scene: Exported, shade: (svg: string) => string = (sv
   });
   const flat = shade(scene.flat);
   writeFileSync(join(publicDir, `${id}.svg`), flat);
-  writeFileSync(join(generatedDir, `${id}.json`), JSON.stringify({ viewBox: scene.viewBox, layers }, null, 1) + "\n");
+  writeFileSync(join(generatedDir, `${id}.json`), JSON.stringify({ viewBox: scene.viewBox, anchors: scene.anchors, layers }, null, 1) + "\n");
   console.log(`${id}: ${scene.stats.nodes} nodes, ${scene.stats.cycles} cycles, ${scene.stats.layers} layers`);
   for (const layer of layers) console.log(layer.kind === "image" ? `  image  ${layer.src}  ${kb(layer.bytes)}` : `  inline ${kb(layer.markup.length)}`);
   console.log(`  flat   /illustrations/${id}.svg  ${kb(flat.length)}`);
