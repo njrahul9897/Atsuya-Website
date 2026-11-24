@@ -14,9 +14,8 @@ function displaySize(logo: NonNullable<Customer["logo"]>) {
 
 // A static grid of customer marks. No carousel. The wall sits on the dark band, so at rest each
 // mark is a light silhouette at 60%; on hover its cell turns white and the mark shows in full
-// colour. Without a logo file, the name is set in type.
+// colour. Without a logo file (bigbasket and Grandiose, for now), the name is set in type.
 export function LogoWall({ label }: { label: string }) {
-  const missing = customers.filter((customer) => !customer.logo).map((customer) => customer.name);
   return (
     <div className="container-x">
       <p className="t-label text-ink-3" data-reveal="">
@@ -42,11 +41,6 @@ export function LogoWall({ label }: { label: string }) {
           );
         })}
       </ul>
-      {missing.length > 0 && (
-        <p className="mt-4">
-          <span className="tbd">[TBD: logo files for {missing.join(" and ")}]</span>
-        </p>
-      )}
     </div>
   );
 }

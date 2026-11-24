@@ -4,6 +4,7 @@ import { Logo } from "@/components/ui/Logo";
 import { rich, splitAccent } from "@/components/ui/rich";
 import { Facebook, LinkedIn, XLogo, YouTube } from "@/components/ui/icons";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
+import { isGap } from "@/lib/tbd";
 
 const socialIcons = { LinkedIn, X: XLogo, YouTube, Facebook };
 
@@ -12,7 +13,6 @@ const socialIcons = { LinkedIn, X: XLogo, YouTube, Facebook };
 // icons.
 export function Footer() {
   const [head, tail] = splitAccent(newsletter.headline);
-  const missingSocial = site.social.filter((profile) => !profile.href).map((profile) => profile.label);
   return (
     <footer className="on-dark dark-vars bg-navy-950">
       <div className="container-x pt-16 pb-10 lg:pt-20">
@@ -46,12 +46,15 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
-                {column.title === "Contact" ? (
-                  <>
-                    <li className="pt-2 text-[0.9375rem] leading-[1.375rem] text-ink-2">{rich(site.contact.email)}</li>
-                    <li className="pt-1 text-[0.9375rem] leading-[1.375rem] text-ink-2">{rich(site.contact.phone)}</li>
-                  </>
-                ) : null}
+                {column.title === "Contact"
+                  ? [site.contact.email, site.contact.phone]
+                      .filter((value) => !isGap(value))
+                      .map((value) => (
+                        <li key={value} className="pt-1 text-[0.9375rem] leading-[1.375rem] text-ink-2">
+                          {rich(value)}
+                        </li>
+                      ))
+                  : null}
               </ul>
             </div>
           ))}
@@ -71,8 +74,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <ul className="flex items-center gap-2" aria-label="Atsuya Technologies on social media">
+          <ul className="flex items-center gap-2" aria-label="Atsuya Technologies on social media">
               {site.social.map((profile) => {
                 const Icon = socialIcons[profile.label];
                 const circle = "flex h-10 w-10 items-center justify-center rounded-full border border-line";
@@ -91,9 +93,7 @@ export function Footer() {
                   </li>
                 );
               })}
-            </ul>
-            {missingSocial.length ? <span className="tbd">[TBD: {missingSocial.join(", ")} URL{missingSocial.length > 1 ? "s" : ""}]</span> : null}
-          </div>
+          </ul>
         </div>
       </div>
     </footer>

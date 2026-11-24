@@ -14,6 +14,7 @@ import { Button, ArrowLink, Chip } from "@/components/ui/Button";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { CTABand } from "@/components/ui/CTABand";
 import { CapabilityList } from "@/components/sections/CapabilityList";
+import { isGap } from "@/lib/tbd";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => layers.map((layer) => ({ layer: layer.slug }));
@@ -49,7 +50,7 @@ export default async function LayerPage({ params }: { params: Promise<{ layer: s
         <div className="container-x">
           <SectionHeading id="capabilities-title" title="What it does." />
           <div className="mt-12 lg:mt-16">
-            <CapabilityList layer={layer.key} capabilities={layer.capabilities} art={scenes.manufacturing.icon} />
+            <CapabilityList layer={layer.key} capabilities={layer.capabilities.map((capability) => ({ ...capability, points: capability.points.filter((point) => !isGap(point)) }))} art={scenes.manufacturing.icon} />
           </div>
         </div>
       </Section>
@@ -109,11 +110,6 @@ export default async function LayerPage({ params }: { params: Promise<{ layer: s
                 </li>
               ))}
             </ul>
-          ) : null}
-          {layer.proofTbd ? (
-            <p className="mt-10">
-              <span className="tbd">{layer.proofTbd}</span>
-            </p>
           ) : null}
           <div className="mt-10">
             <ArrowLink href="/customers">All customer stories</ArrowLink>

@@ -60,9 +60,7 @@ export default function CustomersPage() {
           <div className="mt-10">
             <FilterGrid groups={groups} items={items} gridClassName="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" />
           </div>
-          <p className="mt-12">
-            <span className="tbd">[TBD: confirm that every customer name is cleared for public use]</span>
-          </p>
+          {/* [TBD: confirm that every customer name is cleared for public use] */}
         </div>
       </Section>
 

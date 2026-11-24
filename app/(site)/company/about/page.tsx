@@ -7,6 +7,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ProofStat } from "@/components/ui/ProofStat";
 import { Chip } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/CTABand";
+import { isGap } from "@/lib/tbd";
 
 export const metadata = pageMeta("/company/about");
 
@@ -18,19 +19,19 @@ export default function AboutPage() {
       {/* 1. Headline */}
       <PageHero path="/company/about" next="paper-2" eyebrow="About Atsuya" title={about.headline} sub={about.sub} />
 
-      {/* 2. The story */}
-      <Section tone="paper-2" labelledBy="story-title">
-        <div className="container-x grid-12 gap-y-8">
-          <h2 id="story-title" className="t-h2 col-span-12 lg:col-span-4" data-reveal="">
-            The story
-          </h2>
-          <div className="col-span-12 lg:col-span-7 lg:col-start-6" data-reveal="">
-            <p>
-              <span className="tbd">{about.story}</span>
-            </p>
+      {/* 2. The story (shown once it is written: content/company.ts → about.story) */}
+      {isGap(about.story) ? null : (
+        <Section tone="paper-2" labelledBy="story-title">
+          <div className="container-x grid-12 gap-y-8">
+            <h2 id="story-title" className="t-h2 col-span-12 lg:col-span-4" data-reveal="">
+              The story
+            </h2>
+            <div className="col-span-12 lg:col-span-7 lg:col-start-6" data-reveal="">
+              <p className="t-lead text-ink-2">{about.story}</p>
+            </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
       {/* 3. What Atsuya believes */}
       <Section labelledBy="beliefs-title">
@@ -56,9 +57,6 @@ export default function AboutPage() {
               Footprint
             </h2>
             <ProofStat value={about.footprint.value} label={about.footprint.label} size="xl" className="mt-10" />
-            <p className="mt-6">
-              <span className="tbd">{about.footprint.tbd}</span>
-            </p>
           </div>
           <div className="col-span-12 lg:col-span-6 lg:col-start-7" data-reveal="">
             <p className="t-label text-ink-3">Eight industries, one stack</p>
@@ -75,25 +73,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* 5. Leadership */}
-      <Section labelledBy="leadership-title">
-        <div className="container-x">
-          <SectionHeading id="leadership-title" title="Leadership." />
-          <ul className="mt-12 grid grid-cols-2 gap-6 lg:mt-16 lg:grid-cols-4">
-            {[0, 1, 2, 3].map((slot) => (
-              <li key={slot} data-reveal="" style={delay(slot)}>
-                <div className="aspect-[4/5] rounded-card bg-paper-2" />
-                <p className="mt-4">
-                  <span className="tbd">[TBD: name and role]</span>
-                </p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-8">
-            <span className="tbd">{about.leadershipTbd}</span>
-          </p>
-        </div>
-      </Section>
+      {/* 5. Leadership: added once names, roles and photographs are in (content/company.ts → leadershipTbd). */}
 
       <CTABand headline="Help make physical operations visible." button={{ label: "See careers", href: "/company/careers" }} />
     </>

@@ -16,9 +16,15 @@ npm run build      # static generation for every route
 npm run start      # serve the production build
 npm run lint
 npm run typecheck
-npm run tbd        # list every [TBD: …] placeholder still in the content
+npm run tbd        # list every [TBD: …] gap still in the content (the site never shows them)
 npm run build:illustrations   # redraw the detailed 2.5D illustration from its model
 ```
+
+**Content gaps.** Missing content is marked `[TBD: …]` in the content files. The site never
+shows a marker: `lib/tbd.ts` strips them from text, and a block that holds only a gap is left out
+(the About story and leadership, careers and partner lists, contact details, the Security card,
+placeholder guides and blog posts). Legal pages show one line pointing to the contact page until
+their text is in. Fill a gap in the content file and its block appears.
 
 ## Where things live
 
@@ -105,8 +111,8 @@ of the brief.
 - **Footer.** Opens with the newsletter (heading on the left, email field and consent line on the
   right), then the logo and link columns (Industries, Platform, Resources, Company, Contact), then
   the legal line with LinkedIn, X, YouTube and Facebook icons. Profile URLs live in
-  `content/site.ts` → `social`; an icon without one shows dimmed, not linked, with a [TBD] note
-  (Facebook, for now). Linked profiles are also listed as `sameAs` in the organisation JSON-LD.
+  `content/site.ts` → `social`; an icon without one shows dimmed and not linked (Facebook, for
+  now). Linked profiles are also listed as `sameAs` in the organisation JSON-LD.
   Brand icons are from Font Awesome Free (CC BY 4.0), in `components/ui/icons.tsx`.
 - **Homepage hero.** The headline alone, set very large at the foot of the footage, with the call
   to action beneath it as a line of type and a round arrow (`variant="statement"` on `HeroVideo`).

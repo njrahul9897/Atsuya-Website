@@ -1,19 +1,18 @@
 import type { ReactNode } from "react";
+import { withoutTbd } from "@/lib/tbd";
 import { ArrowRight } from "./icons";
 
-// Renders content strings: "→" becomes the site arrow, and "[TBD: …]" becomes a visible
-// placeholder chip so gaps are obvious in review.
+// Renders content strings: "→" becomes the site arrow. "[TBD: …]" markers are content gaps and
+// are never shown (see lib/tbd.ts); a string that is only a gap renders nothing.
 export function rich(text: string): ReactNode {
-  const parts = text.split(/(\[TBD[^\]]*\]|→)/g).filter(Boolean);
-  if (parts.length === 1 && parts[0] !== "→" && !parts[0].startsWith("[TBD")) return text;
-  return parts.map((part, index) => {
-    if (part === "→") return <ArrowRight key={index} size={16} className="mx-[0.12em] inline-block h-[0.62em] w-[0.62em] align-[0.02em]" />;
-    if (part.startsWith("[TBD")) return <span key={index} className="tbd">{part}</span>;
-    return part;
-  });
+  const clean = withoutTbd(text);
+  if (!clean) return null;
+  const parts = clean.split(/(→)/g).filter(Boolean);
+  if (parts.length === 1 && parts[0] !== "→") return clean;
+  return parts.map((part, index) =>
+    part === "→" ? <ArrowRight key={index} size={16} className="mx-[0.12em] inline-block h-[0.62em] w-[0.62em] align-[0.02em]" /> : part,
+  );
 }
-
-export const hasTbd = (text: string) => text.includes("[TBD");
 
 // Splits a headline so its last phrase can carry the accent colour:
 // "Sense. See. Decide. Act." → "Sense. See. Decide." + "Act."

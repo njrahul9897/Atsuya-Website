@@ -11,7 +11,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button, ArrowLink } from "@/components/ui/Button";
 import { ArrowRight } from "@/components/ui/icons";
 import { CTABand } from "@/components/ui/CTABand";
-import { IotMock, SquadMock, VisionMock, MockTbd } from "@/components/mockups/Mock";
+import { IotMock, SquadMock, VisionMock } from "@/components/mockups/Mock";
 
 export const metadata = pageMeta("/platform");
 
@@ -29,7 +29,6 @@ function Collage() {
           <SquadMock title={squad.capabilities[0].mock.title} rows={squad.capabilities[0].mock.rows.slice(0, 3)} />
         </div>
       </div>
-      <MockTbd />
     </div>
   );
 }
@@ -153,9 +152,6 @@ export default function PlatformPage() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4">
-              <span className="tbd">{integrations.tbd}</span>
-            </p>
           </div>
         </div>
       </Section>

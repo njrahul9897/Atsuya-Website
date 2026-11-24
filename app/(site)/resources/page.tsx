@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { resources, posts } from "@/content/company";
+import { resources, publishedPosts as posts } from "@/content/company";
+import { hasTbd } from "@/lib/tbd";
 import { home } from "@/content/home";
 import { pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/hero/PageHero";
@@ -14,6 +15,7 @@ export const metadata = pageMeta("/resources");
 const delay = (index: number) => ({ "--reveal-delay": `${index * 60}ms` }) as CSSProperties;
 
 export default function ResourcesPage() {
+  const guides = resources.guides.filter((guide) => !hasTbd(guide.title));
   return (
     <>
       <PageHero path="/resources" title="Resources" sub={resources.sub} />
@@ -35,44 +37,48 @@ export default function ResourcesPage() {
         </div>
       </Section>
 
-      {/* Guides and reports */}
-      <Section tone="paper-2" labelledBy="guides-title">
-        <div className="container-x">
-          <SectionHeading id="guides-title" title="Guides and reports." />
-          <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16">
-            {resources.guides.map((guide, index) => (
-              <li key={guide.kind} className="card flex flex-col p-6 lg:p-8" data-reveal="" style={delay(index)}>
-                <p className="t-label text-ink-3">{guide.kind}</p>
-                <h3 className="t-h3 mt-6">{rich(guide.title)}</h3>
-                <p className="mt-3 text-[1.0625rem] leading-7 text-ink-2">{rich(guide.body)}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
-
-      {/* Blog */}
-      <Section labelledBy="blog-title">
-        <div className="container-x">
-          <div className="flex items-end justify-between gap-6">
-            <SectionHeading id="blog-title" title="From the blog." />
-            <ArrowLink href="/resources/blog" className="hidden shrink-0 sm:inline-flex">
-              All posts
-            </ArrowLink>
+      {/* Guides and reports (placeholders are left out; the section shows once one is real) */}
+      {guides.length ? (
+        <Section tone="paper-2" labelledBy="guides-title">
+          <div className="container-x">
+            <SectionHeading id="guides-title" title="Guides and reports." />
+            <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16">
+              {guides.map((guide, index) => (
+                <li key={guide.kind} className="card flex flex-col p-6 lg:p-8" data-reveal="" style={delay(index)}>
+                  <p className="t-label text-ink-3">{guide.kind}</p>
+                  <h3 className="t-h3 mt-6">{rich(guide.title)}</h3>
+                  <p className="mt-3 text-[1.0625rem] leading-7 text-ink-2">{rich(guide.body)}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="mt-12 lg:mt-16">
-            {posts.map((post, index) => (
-              <li key={post.slug} className="border-t border-line last:border-b" data-reveal="" style={delay(index)}>
-                <Link href={`/resources/blog/${post.slug}`} className="group grid-12 items-baseline gap-y-2 py-6 lg:py-8">
-                  <span className="t-label col-span-12 text-ink-3 lg:col-span-2">{rich(post.date)}</span>
-                  <span className="t-h3 col-span-12 lg:col-span-5">{rich(post.title)}</span>
-                  <span className="col-span-12 text-[1.0625rem] leading-7 text-ink-2 lg:col-span-5">{rich(post.summary)}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
+        </Section>
+      ) : null}
+
+      {/* Blog (shows once there is a published post) */}
+      {posts.length ? (
+        <Section labelledBy="blog-title">
+          <div className="container-x">
+            <div className="flex items-end justify-between gap-6">
+              <SectionHeading id="blog-title" title="From the blog." />
+              <ArrowLink href="/resources/blog" className="hidden shrink-0 sm:inline-flex">
+                All posts
+              </ArrowLink>
+            </div>
+            <ul className="mt-12 lg:mt-16">
+              {posts.map((post, index) => (
+                <li key={post.slug} className="border-t border-line last:border-b" data-reveal="" style={delay(index)}>
+                  <Link href={`/resources/blog/${post.slug}`} className="group grid-12 items-baseline gap-y-2 py-6 lg:py-8">
+                    <span className="t-label col-span-12 text-ink-3 lg:col-span-2">{rich(post.date)}</span>
+                    <span className="t-h3 col-span-12 lg:col-span-5">{rich(post.title)}</span>
+                    <span className="col-span-12 text-[1.0625rem] leading-7 text-ink-2 lg:col-span-5">{rich(post.summary)}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ) : null}
 
       <CTABand headline={home.cta.headline} button={home.cta.button} line={home.cta.line} />
     </>

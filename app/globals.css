@@ -538,26 +538,6 @@ html.lenis body {
   padding-left: 1.25rem;
 }
 
-/* Visible content placeholders, listed by `npm run tbd` */
-.tbd {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.125rem;
-  letter-spacing: 0.02em;
-  color: var(--ink-2);
-  background: var(--paper-2);
-  border: 1px dashed #b9bfcc;
-  border-radius: 6px;
-  padding: 2px 8px;
-  display: inline-block;
-}
-.on-dark .tbd,
-.surface-brand .tbd {
-  color: #fff;
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
 @media print {
   [data-reveal] {
     opacity: 1 !important;
@@ -1080,11 +1060,6 @@ a.card:hover,
 }
 .dark-vars .iso .zone.is-dim {
   opacity: 0.45;
-}
-.dark-vars .tbd {
-  color: var(--ink-2);
-  background: transparent;
-  border-color: rgba(160, 196, 235, 0.35);
 }
 .dark-vars .status-off {
   color: var(--ink-3);

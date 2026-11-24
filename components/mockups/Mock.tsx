@@ -151,4 +151,4 @@ export function LayerMock({ layer, title, rows, art, className }: { layer: "iot"
   return <IotMock title={title} rows={rows} className={className} />;
 }
 
-export const MockTbd = () => <span className="tbd mt-4">[TBD: replace UI mock-ups with real AOne product screenshots]</span>;
+// [TBD: replace UI mock-ups with real AOne product screenshots]

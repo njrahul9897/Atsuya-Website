@@ -1,5 +1,7 @@
+import { hasTbd } from "@/lib/tbd";
+
 // Company, resources, blog and legal content. Most of this is waiting on Atsuya: every gap is a
-// visible [TBD: …] placeholder, and `npm run tbd` lists them all.
+// [TBD: …] marker, which the site never shows (lib/tbd.ts); `npm run tbd` lists them all.
 
 export const about = {
   headline: "We make physical operations visible.",
@@ -39,7 +41,7 @@ export const technology = {
     body: "Vision AI runs as edge AI on existing DVRs. A global QSR chain uses it across 3,000+ outlets in India.",
     href: "/customers/global-qsr-chain",
   },
-  security: { title: "Security and hosting", tbd: "[TBD: certifications, data security and hosting details]" },
+  security: { title: "Security and hosting", body: "[TBD: certifications, data security and hosting details]" }, // the card shows once this is written
 };
 
 export const partners = {
@@ -92,7 +94,9 @@ export const posts: Post[] = [
   },
 ];
 
-export const postBySlug = (slug: string) => posts.find((post) => post.slug === slug);
+// Posts still carrying a [TBD] title are placeholders: they are not listed, built or indexed.
+export const publishedPosts = posts.filter((post) => !hasTbd(post.title));
+export const postBySlug = (slug: string) => publishedPosts.find((post) => post.slug === slug);
 
 export const legal: Record<"privacy" | "terms" | "cookies", { title: string; description: string; body: string[] }> = {
   privacy: {

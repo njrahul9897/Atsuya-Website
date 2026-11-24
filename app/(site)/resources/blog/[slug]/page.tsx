@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { posts, postBySlug } from "@/content/company";
+import { publishedPosts, postBySlug } from "@/content/company";
 import { home } from "@/content/home";
 import { articleJsonLd, pageMeta } from "@/lib/seo";
 import { PageHero } from "@/components/hero/PageHero";
@@ -10,7 +10,7 @@ import { CTABand } from "@/components/ui/CTABand";
 import { rich } from "@/components/ui/rich";
 
 export const dynamicParams = false;
-export const generateStaticParams = () => posts.map((post) => ({ slug: post.slug }));
+export const generateStaticParams = () => publishedPosts.map((post) => ({ slug: post.slug }));
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

@@ -8,7 +8,7 @@ import { industries } from "@/content/industries";
 import { caseStudies } from "@/content/caseStudies";
 import { solutions } from "@/content/solutions";
 import { layers, platform } from "@/content/platform";
-import { about, technology, partners, careers, resources, posts, legal, assessment } from "@/content/company";
+import { about, technology, partners, careers, resources, publishedPosts, legal, assessment } from "@/content/company";
 
 export type Crumb = { name: string; path: string };
 
@@ -217,7 +217,7 @@ export function allRoutes(): RouteMeta[] {
     }),
   );
 
-  const postRoutes = posts.map(
+  const postRoutes = publishedPosts.map(
     (post): RouteMeta => ({
       path: `/resources/blog/${post.slug}`,
       title: post.title,

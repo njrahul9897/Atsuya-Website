@@ -5,7 +5,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { cn } from "@/lib/cn";
 import type { MockRow } from "@/content/platform";
 import type { ZoneArt } from "@/components/iso/kit";
-import { LayerMock, MockTbd } from "@/components/mockups/Mock";
+import { LayerMock } from "@/components/mockups/Mock";
 import { ArrowLink } from "@/components/ui/Button";
 
 export type LayerTab = {
@@ -80,7 +80,6 @@ export function LayerTabs({ tabs, art }: { tabs: LayerTab[]; art?: ZoneArt }) {
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-7">
               <LayerMock layer={tab.key} title={tab.mock.title} rows={tab.mock.rows} art={art} />
-              <MockTbd />
             </div>
           </m.div>
         </AnimatePresence>

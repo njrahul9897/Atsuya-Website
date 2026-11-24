@@ -7,6 +7,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ArrowLink } from "@/components/ui/Button";
 import { ProofStat } from "@/components/ui/ProofStat";
 import { CTABand } from "@/components/ui/CTABand";
+import { isGap } from "@/lib/tbd";
 
 export const metadata = pageMeta("/company/technology");
 
@@ -54,15 +55,12 @@ export default function TechnologyPage() {
               </li>
             ))}
           </ul>
-          <p>
-            <span className="tbd">{hardware.tbd}</span>
-          </p>
         </div>
       </Section>
 
       {/* Edge AI and security */}
       <Section tone="paper-2" labelledBy="edge-title">
-        <div className="container-x grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className={`container-x grid grid-cols-1 gap-6 ${isGap(security.body) ? "" : "lg:grid-cols-2"}`}>
           <div className="card flex flex-col p-8 lg:p-12" data-reveal="">
             <p className="t-label text-brand-ink">Edge AI</p>
             <h2 id="edge-title" className="t-h2 mt-5">
@@ -73,13 +71,13 @@ export default function TechnologyPage() {
               <ArrowLink href={edge.href}>Read the story</ArrowLink>
             </div>
           </div>
-          <div className="card flex flex-col p-8 lg:p-12" data-reveal="" style={delay(1)}>
-            <p className="t-label text-ink-3">Security</p>
-            <h2 className="t-h2 mt-5">{security.title}</h2>
-            <p className="mt-4">
-              <span className="tbd">{security.tbd}</span>
-            </p>
-          </div>
+          {isGap(security.body) ? null : (
+            <div className="card flex flex-col p-8 lg:p-12" data-reveal="" style={delay(1)}>
+              <p className="t-label text-ink-3">Security</p>
+              <h2 className="t-h2 mt-5">{security.title}</h2>
+              <p className="mt-4 text-[1.0625rem] leading-7 text-ink-2">{security.body}</p>
+            </div>
+          )}
         </div>
       </Section>
 

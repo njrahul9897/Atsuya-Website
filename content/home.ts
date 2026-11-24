@@ -106,7 +106,8 @@ export const home = {
       { value: "110,000+", unit: "tonnes", label: "of CO₂ emissions avoided" },
       { value: "73 million+", unit: "litres", label: "of water saved" },
     ],
-    note: "Cumulative across AOne deployments, as of [TBD: month and year]. [TBD: how CO₂ avoided is calculated]",
+    // [TBD: the month and year these figures are as of] [TBD: how CO₂ avoided is calculated]
+    note: "Cumulative across AOne deployments.",
   },
 
   cta: {

@@ -5,7 +5,8 @@ import { AnimatePresence, m } from "framer-motion";
 import { cn } from "@/lib/cn";
 import type { Layer } from "@/content/platform";
 import type { ZoneArt } from "@/components/iso/kit";
-import { LayerMock, MockTbd } from "@/components/mockups/Mock";
+import { LayerMock } from "@/components/mockups/Mock";
+import { isGap } from "@/lib/tbd";
 import { rich } from "@/components/ui/rich";
 
 // What a layer does: its capabilities on the left, the product UI for the chosen one on the right.
@@ -26,7 +27,7 @@ export function CapabilityList({ layer, capabilities, art }: { layer: Layer["key
               </button>
               <div className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-soft", on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
                 <ul className="overflow-hidden pl-[3.75rem] text-[1.0625rem] leading-7 text-ink-2" aria-hidden={!on}>
-                  {capability.points.map((point) => (
+                  {capability.points.filter((point) => !isGap(point)).map((point) => (
                     <li key={point} className="last:pb-4">
                       {rich(point)}
                     </li>
@@ -43,7 +44,6 @@ export function CapabilityList({ layer, capabilities, art }: { layer: Layer["key
             <LayerMock layer={layer} title={current.mock.title} rows={current.mock.rows} art={art} />
           </m.div>
         </AnimatePresence>
-        <MockTbd />
       </div>
     </div>
   );
