@@ -1,8 +1,7 @@
 import type { CSSProperties } from "react";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
-import { industries, industryBySlug } from "@/content/industries";
-import { caseStudiesBySlugs, caseStudyBySlug } from "@/content/caseStudies";
+import { industries } from "@/content/industries";
 import { layers } from "@/content/platform";
 import { pageMeta } from "@/lib/seo";
 import { HeroVideo } from "@/components/hero/HeroVideo";
@@ -10,12 +9,9 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ProofStat } from "@/components/ui/ProofStat";
 import { LogoWall } from "@/components/ui/LogoWall";
 import { IndustryTile } from "@/components/ui/IndustryTile";
-import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { CTABand } from "@/components/ui/CTABand";
-import { ArrowLink } from "@/components/ui/Button";
 import { IsoScene } from "@/components/sections/IsoScene";
 import { SiteVector } from "@/components/iso/SiteVector";
-import { FilterGrid, type FilterItem } from "@/components/sections/FilterGrid";
 import { ProblemExplorer } from "@/components/sections/home/ProblemExplorer";
 import { OpsVector, opsAnchors } from "@/components/iso/OpsVector";
 import { ThreeLayers } from "@/components/sections/home/ThreeLayers";
@@ -26,15 +22,8 @@ export const metadata = pageMeta("/");
 const delay = (index: number) => ({ "--reveal-delay": `${index * 60}ms` }) as CSSProperties;
 
 export default function HomePage() {
-  const { hero, proof, problem, how, stories, cta } = home;
+  const { hero, proof, problem, how, cta } = home;
 
-  const featured = caseStudyBySlug(stories.featured)!;
-  const standard = caseStudiesBySlugs(stories.standard);
-  const storyItems: FilterItem[] = [
-    { id: featured.slug, tags: { industry: [featured.industry] }, className: "md:col-span-2 lg:row-span-2", node: <CaseStudyCard study={featured} size="featured" /> },
-    ...standard.map((study) => ({ id: study.slug, tags: { industry: [study.industry] }, node: <CaseStudyCard study={study} /> })),
-  ];
-  const storyIndustries = [...new Set([featured, ...standard].map((study) => study.industry))].map((slug) => ({ value: slug, label: industryBySlug(slug)!.name }));
 
   return (
     <>
@@ -102,19 +91,6 @@ export default function HomePage() {
           <SectionHeading id="layers-title" title={home.layers.headline} />
           <div className="mt-12 lg:mt-16">
             <ThreeLayers layers={layers.map((layer) => ({ key: layer.key, name: layer.name, line: layer.line, href: `/platform/${layer.slug}` }))} />
-          </div>
-        </div>
-      </Section>
-
-      {/* 8. Proof */}
-      <Section tone="paper-2" labelledBy="stories-title">
-        <div className="container-x">
-          <SectionHeading id="stories-title" title={stories.headline} lead={stories.lead} />
-          <div className="mt-10 lg:mt-12">
-            <FilterGrid groups={[{ key: "industry", label: "Industry", options: storyIndustries }]} items={storyItems} gridClassName="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3" />
-          </div>
-          <div className="mt-12">
-            <ArrowLink href={stories.link.href}>{stories.link.label}</ArrowLink>
           </div>
         </div>
       </Section>

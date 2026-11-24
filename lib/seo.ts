@@ -28,7 +28,7 @@ export type RouteMeta = {
 const INDUSTRIES: Crumb = { name: "Industries", path: "/industries" };
 const PLATFORM: Crumb = { name: "Platform", path: "/platform" };
 const SOLUTIONS: Crumb = { name: "Solutions", path: "/platform#solutions" };
-const CUSTOMERS: Crumb = { name: "Customers", path: "/customers" };
+const CUSTOMERS: Crumb = { name: "Case studies", path: "/customers" };
 const RESOURCES: Crumb = { name: "Resources", path: "/resources" };
 const BLOG: Crumb = { name: "Blog", path: "/resources/blog" };
 const COMPANY: Crumb = { name: "Company", path: "/company/about" };
@@ -67,11 +67,11 @@ export function allRoutes(): RouteMeta[] {
     },
     {
       path: "/customers",
-      title: "Customers",
+      title: "Case studies",
       description: "Results, named and numbered. Case studies from Wheels India, Dana, Domino’s, Smartworks, Licious, IndianOil and more: what was measured, what changed and by how much.",
-      crumbs: [],
-      crumbName: "Customers",
-      og: { eyebrow: "Customers", title: "Results, named and numbered.", stat: { value: "3,000+", label: "dark stores monitored" } },
+      crumbs: [RESOURCES],
+      crumbName: "Case studies",
+      og: { eyebrow: "Case studies", title: "Results, named and numbered.", stat: { value: "3,000+", label: "dark stores monitored" } },
       priority: 0.9,
     },
     {
@@ -210,7 +210,7 @@ export function allRoutes(): RouteMeta[] {
       title: `${study.customer}: ${study.headline.value} ${study.headline.label} | AOne`,
       absoluteTitle: true,
       description: `${study.title}. ${study.impact.slice(0, 2).join(". ")}.`,
-      crumbs: [CUSTOMERS],
+      crumbs: [RESOURCES, CUSTOMERS],
       crumbName: study.customer,
       og: { eyebrow: `Case study · ${industryName(study.industry)}`, title: study.customer, stat: study.headline },
       priority: 0.6,

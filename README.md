@@ -115,9 +115,10 @@ of the brief.
   any component dropped onto a dark surface adapts without its own dark styles. The 2.5D scenes
   switch to a blueprint look there, with the live layer glowing.
 - **Header.** Clear over the hero (logo, links and a search icon in white), a white floating bar
-  once the page scrolls. Nav: Industries, Platform, Resources, Company (case studies are reached
-  from the homepage and the Industries menu). It carries no button: the call to action sits in the
-  page, in the mobile menu, and at the top right of the footer.
+  once the page scrolls. Nav: Industries, Platform, Resources, Company. Case studies (`/customers`)
+  sit in the Resources menu (and the footer's Resources column), and the Resources tab lights up on
+  them. It carries no button: the call to action sits in the page and in the mobile menu.
+- **Closing band.** `CTABand` runs full width, edge to edge into the footer, over footage.
 - **Footer.** Opens with the newsletter (heading on the left, email field and consent line on the
   right), then the logo and link columns (Industries, Platform, Resources, Company, Contact), then
   the legal line with LinkedIn, X, YouTube and Facebook icons. Profile URLs live in
@@ -178,7 +179,7 @@ npm run build:illustrations   # after any change under illustrations/
 - Smooth scrolling (Lenis) runs on pointer devices only, and never with `prefers-reduced-motion`.
 - Blog posts are placeholders and are `noindex` and left out of the sitemap until they have content.
 - The homepage's "Why Atsuya" section (brief §6) is now "Our impact": reach as one sentence, then
-  food waste, CO₂ and water as large figures. The figures Atsuya supplied are recorded in
+  food waste, CO₂ and water as large figures, on the light grey band. The figures Atsuya supplied are recorded in
   `content/home.ts` and shown rounded down in international units (e.g. 1,10,662 t → "110,000+
-  tonnes"). Its old points moved or were already on the page: 2,400/hr is in the proof band, and the
-  Licious and Wheels India retention line now leads the customer stories section.
+  tonnes"). Its old points moved or were already on the page: 2,400/hr is in the proof band. The
+  homepage no longer has a customer stories section; the case studies are in the Resources menu.

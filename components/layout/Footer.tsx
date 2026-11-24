@@ -14,7 +14,7 @@ const socialIcons = { LinkedIn, X: XLogo, YouTube, Facebook };
 export function Footer() {
   const [head, tail] = splitAccent(newsletter.headline);
   return (
-    <footer className="on-dark dark-vars bg-navy-950">
+    <footer className="on-dark dark-vars border-t border-line bg-navy-950">
       <div className="container-x pt-16 pb-10 lg:pt-20">
         <section aria-labelledby="footer-newsletter-title" className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-x-6">
           <div className="lg:col-span-6">

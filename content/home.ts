@@ -107,14 +107,6 @@ export const home = {
 
   layers: { headline: "Three layers, one platform." },
 
-  stories: {
-    headline: "Proven where it’s *hardest.*",
-    lead: "Customers stay and expand: 8+ years with Licious, seven plants at Wheels India.",
-    featured: "wheels-india",
-    standard: ["quick-commerce-leaders", "dana", "dominos", "smartworks", "licious"],
-    link: { label: "See all customer stories", href: "/customers" },
-  },
-
   // Figures from Atsuya (November 2026): 500+ cities, 3+ countries, 1,60,64,400 sq ft monitored
   // for energy efficiency, 9,90,000 kg of food waste prevented, 1,10,662 t of CO₂ avoided and
   // 73,433 kL of water saved. Shown rounded down, in international units.

@@ -71,6 +71,7 @@ export const nav = {
   solutions: solutions.map((solution) => ({ label: solution.name, href: `/solutions/${solution.slug}` })),
   resources: [
     { label: "Resources hub", href: "/resources", note: "Guides, reports and the blog" },
+    { label: "Case studies", href: "/customers", note: "Results from customer sites, named and numbered" },
     { label: "Savings estimator", href: "/resources/savings-estimator", note: "A typical savings range for your sites" },
     { label: "Blog", href: "/resources/blog", note: "Notes from the field" },
   ] satisfies NavLink[],

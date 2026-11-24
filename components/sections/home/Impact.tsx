@@ -13,7 +13,7 @@ type ImpactProps = {
 const emphasise = (text: string) =>
   text.split(/\*\*(.+?)\*\*/g).map((part, index) =>
     index % 2 ? (
-      <strong key={index} className="font-semibold whitespace-nowrap text-white">
+      <strong key={index} className="font-semibold whitespace-nowrap text-ink">
         {part}
       </strong>
     ) : (
@@ -26,13 +26,13 @@ const emphasise = (text: string) =>
 // under the hero and long figures ("73 million+") keep their size.
 export function Impact({ headline, reach, outcomes, note }: ImpactProps) {
   return (
-    <Section tone="brand" labelledBy="impact-title">
+    <Section tone="paper-2" labelledBy="impact-title">
       <div className="container-x">
         <div className="grid-12 items-end gap-y-6">
           <h2 id="impact-title" className="t-h1 col-span-12 lg:col-span-5" data-reveal="">
             <Accent text={headline} />
           </h2>
-          <p className="t-lead col-span-12 text-white/85 lg:col-span-6 lg:col-start-7" data-reveal="" style={{ "--reveal-delay": "60ms" } as CSSProperties}>
+          <p className="t-lead col-span-12 text-ink-2 lg:col-span-6 lg:col-start-7" data-reveal="" style={{ "--reveal-delay": "60ms" } as CSSProperties}>
             {emphasise(reach)}
           </p>
         </div>
@@ -41,20 +41,20 @@ export function Impact({ headline, reach, outcomes, note }: ImpactProps) {
           {outcomes.map((outcome, index) => (
             <li
               key={outcome.label}
-              className="grid-12 relative gap-y-3 border-t border-white/30 pt-8 pb-10 before:absolute before:-top-px before:left-0 before:h-0.5 before:w-16 before:bg-white lg:items-baseline lg:pt-10 lg:pb-12"
+              className="grid-12 relative gap-y-3 border-t border-line pt-8 pb-10 before:absolute before:-top-px before:left-0 before:h-0.5 before:w-16 before:bg-brand lg:items-baseline lg:pt-10 lg:pb-12"
               data-reveal=""
               style={{ "--reveal-delay": `${index * 80}ms` } as CSSProperties}
             >
               <p className="t-impact col-span-12 lg:col-span-8">
-                <CountUp value={outcome.value} />
-                <span className="t-impact-unit ml-[0.3em] text-white/80">{outcome.unit}</span>
+                <CountUp value={outcome.value} className="stat-grad" />
+                <span className="t-impact-unit ml-[0.3em] text-ink-2">{outcome.unit}</span>
               </p>
-              <p className="col-span-12 text-[1.25rem] leading-7 text-white/85 lg:col-span-4">{outcome.label}</p>
+              <p className="col-span-12 text-[1.25rem] leading-7 text-ink-2 lg:col-span-4">{outcome.label}</p>
             </li>
           ))}
         </ul>
 
-        <p className="t-label border-t border-white/30 pt-6 text-white/85">{rich(note)}</p>
+        <p className="t-label border-t border-line pt-6 text-ink-3">{rich(note)}</p>
       </div>
     </Section>
   );
