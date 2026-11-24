@@ -102,8 +102,12 @@ of the brief.
   once the page scrolls. Nav: Industries, Platform, Resources, Company (case studies are reached
   from the homepage and the Industries menu). It carries no button: the call to action sits in the
   page, in the mobile menu, and at the top right of the footer.
-- **Footer.** Opens with the newsletter (top left) and a site-assessment card (top right), then the
-  logo and link columns (Industries, Platform, Resources, Company, Contact), then the legal line.
+- **Footer.** Opens with the newsletter (heading on the left, email field and consent line on the
+  right), then the logo and link columns (Industries, Platform, Resources, Company, Contact), then
+  the legal line with LinkedIn, X, YouTube and Facebook icons. Profile URLs live in
+  `content/site.ts` → `social`; an icon without one shows dimmed, not linked, with a [TBD] note
+  (Facebook, for now). Linked profiles are also listed as `sameAs` in the organisation JSON-LD.
+  Brand icons are from Font Awesome Free (CC BY 4.0), in `components/ui/icons.tsx`.
 - **Homepage hero.** The headline alone, set very large at the foot of the footage, with the call
   to action beneath it as a line of type and a round arrow (`variant="statement"` on `HeroVideo`).
   Industry pages keep the fuller hero.

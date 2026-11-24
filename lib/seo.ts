@@ -291,6 +291,8 @@ export const organizationJsonLd = {
   slogan: site.tagline,
   description: site.description,
   brand: { "@type": "Brand", name: site.product },
+  // The social profiles, once their URLs are set in content/site.ts.
+  ...(site.social.some((profile) => profile.href) ? { sameAs: site.social.map((profile) => profile.href).filter(Boolean) } : {}),
 };
 
 export function articleJsonLd(path: string, headline: string, about: string) {

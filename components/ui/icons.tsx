@@ -68,3 +68,34 @@ export const Search = ({ className, size = 16 }: IconProps) => (
     <path d="m10.4 10.4 3.1 3.1" />
   </svg>
 );
+
+// Brand marks for the footer social links, from Font Awesome Free 6.7.2 (icons CC BY 4.0,
+// https://fontawesome.com/license/free). Filled, on each mark's own grid, sized by height.
+const brand = (size: number, width: number, height: number) => ({
+  width: Math.round((size * width) / height),
+  height: size,
+  viewBox: `0 0 ${width} ${height}`,
+  fill: "currentColor",
+  "aria-hidden": true,
+  focusable: false,
+});
+export const LinkedIn = ({ className, size = 16 }: IconProps) => (
+  <svg {...brand(size, 448, 512)} className={className}>
+    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
+  </svg>
+);
+export const XLogo = ({ className, size = 16 }: IconProps) => (
+  <svg {...brand(size, 512, 512)} className={className}>
+    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+  </svg>
+);
+export const YouTube = ({ className, size = 16 }: IconProps) => (
+  <svg {...brand(size, 576, 512)} className={className}>
+    <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+  </svg>
+);
+export const Facebook = ({ className, size = 16 }: IconProps) => (
+  <svg {...brand(size, 320, 512)} className={className}>
+    <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+  </svg>
+);

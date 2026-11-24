@@ -22,9 +22,13 @@ export const site = {
       { label: "Careers", value: "[TBD: careers contact]" },
     ],
   },
-  social: {
-    linkedin: "", // [TBD: LinkedIn URL]
-  },
+  // Footer icons, in this order. An empty href shows the icon dimmed, not linked.
+  social: [
+    { label: "LinkedIn", href: "https://in.linkedin.com/company/atsuyatech" },
+    { label: "X", href: "https://x.com/AtsuyaTech" },
+    { label: "YouTube", href: "https://www.youtube.com/@atsuyatechnologies" },
+    { label: "Facebook", href: "" }, // [TBD: Facebook URL] (kept inactive until the link is ready)
+  ] as { label: "LinkedIn" | "X" | "YouTube" | "Facebook"; href: string }[],
 };
 
 // The logo wall. `logo` gives the file and its intrinsic size (the wall sizes each mark by its
