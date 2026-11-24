@@ -16,7 +16,8 @@ import { ArrowLink } from "@/components/ui/Button";
 import { IsoScene } from "@/components/sections/IsoScene";
 import { SiteVector } from "@/components/iso/SiteVector";
 import { FilterGrid, type FilterItem } from "@/components/sections/FilterGrid";
-import { ProblemWipe } from "@/components/sections/home/ProblemWipe";
+import { NightShift } from "@/components/sections/home/NightShift";
+import { NightVector } from "@/components/iso/NightVector";
 import { ThreeLayers } from "@/components/sections/home/ThreeLayers";
 import { Impact } from "@/components/sections/home/Impact";
 
@@ -72,21 +73,26 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* 5. The problem */}
+      {/* 5. The problem: what goes unheard (left), and a night shift that AOne watches (right) */}
       <Section labelledBy="problem-title">
-        <div className="container-x">
-          <SectionHeading id="problem-title" title={problem.headline} />
-          <div className="mt-12 lg:mt-16">
-            <ProblemWipe />
+        <div className="container-x grid-12 items-center gap-y-12">
+          <div className="col-span-12 lg:col-span-5" data-reveal="">
+            <h2 id="problem-title" className="t-h2">
+              {problem.headline} <span className="accent block">{problem.answer}</span>
+            </h2>
+            <p className="t-lead mt-6 text-ink-2">{problem.lead}</p>
+            <ol className="mt-8 border-b border-line">
+              {problem.losses.map((loss, index) => (
+                <li key={loss} className="flex items-baseline gap-4 border-t border-line py-3.5 text-[1.0625rem] leading-6 font-medium text-ink">
+                  <span className="t-label w-6 shrink-0 text-brand-ink">0{index + 1}</span>
+                  {loss}
+                </li>
+              ))}
+            </ol>
           </div>
-          <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-5">
-            {problem.losses.map((loss, index) => (
-              <li key={loss} className="rounded-card bg-paper-2 p-5" data-reveal="" style={delay(index)}>
-                <span className="t-label text-brand-ink">0{index + 1}</span>
-                <p className="mt-6 text-[1.0625rem] leading-6 font-medium text-ink">{loss}</p>
-              </li>
-            ))}
-          </ol>
+          <div className="col-span-12 lg:col-span-7" data-reveal="" style={delay(1)}>
+            <NightShift copy={problem.night} art={<NightVector label={problem.night.description} />} />
+          </div>
         </div>
       </Section>
 

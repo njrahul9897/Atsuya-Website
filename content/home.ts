@@ -27,45 +27,8 @@ export const home = {
 
   problem: {
     headline: "Your operation is talking. Nobody is listening.",
-    before: "On paper",
-    after: "In AOne",
-    // The same three moments, on paper and in AOne. Readings are illustrative UI content.
-    moments: [
-      {
-        id: "log",
-        paper: {
-          title: "Temperature log · Cold room 2",
-          rows: [
-            ["22:00", "3.5°C", "ok"],
-            ["00:00", "3.9°C", "ok"],
-            ["02:00", "—", "not checked"],
-            ["06:00", "9.4°C", "?"],
-          ],
-        },
-        aone: { status: "alert", time: "02:14", title: "Cold room 2 rising", detail: "Temp 6.1°C · threshold 5.0°C", action: "Alert sent to store manager" },
-      },
-      {
-        id: "audit",
-        paper: {
-          title: "Closing checklist",
-          rows: [
-            ["Handwash log", "✓", ""],
-            ["Exhaust off", "", "blank"],
-            ["AC off", "✓", ""],
-            ["Freezer door", "", "blank"],
-          ],
-        },
-        aone: { status: "warn", time: "23:40", title: "Exhaust fan still running", detail: "Outlet closed 23:00 · overrun 40 min", action: "Switched off remotely" },
-      },
-      {
-        id: "alarm",
-        paper: {
-          title: "Compressor panel",
-          rows: [["ALARM", "03:05", "not acknowledged"]],
-        },
-        aone: { status: "ok", time: "03:21", title: "Compressor 2 vibration", detail: "BluSquad engineer assigned 03:07", action: "Resolved" },
-      },
-    ],
+    answer: "But AOne does.",
+    lead: "On the night shift, with fewer people on the floor, a small fault can go unnoticed until it becomes a breakdown. AOne devices watch every asset around the clock, catch the fault as it starts and alert your team on the AOne dashboard before anything goes wrong.",
     losses: [
       "Energy left running",
       "Breakdowns nobody saw coming",
@@ -73,6 +36,21 @@ export const home = {
       "Defects that reach customers",
       "Audits done on paper",
     ],
+    // The night-shift illustration beside it. Readings and times are illustrative UI content.
+    night: {
+      description:
+        "A plant at night, with one operator at the far end of the floor. A compressor near the front starts to overheat. The AOne sensor on it catches the change as it starts and sends an alert through the gateway to the AOne dashboard, which notifies the on-call engineer before the compressor fails.",
+      shift: "Night shift",
+      dashboard: "AOne dashboard",
+      live: "Live",
+      asset: "Compressor 2",
+      normal: "Normal",
+      warning: "Early warning",
+      alert: { time: "02:51", text: "Bearing temperature rising" },
+      notified: "On-call engineer alerted",
+      idle: "Idle",
+      others: ["Line 1", "Line 2"],
+    },
   },
 
   how: {

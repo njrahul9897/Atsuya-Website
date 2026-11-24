@@ -1,0 +1,28 @@
+{
+ "viewBox": [
+  -409,
+  -172,
+  920,
+  690
+ ],
+ "layers": [
+  {
+   "kind": "image",
+   "src": "/illustrations/night-0.svg",
+   "bytes": 12383
+  },
+  {
+   "kind": "inline",
+   "markup": "<g class=\"flow\" style=\"--i:0\"><g fill=\"none\" stroke=\"#7cc4ff\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path class=\"flow-glow\" d=\"M115.7 249.2L36.4 295L-55.4 242L-48.8 238.2\" stroke-width=\"8\" stroke-opacity=\".2\"/><path class=\"flow-line\" pathLength=\"1\" d=\"M115.7 249.2L36.4 295L-55.4 242L-48.8 238.2\" stroke-width=\"2.2\"/><path class=\"flow-dot\" pathLength=\"1\" d=\"M115.7 249.2L36.4 295L-55.4 242L-48.8 238.2\" stroke=\"#fff\" stroke-width=\"4.6\" stroke-dasharray=\"0 1\"/></g></g>"
+  },
+  {
+   "kind": "image",
+   "src": "/illustrations/night-1.svg",
+   "bytes": 89900
+  },
+  {
+   "kind": "inline",
+   "markup": "<style>.night3c0{fill:#151f31;stroke:#151f31;stroke-width:.4px}.night3c1{fill:#273244;stroke:#273244;stroke-width:.4px}.night3c2{fill:#1c283b;stroke:#1c283b;stroke-width:.4px}.night3c3{fill:#0a223b;stroke:#0a223b;stroke-width:.4px}.night3c4{fill:#1f3d5a;stroke:#1f3d5a;stroke-width:.4px}.night3c5{fill:#1f77bd;stroke:#1f77bd;stroke-width:.4px}</style><defs><radialGradient id=\"night30\"><stop offset=\"0\" stop-color=\"#7cc4ff\" stop-opacity=\"0.6\"/><stop offset=\".35\" stop-color=\"#7cc4ff\" stop-opacity=\"0.22\"/><stop offset=\"1\" stop-color=\"#7cc4ff\" stop-opacity=\"0\"/></radialGradient><radialGradient id=\"night31\"><stop offset=\"0\" stop-color=\"#ff4a3d\" stop-opacity=\"0.8\"/><stop offset=\".35\" stop-color=\"#ff4a3d\" stop-opacity=\"0.29\"/><stop offset=\"1\" stop-color=\"#ff4a3d\" stop-opacity=\"0\"/></radialGradient><radialGradient id=\"night32\"><stop offset=\"0\" stop-color=\"#3df08a\" stop-opacity=\"0.7\"/><stop offset=\".35\" stop-color=\"#3df08a\" stop-opacity=\"0.25\"/><stop offset=\"1\" stop-color=\"#3df08a\" stop-opacity=\"0\"/></radialGradient><radialGradient id=\"night33\"><stop offset=\"0\" stop-color=\"#7cc4ff\" stop-opacity=\"0.5\"/><stop offset=\".35\" stop-color=\"#7cc4ff\" stop-opacity=\"0.18\"/><stop offset=\"1\" stop-color=\"#7cc4ff\" stop-opacity=\"0\"/></radialGradient><radialGradient id=\"night34\"><stop offset=\"0\" stop-color=\"#ffb020\" stop-opacity=\"0.5\"/><stop offset=\".35\" stop-color=\"#ffb020\" stop-opacity=\"0.18\"/><stop offset=\"1\" stop-color=\"#ffb020\" stop-opacity=\"0\"/></radialGradient><radialGradient id=\"night35\"><stop offset=\"0\" stop-color=\"#ff4a3d\" stop-opacity=\"0.5\"/><stop offset=\".35\" stop-color=\"#ff4a3d\" stop-opacity=\"0.18\"/><stop offset=\"1\" stop-color=\"#ff4a3d\" stop-opacity=\"0\"/></radialGradient></defs><g class=\"flow riser\" style=\"--i:0\"><g fill=\"none\" stroke=\"#7cc4ff\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path class=\"flow-glow\" d=\"M115.7 219.2L115.7 249.2\" stroke-width=\"8\" stroke-opacity=\".2\"/><path class=\"flow-line\" pathLength=\"1\" d=\"M115.7 219.2L115.7 249.2\" stroke-width=\"2.2\"/></g></g><g class=\"sensor hot\"><path class=\"night3c0\" d=\"M122 223.4Q122.5 223.1 122.5 222.5L122.5 220.9Q122.5 220.6 122.3 220.4L121.4 220.9L121.4 223.6Q121.7 223.6 121.9 223.4Z\"/><path class=\"night3c1\" d=\"M111.9 214.2Q111.4 213.9 110.9 214.2L110.8 214.2Q110.6 214.4 110.4 214.6L121.4 220.9L122.3 220.4Q122.2 220.2 121.9 220Z\"/><path class=\"night3c2\" d=\"M110.3 216.7Q110.3 217.3 110.9 217.6L120.9 223.4Q121.2 223.6 121.4 223.6L121.4 220.9L110.4 214.6Q110.3 214.8 110.3 215.1Z\"/><path class=\"night3c3\" d=\"M119.3 227.9Q120.6 227.2 120.6 225.8L120.6 217.8Q120.6 217.1 120.2 216.6L117.4 218.2L117.4 228.7Q118 228.7 118.6 228.3Z\"/><path class=\"night3c4\" d=\"M112.4 211.7Q111.2 211 110 211.7L109.3 212.1Q108.7 212.5 108.4 213L117.4 218.2L120.2 216.6Q119.9 216.1 119.3 215.7Z\"/><path class=\"night3c5\" d=\"M108.1 222.2Q108.1 223.6 109.3 224.3L116.2 228.3Q116.8 228.7 117.4 228.7L117.4 218.2L108.4 213Q108.1 213.5 108.1 214.2Z\"/><path d=\"M115.3 222.6A3.82 2.21 60 1 1 109.9 219.4A3.82 2.21 60 1 1 115.3 222.6Z\" fill=\"none\" class=\"led-s\" stroke-width=\"1.96\"/><path class=\"led\" d=\"M112 219.6A1.47 0.85 60 0 1 113.5 220.5A1.47 0.85 60 0 1 113.5 222.2L113.1 222.4A1.47 0.85 60 0 0 113.1 220.7A1.47 0.85 60 0 0 111.7 219.8ZM113.4 221.7A1.47 0.85 60 1 1 111.4 220.5A1.47 0.85 60 1 1 113.4 221.7Z\"/><circle class=\"halo-live\" cx=\"112.1\" cy=\"221.3\" r=\"32\" fill=\"url(#night30)\"/><circle class=\"halo-alert\" cx=\"112.1\" cy=\"221.3\" r=\"41.6\" fill=\"url(#night31)\"/><circle class=\"halo-ok\" cx=\"112.1\" cy=\"221.3\" r=\"36.8\" fill=\"url(#night32)\"/></g><g class=\"signal\"><circle cx=\"-46.8\" cy=\"151\" r=\"68\" fill=\"url(#night33)\"/></g><g class=\"warn\"><circle cx=\"126.4\" cy=\"221\" r=\"84\" fill=\"url(#night34)\"/></g><g class=\"alarm\"><circle cx=\"126.4\" cy=\"221\" r=\"88\" fill=\"url(#night35)\"/></g>"
+  }
+ ]
+}

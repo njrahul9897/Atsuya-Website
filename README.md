@@ -17,7 +17,7 @@ npm run start      # serve the production build
 npm run lint
 npm run typecheck
 npm run tbd        # list every [TBD: …] gap still in the content (the site never shows them)
-npm run build:illustrations   # redraw the detailed 2.5D illustration from its model
+npm run build:illustrations   # redraw the detailed 2.5D illustrations from their models
 ```
 
 **Content gaps.** Missing content is marked `[TBD: …]` in the content files. The site never
@@ -38,7 +38,7 @@ their text is in. Fill a gap in the content file and its block appears.
 | `lib/seo.ts` | The route registry: metadata, breadcrumbs, JSON-LD, sitemap and OG images all come from it. |
 | `app/globals.css` | Design tokens (CSS variables), type scale, grid, motion and the 2.5D scene styles. |
 | `components/iso/` | The isometric kit (`kit.tsx`) and the placeholder scene data (`scenes.ts`). |
-| `illustrations/` | The detailed 2.5D illustration: its model, the exporter and the generated layers (see below). |
+| `illustrations/` | The detailed 2.5D illustrations: their models, the exporter and the generated layers (see below). |
 | `components/sections/IsoScene.tsx` | The pinned scroll scene (homepage "Sense. See. Decide. Act." and every industry's operation map). |
 | `components/layout/SiteSearch.tsx`, `app/search-index.json/route.ts` | Site search: the header's search button and dialog, and the index it reads (built from the route registry, so new pages are searchable without extra work). |
 | `components/hero/HeroVideo.tsx` | The hero video: poster first, video after, pause control, reduced-motion and Save-Data fallbacks. |
@@ -121,30 +121,35 @@ of the brief.
 - **Headlines** pick out their last phrase in the accent colour (`Accent` in `components/ui/rich.tsx`).
 - **Product mock-ups** are dark panels (`components/mockups/Mock.tsx`).
 
-## The detailed 2.5D illustration
+## The detailed 2.5D illustrations
 
-The homepage's "Sense. See. Decide. Act." scene is a detailed isometric vector illustration. It is
-not drawn by hand: the plant is modelled as solids and drawn as vector art by a small exporter, so
-it can be changed or extended by editing the model.
+The homepage has two detailed isometric vector illustrations: the night shift beside "Your
+operation is talking. Nobody is listening. But AOne does.", and the site in "Sense. See. Decide.
+Act.". They are not drawn by hand: each plant is modelled as solids and drawn as vector art by a
+small exporter, so it can be changed or extended by editing the model.
 
 | File | What it holds |
 | --- | --- |
 | `illustrations/model/kit.ts` | The palette (top, left and right tone per material) and the primitives. |
 | `illustrations/model/props.ts` | The equipment: cold room, CNC machines, robot, conveyor, compressor, receiver, chiller, racking, truck, forklift, kitchen block, generator, transformer, switchboard, people, trees, and the AOne sensors, cameras and gateway. |
 | `illustrations/model/site.ts` | The site layout and the AOne layer (devices, data lines, alert, engineer). |
+| `illustrations/model/night.ts` | The night shift: one plant bay after hours, a compressor that starts to fail, and the AOne sensor, data line and gateway that catch it. The build shades it for night: every colour darkened and cooled, light sources left bright. |
 | `illustrations/export.ts` | The exporter: isometric projection, back-to-front ordering, flat three-tone shading, shadows. |
-| `scripts/build-illustrations.ts` | Runs the export. |
-| `components/iso/SiteVector.tsx` | Puts the layers on the page. |
+| `scripts/build-illustrations.ts` | Runs the export (and the night shading). |
+| `components/iso/LayeredVector.tsx`, `SiteVector.tsx`, `NightVector.tsx` | Put the layers on the page. |
+| `components/sections/home/NightShift.tsx` | The night-shift panel: the illustration, the "Night shift" chip and the dashboard card. Its 12-second loop is "The night shift" in `app/globals.css`; it plays only on screen. |
 
 ```bash
 npm run build:illustrations   # after any change under illustrations/
 ```
 
-- The output is committed: static layers in `public/illustrations/site-*.svg` (plus `site.svg`,
-  the whole picture in one file) and the animated layers in `illustrations/generated/site.json`.
+- The output is committed: static layers in `public/illustrations/{site,night}-*.svg` (plus
+  `site.svg` and `night.svg`, each whole picture in one file) and the animated layers in
+  `illustrations/generated/{site,night}.json`.
 - The plant itself is plain SVG images, so it adds nothing to the DOM. Only the AOne layer is
-  inline SVG, so CSS can drive it from `data-step` (see "The home scene's four states" in
-  `app/globals.css`). Without scripts, or with reduced motion, it shows its end state.
+  inline SVG, so CSS can drive it: the site from `data-step` ("The home scene's four states" in
+  `app/globals.css`), the night shift from its own loop. Without scripts, or with reduced motion,
+  each shows its end state.
 - three.js is a dev dependency used only as a scene graph at build time. Nothing 3D ships to the
   browser.
 - Two modelling rules keep the drawing order sound: parts must not sit inside one another, and
